@@ -1,0 +1,4 @@
+Id,Type,Name,Desc,Attack,Cost,Mana,Range,EffectId
+Card,Unit,Unit,Desc,10,2,0,2,Unit0
+Card1,Effect,Effect,Desc1,0,5,0,0,Effect0
+Card2,Resource,Resource,Desc2,0,0,0,0,ResourceEffect0
