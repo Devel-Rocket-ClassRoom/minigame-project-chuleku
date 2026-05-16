@@ -1,0 +1,12 @@
+{
+    "asset": "a45eb2c0e32fced4ab31d321f39c3a1e",
+    "fileName": "019e3004-f961-710e-8672-0fde57e34344.pose.json",
+    "prompt": "A humanoid character gets hit from the front, falls backward onto their back, and remains lying still on the ground. A death animation.",
+    "negativePrompt": "",
+    "model": "unity-text-to-motion",
+    "modelName": "Text to Motion",
+    "customSeed": 434800256,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "isTrimmed": false
+}

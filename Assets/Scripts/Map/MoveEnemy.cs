@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class MoveEnemy : MonoBehaviour
 {
-    public TileMap tilemap;
+    private TileMap tilemap;
     public float moveSpeed = 5f;
 
     private List<Vector2Int> path;
     private Coroutine cor;
+
+    private void OnEnable()
+    {
+        GameObject gm = GameObject.FindWithTag("TileMap");
+        tilemap = gm.GetComponent<TileMap>();
+    }
 
     public void SetPath(List<Vector2Int> newPath)
     {
@@ -20,7 +26,7 @@ public class MoveEnemy : MonoBehaviour
         cor = StartCoroutine(CoFollow());
     }
 
-    IEnumerator CoFollow()
+    private IEnumerator CoFollow()
     {
         for (int i = 0; i < path.Count - 1; i++)
         {

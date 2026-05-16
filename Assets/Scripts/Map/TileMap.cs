@@ -8,7 +8,6 @@ public class TileMap : MonoBehaviour
 
     public static readonly Vector2Int Start = new(0, 0);
     public static readonly Vector2Int Goal = new(W - 1, H - 1);
-    // 인스펙터에서 메인 카메라 할당. 비우면 Camera.main 사용
     public float CellSize { get; private set; }
 
     Tile[,] tiles;

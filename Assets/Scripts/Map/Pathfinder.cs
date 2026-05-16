@@ -21,7 +21,6 @@ public static class Pathfinder
 
         while (open.Count > 0)
         {
-            // 200노드 규모면 선형 탐색이 우선순위 큐보다 단순하고 충분히 빠름
             int bestIdx = 0;
             for (int i = 1; i < open.Count; i++)
                 if (fScore[open[i]] < fScore[open[bestIdx]]) bestIdx = i;
