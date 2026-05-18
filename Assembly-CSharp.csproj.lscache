@@ -50,49 +50,60 @@ TemporaryDependencyNodeTargetIdentifier=netstandard2.1
 /warnaserror+:NU1605
 
 [sourceFiles]
-Assets/Scripts/Map/
- DefenceGameManager.cs
- MoveEnemy.cs
- Pathfinder.cs
- Tile.cs
- TileMap.cs
- Wall.cs
-Assets/TextMesh Pro/Examples & Extras/Scripts/
- Benchmark01.cs
- Benchmark01_UGUI.cs
- Benchmark02.cs
- Benchmark03.cs
- Benchmark04.cs
- CameraController.cs
- ChatController.cs
- DropdownSample.cs
- EnvMapAnimator.cs
- ObjectSpin.cs
- ShaderPropAnimator.cs
- SimpleScript.cs
- SkewTextExample.cs
- TeleType.cs
- TextConsoleSimulator.cs
- TextMeshProFloatingText.cs
- TextMeshSpawner.cs
- TMPro_InstructionOverlay.cs
- TMP_DigitValidator.cs
- TMP_ExampleScript_01.cs
- TMP_FrameRateCounter.cs
- TMP_PhoneNumberValidator.cs
- TMP_TextEventCheck.cs
- TMP_TextEventHandler.cs
- TMP_TextInfoDebugTool.cs
- TMP_TextSelector_A.cs
- TMP_TextSelector_B.cs
- TMP_UiFrameRateCounter.cs
- VertexColorCycler.cs
- VertexJitter.cs
- VertexShakeA.cs
- VertexShakeB.cs
- VertexZoom.cs
- WarpTextExample.cs
-Assets/TutorialInfo/Scripts/Readme.cs
+Assets/
+ Animations/UnitAnimation/ArcherAnimatorAttack.cs
+ Imported/Kevin Iglesias/Archer Animations/Scripts/BowLoadScript.cs
+ Scripts/Map/
+  DefenceGameManager.cs
+  MoveEnemy.cs
+  Pathfinder.cs
+  Tile.cs
+  TileMap.cs
+  Wall.cs
+ Scripts/Monster/
+  DamageAble.cs
+  Goblin.cs
+ Scripts/Unit/
+  Archer.cs
+  Arrow.cs
+  RangeSensor.cs
+  UnitBase.cs
+ TextMesh Pro/Examples & Extras/Scripts/
+  Benchmark01.cs
+  Benchmark01_UGUI.cs
+  Benchmark02.cs
+  Benchmark03.cs
+  Benchmark04.cs
+  CameraController.cs
+  ChatController.cs
+  DropdownSample.cs
+  EnvMapAnimator.cs
+  ObjectSpin.cs
+  ShaderPropAnimator.cs
+  SimpleScript.cs
+  SkewTextExample.cs
+  TeleType.cs
+  TextConsoleSimulator.cs
+  TextMeshProFloatingText.cs
+  TextMeshSpawner.cs
+  TMPro_InstructionOverlay.cs
+  TMP_DigitValidator.cs
+  TMP_ExampleScript_01.cs
+  TMP_FrameRateCounter.cs
+  TMP_PhoneNumberValidator.cs
+  TMP_TextEventCheck.cs
+  TMP_TextEventHandler.cs
+  TMP_TextInfoDebugTool.cs
+  TMP_TextSelector_A.cs
+  TMP_TextSelector_B.cs
+  TMP_UiFrameRateCounter.cs
+  VertexColorCycler.cs
+  VertexJitter.cs
+  VertexShakeA.cs
+  VertexShakeB.cs
+  VertexZoom.cs
+  WarpTextExample.cs
+ TutorialInfo/Scripts/Readme.cs
 Temp/obj/Assembly-CSharp/.NETStandard,Version=v2.1.AssemblyAttributes.cs
 
 [metadataReferences]

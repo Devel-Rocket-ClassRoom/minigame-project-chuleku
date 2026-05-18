@@ -1,0 +1,41 @@
+using UnityEngine;
+
+public abstract class UnitBase : MonoBehaviour
+{
+    [SerializeField] protected RangeSensor sensor;
+    [SerializeField] protected float attackCooldown = 1f;
+    [SerializeField] protected int damage = 10;
+
+    protected Animator animator;
+    protected DamageAble currentTarget;
+    private float cooldownTimer;
+
+    protected virtual void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
+
+    protected virtual void Update()
+    {
+        currentTarget = sensor.GetNearest();
+        if (currentTarget == null) return;
+
+        FaceTarget(currentTarget.transform.position);
+
+        cooldownTimer -= Time.deltaTime;
+        if (cooldownTimer > 0f) return;
+
+        Attack(currentTarget);
+        cooldownTimer = attackCooldown;
+    }
+
+    protected void FaceTarget(Vector3 worldPos)
+    {
+        Vector3 dir = worldPos - transform.position;
+        dir.y = 0f;
+        if (dir.sqrMagnitude > 0.0001f)
+            transform.rotation = Quaternion.LookRotation(dir);
+    }
+
+    protected abstract void Attack(DamageAble target);
+}

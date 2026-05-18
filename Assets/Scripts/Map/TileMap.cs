@@ -88,16 +88,39 @@ public class TileMap : MonoBehaviour
         => new Vector3(origin.x + x * CellSize, 0f, origin.z - z * CellSize);
 
     public Vector3 GridToWorld(Vector2Int g) => GridToWorld(g.x, g.y);
-    public void CreateWall(int x, int z)
+    public void CreateWall(int x, int z,GameObject gm)
     {
         tiles[x,z].hasWall = true;
+        tiles[x,z].Wall = gm;
     }
     public void BreakWall(int x,int z)
     {
+        if(tiles[x,z].Wall == null)return;
+        Destroy(tiles[x,z].Wall);
+        tiles[x,z].Wall = null;
         tiles[x,z].hasWall = false;
+    }
+    public void CreateUnit(int x,int z,GameObject gm)
+    {
+        if(tiles[x,z].Wall == null||tiles[x,z].Unit !=null) return;
+        tiles[x,z].Unit = gm;
+    }
+    public void BreakUnit(int x,int z)
+    {
+        if(tiles[x,z].Wall == null||tiles[x,z].Unit ==null) return;
+        Destroy(tiles[x,z].Unit);
+        tiles[x,z].Unit = null;
     }
     public bool DonCreateCheck(int x, int z)
     {
         return tiles[x,z].dontBreak;
+    }
+    public bool WallCheck(int x, int z)
+    {
+        return tiles[x,z].hasWall;
+    }
+    public bool UnitCheck(int x,int z)
+    {
+        return tiles[x,z].Unit == null;
     }
 }

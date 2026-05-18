@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &9166123407302272339
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -4216859302048453862, guid: 79b81d48f9663b84fb8f0bf9edcaf01b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.292
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 79b81d48f9663b84fb8f0bf9edcaf01b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 79b81d48f9663b84fb8f0bf9edcaf01b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.026
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 79b81d48f9663b84fb8f0bf9edcaf01b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 79b81d48f9663b84fb8f0bf9edcaf01b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 79b81d48f9663b84fb8f0bf9edcaf01b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 79b81d48f9663b84fb8f0bf9edcaf01b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 79b81d48f9663b84fb8f0bf9edcaf01b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 79b81d48f9663b84fb8f0bf9edcaf01b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 79b81d48f9663b84fb8f0bf9edcaf01b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 79b81d48f9663b84fb8f0bf9edcaf01b, type: 3}
+      propertyPath: m_Name
+      value: Mesh_Archer_WeaponArrow
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: 79b81d48f9663b84fb8f0bf9edcaf01b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1645096409383873068}
+    - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: 79b81d48f9663b84fb8f0bf9edcaf01b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8915725496346699882}
+  m_SourcePrefab: {fileID: 100100000, guid: 79b81d48f9663b84fb8f0bf9edcaf01b, type: 3}
+--- !u!1 &870727150228634714 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 79b81d48f9663b84fb8f0bf9edcaf01b, type: 3}
+  m_PrefabInstance: {fileID: 9166123407302272339}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1645096409383873068
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870727150228634714}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.08324179, y: 0.06876955, z: 0.71054775}
+  m_Center: {x: 0.0006515067, y: -0.0042128004, z: -0.06699458}
+--- !u!114 &-8915725496346699882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870727150228634714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf50235c23316e4593482a636fe8fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Arrow
+  damage: 0
