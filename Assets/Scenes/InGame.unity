@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &44970680 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3798851259646972285, guid: cf4408646b5f1c64b91b501c6d99c35e, type: 3}
+  m_PrefabInstance: {fileID: 8600535141625065509}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &127818162
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,10 +447,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Equip
+  m_text: "\uBCBD \uC0DD\uC131"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9089ccf0011d8054eb3c367ab9dc189c, type: 2}
+  m_sharedMaterial: {fileID: 689206378201595047, guid: 9089ccf0011d8054eb3c367ab9dc189c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1563,7 +1568,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -20}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2002326474
@@ -1772,6 +1777,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapTiles
       objectReference: {fileID: 0}
+    - target: {fileID: 5003058158337938523, guid: a9b278b1eee1a6c43954ce86a4cad30d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -3155047780354543793, guid: b28fa67a0ff82c5478f27368dc627683, type: 3}
     - target: {fileID: 5453902409336423376, guid: a9b278b1eee1a6c43954ce86a4cad30d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1939,6 +1948,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4278239820134542705, guid: cf4408646b5f1c64b91b501c6d99c35e, type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 44970680}
     - target: {fileID: 4952288566014244865, guid: cf4408646b5f1c64b91b501c6d99c35e, type: 3}
       propertyPath: m_Name
       value: Archer
