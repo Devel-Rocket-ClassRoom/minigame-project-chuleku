@@ -1,0 +1,28 @@
+{
+    "asset": "5687f101374392340846bfdcdfec3dc9",
+    "fileName": "019e399b-17e5-7660-a5c7-4ca377bed7fc.jpg",
+    "prompt": "A trading card frame template for a deckbuilding card game, dark fantasy treasure/wealth theme, portrait orientation. Empty card frame with NO TEXT and NO LETTERS anywhere. Ornate gold and bronze border with engraved coin patterns and gemstone inlays. Top section: rectangular nameplate slot (empty engraved gold plate). Center: large empty rectangular illustration window framed in polished gold. Bottom section: empty description panel made of aged tan parchment. Bottom row: two small distinct circular icon slots side by side — left is a golden coin slot (empty), right is a faceted blue crystal shard slot (empty). Color palette: rich gold, warm bronze, deep brown leather, sapphire blue accents. Centered composition. NO TEXT, NO WRITING, NO LETTERS, NO NUMBERS.",
+    "negativePrompt": "",
+    "model": "flux-2-pro",
+    "modelName": "Flux 2 (Pro)",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 576,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

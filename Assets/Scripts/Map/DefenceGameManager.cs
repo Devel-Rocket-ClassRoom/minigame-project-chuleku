@@ -19,6 +19,7 @@ public class DefenceGameManager : MonoBehaviour
      public GameObject bossPrefab;
      public GameObject[] monsterPrefab;
      public Camera cam;
+     public PathPreview pathPreview;
      private TileMap tileMap;
      private Vector2Int tileGrid;
      public int currentStage = 1;
@@ -35,6 +36,7 @@ public class DefenceGameManager : MonoBehaviour
         if(!gm.GetComponent<TileMap>())return;
         tileMap = gm.GetComponent<TileMap>();
         currentStage = 1;
+        
     }
     private void Update()
     {
@@ -145,6 +147,17 @@ public class DefenceGameManager : MonoBehaviour
         equipButton.SetActive(false);
         summonButton.SetActive(false);
     }
+    public void PathButton()
+    {
+        if (tileMap == null || pathPreview == null) return;
+        List<Vector2Int> path = Pathfinder.FindPath(tileMap, TileMap.Start, TileMap.Goal);
+        if (path == null)
+        {
+            Debug.Log("경로를 찾을 수 없습니다.");
+            return;
+        }
+        pathPreview.Show(tileMap, path);
+    }
     public void GameStartButton(int stage)
     {
         List<Vector2Int> path = Pathfinder.FindPath(tileMap,TileMap.Start,TileMap.Goal);
@@ -163,6 +176,7 @@ public class DefenceGameManager : MonoBehaviour
         if(stage%2==0)
         {
             GameObject gm = Instantiate(monsterPrefab[0],tileMap.GridToWorld(0,0),Quaternion.identity);
+            gm.GetComponent<MoveEnemy>().SetPath(path);
             currentStage++;
             return;
         }

@@ -1,0 +1,28 @@
+{
+    "asset": "309400ea6b052c1448e6ba22af455e42",
+    "fileName": "019e399b-e566-7705-9291-14fc5934d09b.jpg",
+    "prompt": "Dark fantasy character illustration of an elven archer, full body, standing on a stone wall, drawing back a longbow with a glowing arrow. Hooded leather armor with chainmail accents, weathered cloak, intense focused expression. Dramatic moody lighting, torchlight reflecting on metal. Painted concept art style, rich shadows, detailed textures. Centered composition, dark misty background.",
+    "negativePrompt": "",
+    "model": "flux-2-pro",
+    "modelName": "Flux 2 (Pro)",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 576
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

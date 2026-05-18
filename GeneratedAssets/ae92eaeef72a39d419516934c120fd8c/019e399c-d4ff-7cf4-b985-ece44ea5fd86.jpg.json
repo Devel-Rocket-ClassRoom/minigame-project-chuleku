@@ -1,0 +1,28 @@
+{
+    "asset": "ae92eaeef72a39d419516934c120fd8c",
+    "fileName": "019e399c-d4ff-7cf4-b985-ece44ea5fd86.jpg",
+    "prompt": "Dark fantasy still life illustration of a pile of gold coins and glowing blue crystal shards spilling out of an old leather pouch on a dark wooden table. Some coins are stacked, others scattered. The crystal shards emit a soft blue glow. Painted concept art style, dramatic chiaroscuro lighting like a Dutch master painting, rich textures, deep shadows. Centered composition.",
+    "negativePrompt": "",
+    "model": "flux-2-pro",
+    "modelName": "Flux 2 (Pro)",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 576
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

@@ -1,0 +1,28 @@
+{
+    "asset": "f329acd1e72487a498f0070c1b76b617",
+    "fileName": "019e3994-1438-7433-831c-5899f63ed38c.png",
+    "prompt": "A high-quality 2D game UI card background template for a 'Unit' card. Stylized fantasy dungeon theme with dark stone and iron borders. Layout: at the top a slot for the name, a large rectangular central area for the character illustration (leave empty/transparent-like), below that a parchment-textured box for description, and at the very bottom three small circular slots for stats (Attack, Range, Attack Speed). Sharp edges, cinematic lighting, 1024x1024 resolution.",
+    "negativePrompt": "",
+    "model": "gemini-3.0-pro",
+    "modelName": "Gemini 3.0 Pro",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

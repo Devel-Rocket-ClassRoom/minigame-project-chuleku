@@ -326,6 +326,9 @@ Temp/obj/Assembly-CSharp-Editor/.NETStandard,Version=v2.1.AssemblyAttributes.cs
   System.Transactions.dll
   System.Xml.dll
   System.Xml.Linq.dll
+Assets/NuGet/Editor/
+ NugetForUnity.dll
+ NuGetForUnity.PluginAPI.dll
 Library/PackageCache/
  com.unity.ai.assistant@667f49aff9c0/Modules/Unity.AI.Toolkit.Sdk/Editor/AiEditorToolsSdk.dll
  com.unity.collab-proxy@0b1559bcd34e/Lib/Editor/

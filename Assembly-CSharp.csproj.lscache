@@ -55,9 +55,15 @@ Assets/
  Imported/Kevin Iglesias/Archer Animations/Scripts/BowLoadScript.cs
  Scripts/Card/
   CardBase.cs
+  Effect/
+   EffectCardBase.cs
+   EffectCreateMagic.cs
   Unit/
    CardArcher.cs
    UnitCardBase.cs
+ Scripts/DataTable/
+  DataTable.cs
+  Defines.cs
  Scripts/Map/
   DefenceGameManager.cs
   MoveEnemy.cs

@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2669216611994095520}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -155,6 +155,7 @@ MonoBehaviour:
   damage: 10
   arrowPrefab: {fileID: 870727150228634714, guid: 71b4c4a4b81d12048aab7ca500c16687, type: 3}
   firePoint: {fileID: 8277978879001823762}
+  arrowspeed: 15
 --- !u!4 &8277978879001823762 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 7908f1a2bde075d478e43a6e8b8277be, type: 3}

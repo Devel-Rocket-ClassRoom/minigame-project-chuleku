@@ -1,0 +1,28 @@
+{
+    "asset": "8031a7f75077df1419ccc584b8d028b7",
+    "fileName": "019e399d-64d2-7883-89be-836f74d84c83.jpg",
+    "prompt": "Dark fantasy magical artifact illustration, a single large floating glowing rune stone hovering in midair, etched with ancient sigils that emit bright cyan and teal light, surrounded by drifting magical particles and ethereal mist. Painted concept art style, mystical atmosphere, dramatic lighting. Centered composition, dark void background with glowing magic.",
+    "negativePrompt": "",
+    "model": "flux-2-pro",
+    "modelName": "Flux 2 (Pro)",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 576
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

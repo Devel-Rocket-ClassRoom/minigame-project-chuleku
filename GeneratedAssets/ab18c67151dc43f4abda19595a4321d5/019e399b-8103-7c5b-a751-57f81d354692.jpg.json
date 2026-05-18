@@ -1,0 +1,28 @@
+{
+    "asset": "ab18c67151dc43f4abda19595a4321d5",
+    "fileName": "019e399b-8103-7c5b-a751-57f81d354692.jpg",
+    "prompt": "A trading card frame template for a deckbuilding card game, dark fantasy high magic spell theme, portrait orientation. Empty card frame with NO TEXT and NO LETTERS anywhere. Ornate border made of glowing ethereal cyan and teal energy intertwined with dark obsidian metal. Top section: rectangular nameplate slot (empty glowing crystal banner). Center: large empty rectangular illustration window surrounded by floating glowing magical particles and runes. Bottom section: empty description panel made of dark stone tablet with glowing cracks of light. Energy wisps trailing along the edges. Color palette: deep black, glowing cyan and teal, ethereal white highlights, hints of arcane purple. Centered composition. NO TEXT, NO WRITING, NO LETTERS, NO NUMBERS.",
+    "negativePrompt": "",
+    "model": "flux-2-pro",
+    "modelName": "Flux 2 (Pro)",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 576,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

@@ -50,8 +50,4 @@ public abstract class UnitBase : MonoBehaviour
     }
 
     protected abstract void Attack(DamageAble target);
-    public void SetupUnitStatus()
-    {
-        
-    }
 }

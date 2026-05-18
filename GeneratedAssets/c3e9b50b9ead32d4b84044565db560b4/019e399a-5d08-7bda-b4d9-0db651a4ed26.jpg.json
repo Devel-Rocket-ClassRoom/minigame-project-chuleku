@@ -1,0 +1,28 @@
+{
+    "asset": "c3e9b50b9ead32d4b84044565db560b4",
+    "fileName": "019e399a-5d08-7bda-b4d9-0db651a4ed26.jpg",
+    "prompt": "A trading card frame template for a tower defense card game, dark fantasy style, portrait orientation. Empty card frame with NO TEXT and NO LETTERS anywhere. Ornate iron and steel border with battle-worn metal trim. Top section: rectangular nameplate slot (empty parchment banner). Center: large empty rectangular illustration window with subtle inner shadow. Bottom section: empty description panel made of aged parchment. Very bottom: two small circular gem slots for ATK and HP stats (red gem on left, green gem on right, both empty/decorative). Color palette: deep gunmetal gray, blood red accents, bronze trim. Centered composition, clean edges, transparent or solid dark background. NO TEXT, NO WRITING, NO LETTERS, NO NUMBERS.",
+    "negativePrompt": "",
+    "model": "flux-2-pro",
+    "modelName": "Flux 2 (Pro)",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 576,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}
