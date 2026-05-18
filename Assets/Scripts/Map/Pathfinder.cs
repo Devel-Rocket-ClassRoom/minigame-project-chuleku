@@ -4,6 +4,7 @@ using UnityEngine;
 // Vector2Int.y는 그리드의 z축(세로)을 의미한다 — TileMap의 (x,z) 좌표계와 동일
 public static class Pathfinder
 {
+    private static bool missingTrack;
     static readonly Vector2Int[] Dirs =
     {
         new(1, 0), new(-1, 0), new(0, 1), new(0, -1)

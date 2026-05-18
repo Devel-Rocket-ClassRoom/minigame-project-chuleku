@@ -53,6 +53,11 @@ TemporaryDependencyNodeTargetIdentifier=netstandard2.1
 Assets/
  Animations/UnitAnimation/ArcherAnimatorAttack.cs
  Imported/Kevin Iglesias/Archer Animations/Scripts/BowLoadScript.cs
+ Scripts/Card/
+  CardBase.cs
+  Unit/
+   CardArcher.cs
+   UnitCardBase.cs
  Scripts/Map/
   DefenceGameManager.cs
   MoveEnemy.cs

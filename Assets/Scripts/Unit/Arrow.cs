@@ -27,7 +27,6 @@ public class Arrow : MonoBehaviour
 
         if (target == null || target.isDead)
         {
-            // 타겟이 사라지면 그냥 직진 (또는 Destroy)
             transform.position += transform.forward * speed * Time.deltaTime;
             return;
         }

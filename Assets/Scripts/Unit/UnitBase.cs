@@ -14,6 +14,18 @@ public abstract class UnitBase : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
     }
+    public void SetupUnitStatus(int attack, float attackSpeed, float range)
+    {
+        this.damage = attack;
+        // 공격 속도 역수를 취해 쿨타임으로 적용 (공속이 2면 쿨타임은 0.5초)
+        this.attackCooldown = attackSpeed > 0 ? 1f / attackSpeed : 1f; 
+        
+        // 중요! 가지고 계신 RangeSensor의 사거리 조절 함수 호출
+        if (sensor != null)
+        {
+            sensor.UnitRange(range);
+        }
+    }
 
     protected virtual void Update()
     {
@@ -38,4 +50,8 @@ public abstract class UnitBase : MonoBehaviour
     }
 
     protected abstract void Attack(DamageAble target);
+    public void SetupUnitStatus()
+    {
+        
+    }
 }

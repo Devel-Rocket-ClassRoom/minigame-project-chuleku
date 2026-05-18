@@ -9,6 +9,7 @@ public class RangeSensor : MonoBehaviour
     void Awake()
     {
         GetComponent<SphereCollider>().isTrigger = true;
+      
     }
 
     void OnTriggerEnter(Collider other)
@@ -35,5 +36,9 @@ public class RangeSensor : MonoBehaviour
             if (sq < bestSq) { bestSq = sq; best = targets[i]; }
         }
         return best;
+    }
+    public void UnitRange(float range)
+    {
+          GetComponent<SphereCollider>().radius = range;
     }
 }
