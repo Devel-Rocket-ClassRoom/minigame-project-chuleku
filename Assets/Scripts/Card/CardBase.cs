@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,12 +10,14 @@ public abstract class CardBase : MonoBehaviour
     [SerializeField] protected int cost;
     [SerializeField] protected CardType cardType;
 
+    [SerializeField] protected bool useAble;
     [Header("UI")]
     [SerializeField] protected TextMeshProUGUI nameText;
     [SerializeField] protected TextMeshProUGUI descText;
     [SerializeField] protected TextMeshProUGUI costText;
     [SerializeField] protected Image artworkImage;
 
+    public bool UseAble => useAble;
     protected CardTable.Data data;
 
     public string CardId => cardId;

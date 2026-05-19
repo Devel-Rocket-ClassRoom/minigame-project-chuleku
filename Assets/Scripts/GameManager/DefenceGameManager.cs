@@ -16,6 +16,7 @@ public enum Difficulty
 }
 public class DefenceGameManager : MonoBehaviour
 {
+   
      public RectTransform menuPanel;
      public GameObject wallPrefab;
      public GameObject equipButton;
@@ -23,6 +24,7 @@ public class DefenceGameManager : MonoBehaviour
      public TextMeshProUGUI breakText;
      public GameObject summonButton;
      public GameObject summonScrollView;
+     
      public GameObject unitPrefab;
      public GameObject bossPrefab;
      public GameObject[] monsterPrefab;
@@ -34,6 +36,8 @@ public class DefenceGameManager : MonoBehaviour
      private const float clickThreshold = 0.25f;
      private float pressStartTime;
      private bool isPressing;
+   
+     
     public Difficulty difficulty = Difficulty.Easy;
 
 
@@ -43,6 +47,7 @@ public class DefenceGameManager : MonoBehaviour
         tileMap = gm.GetComponent<TileMap>();
         cam = Camera.main;
         if (menuPanel != null) menuPanel.gameObject.SetActive(false);
+       
         equipButton.SetActive(false);
         breakButton.SetActive(false);
         summonScrollView.SetActive(false);
@@ -276,4 +281,5 @@ public class DefenceGameManager : MonoBehaviour
             DifficultyWallCreate(wallCount);
         }
     }
+
 }

@@ -4,7 +4,7 @@ UnitDesc,원거리 공격을 하는\n궁수
 EffectName,불법 복제 마술
 EffectDesc,무작위 마법카드를 획득
 ResourceName,누군가 버린 금화
-ResourceDesc,사용 시 골드 +1을 획득
+ResourceDesc,사용 시 골드 +1
 MagicName,파이어 볼
 MagicDesc,사용 시 지정범위에 화염구를 날림
 

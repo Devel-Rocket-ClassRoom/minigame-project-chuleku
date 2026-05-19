@@ -4,7 +4,7 @@ using UnityEngine;
 public class LostGoldCoin : ResourceCardBase
 {
 
-    protected override void UseResource()
+    public override void UseResource()
     {
         ResourceManager.Instance.AddGold(1);
     }

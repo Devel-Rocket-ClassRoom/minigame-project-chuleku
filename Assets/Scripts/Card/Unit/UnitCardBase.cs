@@ -8,10 +8,10 @@ public abstract class UnitCardBase : CardBase
     [SerializeField] protected int cardUpgradeAttack;
     [SerializeField] protected float cardAttackSpeed;
     [SerializeField] protected float cardRange;
-    [SerializeField] protected bool useAble;
     [Header("UI")]
     [SerializeField] protected TextMeshProUGUI atkText;
 
+    
     public UnitBase UnitPrefab => unitPrefab;
     public int Attack => cardAttack;
     public float AttackSpeed => cardAttackSpeed;

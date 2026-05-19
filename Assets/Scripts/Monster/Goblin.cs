@@ -17,7 +17,7 @@ public class Goblin : DamageAble
     {
         health = 100f;
         defense = 5;
-        type = Type.Minion;
+        type = EnemyType.Minion;
     }   
     public override void Die()
     {

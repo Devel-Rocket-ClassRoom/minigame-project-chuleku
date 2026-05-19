@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
 {
+    
+
     [SerializeField] private TextMeshProUGUI goldText;
     [SerializeField] private TextMeshProUGUI shardText;
     [SerializeField] private TextMeshProUGUI manaText;
-    public static ResourceManager Instance {get; private set;}
+    [SerializeField] private TextMeshProUGUI healthText;
+    
 
+    public static ResourceManager Instance {get; private set;}
+    public int Hp { get; private set; }
     public int Gold { get; private set; }
     public int Shard { get; private set; }
     public int Mana { get; private set; }
@@ -16,7 +21,9 @@ public class ResourceManager : MonoBehaviour
     public event Action<int> OnGoldChanged;
     public event Action<int> OnShardChanged;
     public event Action<int> OnManaChanged;
+    public event Action<int> OnHpChanged;
     private int maxMana = 50;
+    private int maxHp = 50;
 
 
     void Awake()
@@ -26,6 +33,20 @@ public class ResourceManager : MonoBehaviour
         SetGold(0);
         SetShard(0);
         SetMana(2);
+        SetHp(20);
+    }
+
+    public void TakeDamage(int amount)
+    {
+        if(amount<=0)return;
+        SetHp(Mathf.Max(0, Hp - amount));
+        if(Hp==0) Debug.Log("체력 0이 됨");
+    }
+    public void HealEffect(int amount)
+    {
+        if(amount<=0)return;
+        SetHp(Mathf.Max(maxHp,Hp+amount));
+        if(Hp==0) Debug.Log("체력회복");
     }
 
     public void AddGold(int amount)
@@ -95,6 +116,12 @@ public class ResourceManager : MonoBehaviour
     {
         SetGold(0);
         SetMana(2);
+    }
+    void SetHp(int value)
+    {
+        Hp = value;
+        if (healthText != null) healthText.text = $"{value}/{maxHp}";
+        OnHpChanged?.Invoke(value);
     }
 
     void SetGold(int value)

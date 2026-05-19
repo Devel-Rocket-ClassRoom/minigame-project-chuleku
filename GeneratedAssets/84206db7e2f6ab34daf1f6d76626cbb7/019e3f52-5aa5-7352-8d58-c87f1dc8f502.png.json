@@ -1,0 +1,28 @@
+{
+    "asset": "84206db7e2f6ab34daf1f6d76626cbb7",
+    "fileName": "019e3f52-5aa5-7352-8d58-c87f1dc8f502.png",
+    "prompt": "A high-quality 2D heart-shaped health icon for a game UI, vibrant red color, clean flat design with subtle glossy highlights, isolated on a solid white background for easy background removal.",
+    "negativePrompt": "",
+    "model": "gemini-3.1-flash",
+    "modelName": "Gemini 3.1 Nano Banana 2",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

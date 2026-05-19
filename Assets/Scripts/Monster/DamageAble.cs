@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum Type
+public enum EnemyType
 {
     Boss,
     Minion,
@@ -9,7 +9,7 @@ public abstract class DamageAble : MonoBehaviour
 {
     public float health;
     public int defense;
-    public Type type;
+    public EnemyType type;
     public bool isDead{get; private set;}
 
     public void TakeDamage(float damage)

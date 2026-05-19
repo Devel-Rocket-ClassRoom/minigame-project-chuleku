@@ -226,10 +226,10 @@ Transform:
   - {fileID: 7516430119050532460}
   - {fileID: 9110664113173546163}
   - {fileID: 39688623597083206}
-  - {fileID: 5003058158340363963}
   - {fileID: 6239872367545268926}
   - {fileID: 1253930624487284545}
   - {fileID: 8093431463887092205}
+  - {fileID: 5003058158340363963}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &594167771016346073
@@ -355,6 +355,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &38523687173704759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -466,6 +469,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &39688623597469894
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -577,6 +583,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &41857288258586988
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -683,6 +692,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &41857288258720748 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -799,6 +811,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &142611785290312258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -905,6 +920,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &142611785290444994 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -1016,6 +1034,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &239894722614634277 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -1127,6 +1148,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &281889199700652442 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -1243,6 +1267,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &365973266630027637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1354,6 +1381,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &441835003632262027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1465,6 +1495,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &504118294403776957
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1576,6 +1609,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &542307597752376605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1687,6 +1723,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &651640007480232463
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1793,6 +1832,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &651640007480365199 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -1904,6 +1946,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &709738125369737397 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -2015,6 +2060,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &847249248860239424 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -2131,6 +2179,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &1048476841290835154
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2242,6 +2293,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &1112165198747457706
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2353,6 +2407,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &1163520670509959392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2459,6 +2516,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &1163520670510092896 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -2570,6 +2630,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &1172951234170496263 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -2686,6 +2749,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &1179855141156150866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2797,6 +2863,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &1242139556941041661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2908,6 +2977,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &1244093583466926464
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3014,6 +3086,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &1244093583467055872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -3130,6 +3205,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &1253930624487146945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3236,6 +3314,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &1253930624487284545 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -3347,6 +3428,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &1309658909837126927 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -3458,6 +3542,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &1362714753325910814 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -3569,6 +3656,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &1405039239394259225 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -3685,6 +3775,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &1525012785115776954
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3791,6 +3884,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &1525012785116175674 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -3902,6 +3998,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &1544305257183315919 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -4018,6 +4117,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &1682610189845126359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4124,6 +4226,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &1682610189845251671 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -4235,6 +4340,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &1685519814631899948 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -4351,6 +4459,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &1805914699674737951
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4462,6 +4573,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &1818041977273297246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4573,6 +4687,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &1842517470427002287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4679,6 +4796,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &1842517470427393839 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -4795,6 +4915,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &1896814423279608153
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4901,6 +5024,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &1896814423279746009 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -5017,6 +5143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &2081000505309483868
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5123,6 +5252,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &2081000505309874652 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -5234,6 +5366,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &2167528056012847295 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -5350,6 +5485,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &2168773004506588737
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5456,6 +5594,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &2168773004506725569 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -5567,6 +5708,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &2175980234690317518 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -5683,6 +5827,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &2211771128748768021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5789,6 +5936,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &2211771128749154709 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -5905,6 +6055,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &2316775350611863948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6011,6 +6164,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &2316775350612259596 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -6122,6 +6278,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &2321995889271232364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -6238,6 +6397,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &2464612017765600198
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6344,6 +6506,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &2464612017765732678 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -6455,6 +6620,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &2499231831958660019 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -6571,6 +6739,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &2747741389799576530
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6682,6 +6853,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &2749412522341995917
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6793,6 +6967,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &2783022756757031407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6904,6 +7081,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &2835279977393249751
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7015,6 +7195,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &2853866311464449218
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7121,6 +7304,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &2853866311464578626 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -7237,6 +7423,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &2863048494729717905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7348,6 +7537,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &2873011797196348838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7459,6 +7651,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &2899859738843714165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7570,6 +7765,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &2916645203295141716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7676,6 +7874,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &2916645203295528404 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -7792,6 +7993,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &2949723331462710386
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7903,6 +8107,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &3084836222943456623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8014,6 +8221,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &3109546858990242053
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8120,6 +8330,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &3109546858990375813 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -8231,6 +8444,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &3168491998783404658 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -8347,6 +8563,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &3318525686698624651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8458,6 +8677,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &3357151310497269909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8569,6 +8791,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &3419910194140844537
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8675,6 +8900,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &3419910194141236089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -8786,6 +9014,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &3455938123610901109 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -8897,6 +9128,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &3493580880104340470 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -9013,6 +9247,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &3649441622061907100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9124,6 +9361,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &3684896358536020295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9230,6 +9470,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &3684896358536158151 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -9341,6 +9584,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &3696418101237095143 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -9457,6 +9703,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &3851554280235853433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9568,6 +9817,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &3943294789047085045
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9679,6 +9931,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &3943469100423261480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9790,6 +10045,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &3968627271985165718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9896,6 +10154,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &3968627271985295126 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -10012,6 +10273,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &4187735124282330179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10123,6 +10387,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &4216811356916198733
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10229,6 +10496,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &4216811356916332493 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -10340,6 +10610,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &4238476402738799688 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -10456,6 +10729,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &4284135729905811443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10562,6 +10838,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &4284135729906197875 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -10678,6 +10957,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &4374115034748918945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10789,6 +11071,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &4509442468422617532
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10900,6 +11185,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &4525464181832550403
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11006,6 +11294,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &4525464181832684163 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -11122,6 +11413,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &4701463166773944540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11233,6 +11527,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &4761758983677177558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11339,6 +11636,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &4761758983677310038 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -11450,6 +11750,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &4812177177888306113 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -11566,6 +11869,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &4858474447256238643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11677,6 +11983,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &4872558486468827784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11783,6 +12092,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &4872558486468952072 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -11894,6 +12206,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &4922573479662739586 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -11955,6 +12270,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -3155047780354543793, guid: b28fa67a0ff82c5478f27368dc627683, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12005,6 +12324,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &5003058158340363963 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -12116,6 +12438,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &5022015554928788266 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -12227,6 +12552,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &5022468826621298237 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -12338,6 +12666,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &5047981862259292931 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -12454,6 +12785,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &5206866398540037479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12565,6 +12899,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &5347547120887084584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12671,6 +13008,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &5347547120887213224 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -12782,6 +13122,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &5407127148789381990 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -12893,6 +13236,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &5464195759066609510 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -13009,6 +13355,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &5533079163943561166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13115,6 +13464,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &5533079163943959886 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -13231,6 +13583,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &5576371885249675135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13337,6 +13692,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &5576371885250061823 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -13453,6 +13811,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &5608173020389974362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13564,6 +13925,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &5612029526083775306
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13670,6 +14034,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &5612029526083908042 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -13781,6 +14148,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &5618378744777673069 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -13892,6 +14262,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &5664599078685960718 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -14003,6 +14376,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &5783726534438497179 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -14119,6 +14495,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &5937522829588264119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14225,6 +14604,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &5937522829588655671 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -14341,6 +14723,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &6072267904218457945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14447,6 +14832,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &6072267904218594777 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -14558,6 +14946,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &6086698800747205447 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -14669,6 +15060,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &6099998607081351972 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -14780,6 +15174,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &6119880430122182355 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -14891,6 +15288,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &6192883274602577321 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -15002,6 +15402,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &6239872367545268926 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -15113,6 +15516,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &6247993886081662116 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -15224,6 +15630,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &6274399687464128130 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -15335,6 +15744,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &6293818529613850791 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -15451,6 +15863,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &6488678855216396008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15557,6 +15972,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &6488678855216524392 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -15668,6 +16086,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &6495599416118097953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -15779,6 +16200,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &6657010180437154656 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -15895,6 +16319,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &6762770633088579507
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16001,6 +16428,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &6762770633088970035 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -16112,6 +16542,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &6772869992844480773 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -16228,6 +16661,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &6801194647452526597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16334,6 +16770,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &6801194647452660357 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -16445,6 +16884,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &6814965296501917560 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -16556,6 +16998,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &6887167328944149709 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -16667,6 +17112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &6932063582571344279 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -16783,6 +17231,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &7047482014023857942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16889,6 +17340,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &7047482014024248726 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -17000,6 +17454,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &7065672220166361599 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -17116,6 +17573,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &7093549633419873647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17222,6 +17682,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &7093549633420269551 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -17342,6 +17805,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &7265955870014507442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17448,6 +17914,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &7265955870014903090 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -17564,6 +18033,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &7303608360412523877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17675,6 +18147,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &7328931569650316423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17786,6 +18261,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &7351265153439384030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17897,6 +18375,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &7373512660299661651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18003,6 +18484,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &7373512660300061651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -18119,6 +18603,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &7417059799584253296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18230,6 +18717,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &7516430119050398956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18336,6 +18826,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &7516430119050532460 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -18447,6 +18940,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &7533697630150596152 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -18558,6 +19054,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &7551638168669042120 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -18669,6 +19168,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &7610254792582461926 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -18785,6 +19287,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &7649881643113075703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18891,6 +19396,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &7649881643113466231 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -19002,6 +19510,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &7678099746433509094 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -19113,6 +19624,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &7770959865148351947 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -19229,6 +19743,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &7872420262860760835
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19340,6 +19857,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &7906577688567097197
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19446,6 +19966,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &7906577688567234029 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -19562,6 +20085,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &8045433399825168264
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19673,6 +20199,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &8047330903615292981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19779,6 +20308,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &8047330903615429813 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -19890,6 +20422,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &8056168058376801198 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -20001,6 +20536,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &8077927269859087579 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -20112,6 +20650,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &8093431463887092205 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -20228,6 +20769,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &8227621289073411966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20334,6 +20878,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &8227621289073810942 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -20445,6 +20992,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &8294471012186363703 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -20561,6 +21111,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &8355491270910924899
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20672,6 +21225,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &8385251965704159734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20778,6 +21334,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &8385251965704559478 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -20889,6 +21448,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &8427241309291352630 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -21000,6 +21562,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &8447101678730384096 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -21111,6 +21676,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &8575416249592599417 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -21222,6 +21790,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &8660382453944805844 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -21333,6 +21904,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &8699284794836782303 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -21449,6 +22023,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &8775829583899768805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21560,6 +22137,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &8856357923247942446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21666,6 +22246,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &8856357923248337326 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -21777,6 +22360,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &8898120629837332440 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -21888,6 +22474,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &8949988923931944224 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -21999,6 +22588,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &8969489066300450625 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -22110,6 +22702,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &9088301137777842696 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -22226,6 +22821,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!1001 &9140039443927968930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22332,6 +22930,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &9140039443928102434 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
@@ -22443,6 +23044,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   hasWall: 0
+  dontBreak: 0
+  Wall: {fileID: 0}
+  Unit: {fileID: 0}
 --- !u!4 &9148291179273890053 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 71b5a4f41be0b894ebff8b7d09577a78, type: 3}
