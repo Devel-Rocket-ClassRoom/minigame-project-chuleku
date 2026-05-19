@@ -1,0 +1,28 @@
+{
+    "asset": "07e3574bd68a0604b91d671e595e1687",
+    "fileName": "019e3dd0-81c3-7f25-8dad-1bf13d39b5ca.jpg",
+    "prompt": "A vibrant glowing round mana orb, magical blue energy sphere, casual cartoon style, 3D look, floating essence, high quality game UI icon.",
+    "negativePrompt": "",
+    "model": "game-ui-essentials-2",
+    "modelName": "Game UI Essentials 2.0",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 2048,
+        "height": 2048
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

@@ -29,12 +29,13 @@ public abstract class UnitBase : MonoBehaviour
 
     protected virtual void Update()
     {
+        cooldownTimer -= Time.deltaTime;
+     
         currentTarget = sensor.GetNearest();
         if (currentTarget == null) return;
 
         FaceTarget(currentTarget.transform.position);
 
-        cooldownTimer -= Time.deltaTime;
         if (cooldownTimer > 0f) return;
 
         Attack(currentTarget);

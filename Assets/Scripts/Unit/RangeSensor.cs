@@ -31,7 +31,7 @@ public class RangeSensor : MonoBehaviour
         float bestSq = float.MaxValue;
         for (int i = targets.Count - 1; i >= 0; i--)
         {
-            if (targets[i] == null) { targets.RemoveAt(i); continue; }
+            if (targets[i] == null||targets[i].isDead) { targets.RemoveAt(i); continue; }
             float sq = (targets[i].transform.position - p).sqrMagnitude;
             if (sq < bestSq) { bestSq = sq; best = targets[i]; }
         }

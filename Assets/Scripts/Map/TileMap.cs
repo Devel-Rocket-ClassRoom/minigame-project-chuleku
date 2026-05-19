@@ -1,3 +1,4 @@
+using Unity.AppUI.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -122,5 +123,18 @@ public class TileMap : MonoBehaviour
     public bool UnitCheck(int x,int z)
     {
         return tiles[x,z].Unit == null;
+    }
+    public void AllWallBreak()
+    {
+        for(int i =0;i<H;i++)
+        {
+            for(int j=0;j<W;j++)
+            {
+                if(WallCheck(j,i))
+                {
+                    BreakWall(j,i);
+                }
+            }
+        }
     }
 }

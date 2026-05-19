@@ -5,22 +5,24 @@ using UnityEngine.InputSystem;
 public class MouseFollowCamera : MonoBehaviour
 {
     [SerializeField] private float positionStrength = 3f;
-    [SerializeField] private float rotationStrength = 4f;
     [SerializeField] private float smoothness = 5f;
     [SerializeField] private float zoomSpeed = 2f;
     [SerializeField] private float zoomMin = -8f;
     [SerializeField] private float zoomMax = 12f;
-    [SerializeField] private TileMap tileMap;
+    [SerializeField] private float dragThreshold = 0.25f;
+    [SerializeField] private float maxMoveDistance = 8f;
 
     private Vector3 forward;
-    private Quaternion baseRotation;
     private float zoomDistance;
     private float prevZoomDist;
     private Camera cam;
 
+    private Vector3 originXZ;
     private Vector3 dragAnchorPos;
     private bool wasPressed;
     private bool ignoreCurrentDrag;
+    private float pressStartTime;
+    private bool dragStarted;
 
     private InputAction mouseClick;
     private InputAction wheelValue;
@@ -28,15 +30,10 @@ public class MouseFollowCamera : MonoBehaviour
     void Start()
     {
         forward = transform.forward;
-        baseRotation = transform.rotation;
         dragAnchorPos = transform.position;
+        originXZ = new Vector3(transform.position.x, 0f, transform.position.z);
         cam = GetComponent<Camera>();
         if (cam == null) cam = Camera.main;
-        if (tileMap == null)
-        {
-            var tm = GameObject.FindWithTag("TileMap");
-            if (tm != null) tileMap = tm.GetComponent<TileMap>();
-        }
         mouseClick = InputSystem.actions.FindAction("Player/Attack");
         wheelValue = InputSystem.actions.FindAction("Player/Wheel");
     }
@@ -73,19 +70,26 @@ public class MouseFollowCamera : MonoBehaviour
 
         if (isPressed && !wasPressed)
         {
+            pressStartTime = Time.unscaledTime;
+            dragStarted = false;
             ignoreCurrentDrag = IsClickBlocked();
-            if (!ignoreCurrentDrag)
-            {
-                dragAnchorPos = transform.position;
-            }
         }
         if (!isPressed)
         {
             ignoreCurrentDrag = false;
+            dragStarted = false;
         }
         wasPressed = isPressed;
 
         if (!isPressed || ignoreCurrentDrag) return;
+
+        if (Time.unscaledTime - pressStartTime < dragThreshold) return;
+
+        if (!dragStarted)
+        {
+            dragStarted = true;
+            dragAnchorPos = transform.position;
+        }
 
         Vector2 mouseScreen = Mouse.current.position.ReadValue();
         Vector2 norm = new Vector2(
@@ -94,25 +98,26 @@ public class MouseFollowCamera : MonoBehaviour
         );
 
         Vector3 targetPos = dragAnchorPos + new Vector3(norm.x * positionStrength, 0f, norm.y * positionStrength);
-        Quaternion targetRot = baseRotation * Quaternion.Euler(-norm.y * rotationStrength, norm.x * rotationStrength, 0f);
+        targetPos = ClampToMaxDistance(targetPos);
 
         transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * smoothness);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * smoothness);
+    }
+
+    Vector3 ClampToMaxDistance(Vector3 pos)
+    {
+        Vector3 offset = new Vector3(pos.x - originXZ.x, 0f, pos.z - originXZ.z);
+        float sqr = offset.sqrMagnitude;
+        if (sqr > maxMoveDistance * maxMoveDistance)
+        {
+            offset = offset.normalized * maxMoveDistance;
+            pos.x = originXZ.x + offset.x;
+            pos.z = originXZ.z + offset.z;
+        }
+        return pos;
     }
 
     bool IsClickBlocked()
     {
-        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
-            return true;
-
-        if (tileMap == null || cam == null) return false;
-
-        var ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
-        var plane = new Plane(Vector3.up, new Vector3(0f, tileMap.Origin.y, 0f));
-        if (!plane.Raycast(ray, out float dist)) return false;
-
-        var world = ray.GetPoint(dist);
-        var (gx, gz) = tileMap.WorldToGrid(world);
-        return tileMap.IsInBounds(gx, gz);
+        return EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
     }
 }

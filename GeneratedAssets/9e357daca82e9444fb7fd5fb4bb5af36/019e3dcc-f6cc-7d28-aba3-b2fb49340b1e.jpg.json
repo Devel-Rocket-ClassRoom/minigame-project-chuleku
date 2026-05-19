@@ -1,0 +1,28 @@
+{
+    "asset": "9e357daca82e9444fb7fd5fb4bb5af36",
+    "fileName": "019e3dcc-f6cc-7d28-aba3-b2fb49340b1e.jpg",
+    "prompt": "A single vibrant gold coin icon, game resource, casual cartoon style, 3D look, glowing edges, high quality game UI icon.",
+    "negativePrompt": "",
+    "model": "game-ui-essentials-2",
+    "modelName": "Game UI Essentials 2.0",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 2048,
+        "height": 2048
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}
