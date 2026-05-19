@@ -22,6 +22,7 @@ public class DefenceGameManager : MonoBehaviour
      public GameObject breakButton;
      public TextMeshProUGUI breakText;
      public GameObject summonButton;
+     public GameObject summonScrollView;
      public GameObject unitPrefab;
      public GameObject bossPrefab;
      public GameObject[] monsterPrefab;
@@ -44,6 +45,7 @@ public class DefenceGameManager : MonoBehaviour
         if (menuPanel != null) menuPanel.gameObject.SetActive(false);
         equipButton.SetActive(false);
         breakButton.SetActive(false);
+        summonScrollView.SetActive(false);
         summonButton.SetActive(false);
         if(!gm.GetComponent<TileMap>())return;
         currentStage = 1;
@@ -169,7 +171,7 @@ public class DefenceGameManager : MonoBehaviour
         closeButton();
       
     }
-    public void OnSummonButton()
+    public void OnSummon()
     {
 
         if(!tileMap.UnitCheck(tileGrid.x,tileGrid.y))
@@ -192,6 +194,11 @@ public class DefenceGameManager : MonoBehaviour
         breakButton.SetActive(false);
         equipButton.SetActive(false);
         summonButton.SetActive(false);
+        summonScrollView.SetActive(false);
+    }
+    public void OnSummonButton()
+    {
+        summonScrollView.SetActive(true);
     }
     public void PathButton()
     {

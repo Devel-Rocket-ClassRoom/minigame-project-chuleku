@@ -1,5 +1,5 @@
-Id,Type,Name,Desc,Attack,Mana
-Archer,Unit,UnitName,UnitDesc,10,0
-IllegalMagic,Effect,EffectName,EffectDesc,0,2
-LostGold,Resource,ResourceName,ResourceDesc,0,0
-Fireball,Magic,MagicName,MagicDesc,0,0
+Id,Type,Name,Desc,Attack,Mana,Image
+Archer,Unit,UnitName,UnitDesc,10,0,UnitArt_Archer
+IllegalMagic,Effect,EffectName,EffectDesc,0,2,EffectArt_Spell
+LostGold,Resource,ResourceName,ResourceDesc,0,0,ResourceArt_Treasure
+Fireball,Magic,MagicName,MagicDesc,0,0,MagicArt_Rune
