@@ -64,27 +64,16 @@ public class CardGameManager : MonoBehaviour
     }
     void Start()
     {
-        // for(int i = 0;i<4;i++)
-        // {
-        //     AddUnitCard("Archer");
-        // }
+        for(int i = 0;i<4;i++)
+        {
+            AddUnitCard("Archer");
+        }
         for(int i =0;i<6;i++)
         {
             AddResourceCard("LostGold");
         }
         AddEffectCard("IllegalMagic");
 
-        AddEffectCard("DestroyDraw");
-        AddEffectCard("DestroyDraw");
-        AddEffectCard("DestroyDraw");
-        AddEffectCard("DestroyDraw");
-        AddEffectCard("DestroyDraw");
-        AddEffectCard("DestroyDraw");
-        AddEffectCard("DestroyDraw");
-        AddEffectCard("DestroyDraw");
-        AddEffectCard("DestroyDraw");
-        AddEffectCard("DestroyDraw");
-        AddEffectCard("DestroyDraw");
         AddEffectCard("DestroyDraw");
         Shuffle(deck);
         StartRound();

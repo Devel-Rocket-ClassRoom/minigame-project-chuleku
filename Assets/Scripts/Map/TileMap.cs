@@ -10,7 +10,7 @@ public class TileMap : MonoBehaviour
     public static readonly Vector2Int Start = new(0, 0);
     public static readonly Vector2Int Goal = new(W - 1, H - 1);
     public float CellSize { get; private set; }
-
+    public Tile[,] TilesView => tiles;
     Tile[,] tiles;
     Vector3 origin;
     public Vector3 Origin => origin;
@@ -89,17 +89,37 @@ public class TileMap : MonoBehaviour
         => new Vector3(origin.x + x * CellSize, 0f, origin.z - z * CellSize);
 
     public Vector3 GridToWorld(Vector2Int g) => GridToWorld(g.x, g.y);
-    public void CreateWall(int x, int z,GameObject gm)
+    public void CreateWall(int x, int z,GameObject gm,int stage)
     {
         tiles[x,z].hasWall = true;
         tiles[x,z].Wall = gm;
+        tiles[x,z].wallStageID = stage;
     }
-    public void BreakWall(int x,int z)
+    public void BreakWall(int x,int z,int stage,int amount)
     {
         if(tiles[x,z].Wall == null)return;
         Destroy(tiles[x,z].Wall);
-        tiles[x,z].Wall = null;
-        tiles[x,z].hasWall = false;
+        if(tiles[x,z].wallStageID == stage)
+        {
+            tiles[x,z].Wall = null;
+            tiles[x,z].hasWall = false;
+            tiles[x,z].wallStageID = -1;
+            ResourceManager.Instance.AddGold(3);
+        }
+        else
+        {
+            if(ResourceManager.Instance.TrySpendGold(amount))
+            {
+                tiles[x,z].Wall = null;
+                tiles[x,z].hasWall = false;
+                tiles[x,z].wallStageID = -1;
+            }
+            else
+            {
+                Debug.Log("벽 부수기 골드 부족");
+            }
+        }
+        
     }
     public void CreateUnit(int x,int z,GameObject gm)
     {
@@ -136,7 +156,7 @@ public class TileMap : MonoBehaviour
             {
                 if(WallCheck(j,i))
                 {
-                    BreakWall(j,i);
+                    BreakWall(j,i,0,0);
                 }
             }
         }

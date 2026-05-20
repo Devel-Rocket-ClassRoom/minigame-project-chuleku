@@ -198,7 +198,15 @@ public class DefenceGameManager : MonoBehaviour
                     break;
                     
                 }
-                breakText.text = $"벽 부수기({amount})";
+                if(tileMap.TilesView[gx,gz].wallStageID==currentStage)
+                {
+                    breakText.text = $"벽 부수기(+3)";
+                }
+                else
+                {
+                    breakText.text = $"벽 부수기(-{amount})";
+                }
+                
             }
             else
             {
@@ -235,8 +243,7 @@ public class DefenceGameManager : MonoBehaviour
         }
         if(ResourceManager.Instance.TrySpendGold(3))
         {
-            tileMap.CreateWall(tileGrid.x,tileGrid.y,Instantiate(wallPrefab,tileMap.GridToWorld(tileGrid.x,tileGrid.y),Quaternion.identity));
-
+            tileMap.CreateWall(tileGrid.x,tileGrid.y,Instantiate(wallPrefab,tileMap.GridToWorld(tileGrid.x,tileGrid.y),Quaternion.identity),currentStage);
         }
         else
         {
@@ -267,14 +274,9 @@ public class DefenceGameManager : MonoBehaviour
 
         if(tileMap.UnitCheck(tileGrid.x,tileGrid.y))
         {
-            if(ResourceManager.Instance.TrySpendGold(v))
-            {
-                tileMap.BreakWall(tileGrid.x,tileGrid.y); 
-            }
-            else
-            {
-                Debug.Log("골드 부족");
-            }
+
+            tileMap.BreakWall(tileGrid.x,tileGrid.y,currentStage,v); 
+ 
         }
         else
         {
@@ -415,7 +417,7 @@ public class DefenceGameManager : MonoBehaviour
 
                 Vector3 worldPos = tileMap.GridToWorld(rx,rz);
                 GameObject wallgo = Instantiate(wallPrefab,worldPos,Quaternion.identity);
-                tileMap.CreateWall(rx,rz,wallgo);
+                tileMap.CreateWall(rx,rz,wallgo,-1);
                 createwall++;
             }
         }
