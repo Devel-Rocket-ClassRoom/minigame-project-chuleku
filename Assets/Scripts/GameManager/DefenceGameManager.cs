@@ -239,6 +239,7 @@ public class DefenceGameManager : MonoBehaviour
         if (roundStart)
         {
             Debug.Log("게임중에는 벽을 설치할수 없습니다.");
+            closeButton();
             return;
         }
         if(ResourceManager.Instance.TrySpendGold(3))
@@ -256,6 +257,7 @@ public class DefenceGameManager : MonoBehaviour
         if(roundStart)
         {
             Debug.Log("게임 중에는 벽을 부술수없습니다.");
+            closeButton();
             return;
         }
         int v = 0;
