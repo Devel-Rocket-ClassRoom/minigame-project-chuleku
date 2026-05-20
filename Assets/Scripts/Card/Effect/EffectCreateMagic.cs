@@ -10,10 +10,16 @@ public class EffectCreateMagic : EffectCardBase
             Debug.LogWarning("씬에 MagicManager가 없음");
             return;
         }
+        if (!ResourceManager.Instance.TrySpendMana(GetCost()))
+        {
+            Debug.Log("마나 부족");
+            return;
+        }
 
         string id = DataTableManager.MagicTable?.GetRandomId();
         if (string.IsNullOrEmpty(id)) return;
 
         MagicManager.Instance.AddMagic(id);
+        CardGameManager.Instance.DiscardFromHand(gameObject);
     }
 }

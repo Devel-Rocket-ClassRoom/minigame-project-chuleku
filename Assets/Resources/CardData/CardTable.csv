@@ -1,4 +1,5 @@
-Id,Type,Name,Desc,Mana,Image,Cost
-Archer,Unit,UnitName,UnitDesc,0,UnitArt_Archer,2
-IllegalMagic,Effect,EffectName,EffectDesc,2,MagicArt_Rune,3
-LostGold,Resource,ResourceName,ResourceDesc,0,ResourceArt_Treasure,1
+Id,Type,Name,Desc,Mana,Image,Cost,Behavior
+Archer,Unit,UnitName,UnitDesc,0,UnitArt_Archer,2,
+IllegalMagic,Effect,EffectName,EffectDesc,2,MagicArt_Rune,3,EffectCreateMagic
+DestroyDraw,Effect,DestroyDrawName,DestroyDrawDesc,1,MagicArt_Rune,3,EffectDestroyDraw
+LostGold,Resource,ResourceName,ResourceDesc,0,ResourceArt_Treasure,1,LostGoldCoin

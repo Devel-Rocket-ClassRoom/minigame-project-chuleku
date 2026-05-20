@@ -29,7 +29,11 @@ public abstract class CardBase : MonoBehaviour
 
     // 같은 종류 카드 여러 장을 구별하기 위해 드로우/생성 시점에 호출.
     public void SetInstanceId(int id) => instanceId = id;
-    public virtual void OnEnable() =>Init();
+    // AddComponent로 부착된 직후엔 cardId가 비어있을 수 있어 SetCardId가 먼저 호출되길 기다린다.
+    public virtual void OnEnable()
+    {
+        if (!string.IsNullOrEmpty(cardId)) Init();
+    }
     public virtual void Init()
     {
         data = DataTableManager.CardTable?.Get(cardId);

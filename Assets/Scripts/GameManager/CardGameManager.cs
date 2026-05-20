@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
-
+using System.Linq;
 public class CardGameManager : MonoBehaviour
 {
     public TextMeshProUGUI hideText;
@@ -17,7 +18,16 @@ public class CardGameManager : MonoBehaviour
     [SerializeField] private GameObject unitButtonPrefab;   // 스크롤뷰에 들어갈 버튼 프리팹
     [SerializeField] private Transform unitScrollContent;   // ScrollView/Viewport/Content
 
-    [Serializable]
+   
+     public bool IsTargeting { get; private set; }
+    private Action<CardBase> targetCallback;
+    private GameObject targetingSource; // 효과 카드 자기 자신. 자기 선택 방지용.
+    private Transform sourceOriginalParent; // 타겟팅 종료 시 손패로 복귀하기 위해 저장
+    private int sourceOriginalSiblingIndex;
+
+    [Header("Targeting Line")]
+    [SerializeField] private RectTransform targetingLine; // 가는 막대 UI Image. 비활성 상태로 씬에 두고 인스펙터에서 연결.
+     [Serializable]
     public class UnitCardSlot
     {
         public int instanceId;
@@ -37,6 +47,9 @@ public class CardGameManager : MonoBehaviour
     private bool hideCheck;
 
     public IReadOnlyList<UnitCardSlot> UnitSlots => unitSlots;
+    public IEnumerable<CardBase> HandCards =>
+    handObjs.Values.Select(go => go != null ? go.GetComponent<CardBase>() : null)
+                   .Where(cb => cb != null);
 
     // 유닛 패널 버튼 클릭 시 발생. 실제 배치는 구독자(DefenceGameManager)가 처리.
     public event Action<UnitCardSlot> UnitSlotClicked;
@@ -51,16 +64,28 @@ public class CardGameManager : MonoBehaviour
     }
     void Start()
     {
-        for(int i = 0;i<4;i++)
-        {
-            AddUnitCard("Archer");
-        }
+        // for(int i = 0;i<4;i++)
+        // {
+        //     AddUnitCard("Archer");
+        // }
         for(int i =0;i<6;i++)
         {
             AddResourceCard("LostGold");
         }
         AddEffectCard("IllegalMagic");
 
+        AddEffectCard("DestroyDraw");
+        AddEffectCard("DestroyDraw");
+        AddEffectCard("DestroyDraw");
+        AddEffectCard("DestroyDraw");
+        AddEffectCard("DestroyDraw");
+        AddEffectCard("DestroyDraw");
+        AddEffectCard("DestroyDraw");
+        AddEffectCard("DestroyDraw");
+        AddEffectCard("DestroyDraw");
+        AddEffectCard("DestroyDraw");
+        AddEffectCard("DestroyDraw");
+        AddEffectCard("DestroyDraw");
         Shuffle(deck);
         StartRound();
 
@@ -127,6 +152,17 @@ public class CardGameManager : MonoBehaviour
         if (!cardPrefabs.TryGetValue(data.Type, out var prefab) || prefab == null) return;
 
         var go = Instantiate(prefab, hand.transform);
+
+        // 효과/자원 카드는 CSV의 Behavior 컬럼에 적힌 클래스를 런타임에 부착.
+        // 같은 프리팹으로 여러 종류의 효과/자원 카드를 처리하기 위함.
+        if ((data.Type == CardType.Effect || data.Type == CardType.Resource)
+            && !string.IsNullOrEmpty(data.Behavior))
+        {
+            var behaviorType = System.Type.GetType(data.Behavior);
+            if (behaviorType != null) go.AddComponent(behaviorType);
+            else Debug.LogWarning($"Behavior 타입을 찾을 수 없음: '{data.Behavior}' (카드 Id: {inst.CardId})");
+        }
+
         var cb = go.GetComponent<CardBase>();
         if (cb != null)
         {
@@ -224,6 +260,101 @@ public class CardGameManager : MonoBehaviour
         if (slot == null) return;
         slot.placedUnit = null;
         if (slot.buttonGo != null) slot.buttonGo.SetActive(true);
+    }
+
+    // === 손패 타겟팅 ===
+    // "손패 카드 1장을 골라야 하는" 효과에서 사용. 효과 카드가 BeginTargetHandCard로
+    // 콜백 등록 → HandCardClick 컴포넌트가 카드 클릭 시 OnHandCardClicked를 부름 →
+    // 매니저가 콜백 발화하고 타겟팅 종료. ESC로 취소 가능.
+
+   
+
+    public void BeginTargetHandCard(GameObject source, Action<CardBase> onPicked)
+    {
+        if (IsTargeting)
+        {
+            Debug.LogWarning("이미 타겟팅 중");
+            return;
+        }
+        IsTargeting = true;
+        targetingSource = source;
+        targetCallback = onPicked;
+
+        // 효과 카드를 손패 레이아웃에서 빼고 화면 중앙으로 옮김.
+        // 취소 시 복귀를 위해 원래 부모/순서 저장.
+        if (source != null)
+        {
+            sourceOriginalParent = source.transform.parent;
+            sourceOriginalSiblingIndex = source.transform.GetSiblingIndex();
+
+            var canvas = source.GetComponentInParent<Canvas>();
+            if (canvas != null) source.transform.SetParent(canvas.transform, false);
+            var rt = source.transform as RectTransform;
+            if (rt != null) rt.position = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f);
+        }
+    }
+
+    public void OnHandCardClicked(CardBase card)
+    {
+        Debug.Log($"OnHandCardClicked: card={(card != null ? card.name : "null")}, IsTargeting={IsTargeting}");
+        if (!IsTargeting || card == null) return;
+        if (card.gameObject == targetingSource) { Debug.Log("효과 카드 자신은 선택 불가"); return; }
+
+        var cb = targetCallback;
+        EndTargeting();
+        cb?.Invoke(card);
+    }
+
+    public void CancelTargeting()
+    {
+        if (!IsTargeting) return;
+        // 효과 카드를 손패의 원래 자리로 복귀
+        if (targetingSource != null && sourceOriginalParent != null)
+        {
+            targetingSource.transform.SetParent(sourceOriginalParent, false);
+            targetingSource.transform.SetSiblingIndex(sourceOriginalSiblingIndex);
+        }
+        EndTargeting();
+        Debug.Log("타겟팅 취소");
+    }
+
+    private void EndTargeting()
+    {
+        IsTargeting = false;
+        targetCallback = null;
+        targetingSource = null;
+        sourceOriginalParent = null;
+    }
+
+    void Update()
+    {
+        if (IsTargeting && Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+            CancelTargeting();
+
+        UpdateTargetingLine();
+    }
+
+    private void UpdateTargetingLine()
+    {
+        if (targetingLine == null) return;
+
+        if (!IsTargeting || targetingSource == null)
+        {
+            if (targetingLine.gameObject.activeSelf) targetingLine.gameObject.SetActive(false);
+            return;
+        }
+        if (!targetingLine.gameObject.activeSelf) targetingLine.gameObject.SetActive(true);
+
+        Vector2 a = targetingSource.transform.position;
+        Vector2 b = Mouse.current != null ? Mouse.current.position.ReadValue() : a;
+
+        Vector2 mid = (a + b) * 0.5f;
+        float len = Vector2.Distance(a, b);
+        float angle = Mathf.Atan2(b.y - a.y, b.x - a.x) * Mathf.Rad2Deg;
+
+        targetingLine.position = mid;
+        targetingLine.sizeDelta = new Vector2(len, targetingLine.sizeDelta.y); // 두께는 인스펙터 값 유지
+        targetingLine.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
     // 카드 파괴: instanceId 기준으로 덱/묘지/손패/패널/배치유닛 모두 정리

@@ -32,8 +32,18 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 switch(transform.GetComponent<CardBase>().GetCardType())
                 {
                     case CardType.Effect:
-                    transform.GetComponent<EffectCardBase>().UseEffect();
-                    CardGameManager.Instance.DiscardFromHand(transform.gameObject);
+                    // 효과 카드는 즉시 묘지로 보내지 않고 자기가 끝나는 시점에 Discard.
+                    // (타겟팅 같은 다단계 효과를 지원하기 위함)
+                    // 프리팹의 EffectCardBase 껍데기와 AddComponent로 붙은 자식이 공존하므로
+                    // 자식 타입(가장 구체적인 효과)을 우선 호출.
+                    var effects = transform.GetComponents<EffectCardBase>();
+                    EffectCardBase target = null;
+                    foreach (var e in effects)
+                    {
+                        if (e.GetType() != typeof(EffectCardBase)) { target = e; break; }
+                    }
+                    if (target == null && effects.Length > 0) target = effects[0];
+                    if (target != null) target.UseEffect();
                     break;
                     case CardType.Resource:
                     transform.GetComponent<ResourceCardBase>().UseResource();
