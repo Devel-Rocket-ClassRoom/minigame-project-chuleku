@@ -22,6 +22,7 @@ public class DefenceGameManager : MonoBehaviour
      public GameObject equipButton;
      public GameObject breakButton;
      public TextMeshProUGUI breakText;
+     public TextMeshProUGUI createWallText;
      public GameObject summonButton;
      public GameObject summonScrollView;
      
@@ -183,7 +184,21 @@ public class DefenceGameManager : MonoBehaviour
             breakButton.SetActive(true);
             if(tileMap.UnitCheck(gx,gz))
             {
-                breakText.text = "벽 부수기";
+                int amount = 0;
+                switch (difficulty)
+                {
+                    case Difficulty.Easy:
+                    amount = 1;
+                    break;
+                    case Difficulty.Normal:
+                    amount = 2;
+                    break;
+                    case Difficulty.Hard:
+                    amount = 3;
+                    break;
+                    
+                }
+                breakText.text = $"벽 부수기({amount})";
             }
             else
             {
@@ -236,10 +251,23 @@ public class DefenceGameManager : MonoBehaviour
             Debug.Log("게임 중에는 벽을 부술수없습니다.");
             return;
         }
+        int v = 0;
+        switch (difficulty)
+        {
+            case Difficulty.Easy:
+            v = 1;
+            break;
+            case Difficulty.Normal:
+            v = 2;
+            break;
+            case Difficulty.Hard:
+            v = 3;
+            break;      
+        }
 
         if(tileMap.UnitCheck(tileGrid.x,tileGrid.y))
         {
-            if(ResourceManager.Instance.TrySpendGold(2))
+            if(ResourceManager.Instance.TrySpendGold(v))
             {
                 tileMap.BreakWall(tileGrid.x,tileGrid.y); 
             }
