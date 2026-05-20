@@ -11,6 +11,7 @@ public abstract class CardBase : MonoBehaviour
     [SerializeField] protected CardType cardType;
 
     [SerializeField] protected bool useAble;
+    protected int instanceId;
     [Header("UI")]
     [SerializeField] protected TextMeshProUGUI nameText;
     [SerializeField] protected TextMeshProUGUI descText;
@@ -21,12 +22,14 @@ public abstract class CardBase : MonoBehaviour
     protected CardTable.Data data;
 
     public string CardId => cardId;
+    public int InstanceId => instanceId;
     public CardType GetCardType() => cardType;
     public int GetCost() => cost;
     public CardTable.Data Data => data;
 
-    protected virtual void Awake() => Init();
-
+    // 같은 종류 카드 여러 장을 구별하기 위해 드로우/생성 시점에 호출.
+    public void SetInstanceId(int id) => instanceId = id;
+    public virtual void OnEnable() =>Init();
     public virtual void Init()
     {
         data = DataTableManager.CardTable?.Get(cardId);

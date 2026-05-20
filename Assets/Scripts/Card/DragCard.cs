@@ -21,7 +21,7 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
         // 중앙 영역 체크
         float distanceFromCenter = Vector2.Distance(eventData.position, new Vector2(Screen.width / 2, Screen.height / 2));
-        float effectRadius = 200f; // 효과 발동 반경 (조절 가능)
+        float effectRadius = 200f; 
 
         if (distanceFromCenter < effectRadius)
         {
@@ -33,9 +33,11 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 {
                     case CardType.Effect:
                     transform.GetComponent<EffectCardBase>().UseEffect();
+                    CardGameManager.Instance.DiscardFromHand(transform.gameObject);
                     break;
                     case CardType.Resource:
                     transform.GetComponent<ResourceCardBase>().UseResource();
+                    CardGameManager.Instance.DiscardFromHand(transform.gameObject);
                     break;
                 }
             }

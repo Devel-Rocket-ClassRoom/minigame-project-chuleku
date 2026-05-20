@@ -16,7 +16,7 @@ public enum Difficulty
 }
 public class DefenceGameManager : MonoBehaviour
 {
-   
+    public static DefenceGameManager Instance {get; private set;}
      public RectTransform menuPanel;
      public GameObject wallPrefab;
      public GameObject equipButton;
@@ -28,6 +28,7 @@ public class DefenceGameManager : MonoBehaviour
      public GameObject unitPrefab;
      public GameObject bossPrefab;
      public GameObject[] monsterPrefab;
+     public int alivecount = 0;
      public Camera cam;
      public PathPreview pathPreview;
      private TileMap tileMap;
@@ -36,24 +37,30 @@ public class DefenceGameManager : MonoBehaviour
      private const float clickThreshold = 0.25f;
      private float pressStartTime;
      private bool isPressing;
-   
+     private bool roundStart;
+     private Coroutine cor;
+
      
     public Difficulty difficulty = Difficulty.Easy;
 
 
     void Awake()
     {
+        Instance = this;
         GameObject gm = GameObject.FindWithTag("TileMap");
         tileMap = gm.GetComponent<TileMap>();
         cam = Camera.main;
         if (menuPanel != null) menuPanel.gameObject.SetActive(false);
-       
+        if(cor!=null) StopCoroutine(cor);
+        cor =null;
+        roundStart = false;
         equipButton.SetActive(false);
         breakButton.SetActive(false);
         summonScrollView.SetActive(false);
         summonButton.SetActive(false);
         if(!gm.GetComponent<TileMap>())return;
         currentStage = 1;
+        alivecount = 0;
 
     }
     void Start()
@@ -70,7 +77,52 @@ public class DefenceGameManager : MonoBehaviour
             DifficultyWallCreate(60);
             break;
         }
+
+        if (CardGameManager.Instance != null)
+            CardGameManager.Instance.UnitSlotClicked += OnUnitSlotClicked;
     }
+
+    void OnDestroy()
+    {
+        if (CardGameManager.Instance != null)
+            CardGameManager.Instance.UnitSlotClicked -= OnUnitSlotClicked;
+    }
+
+    // 유닛 패널 버튼 클릭 콜백: 현재 선택된 tileGrid에 슬롯 유닛을 배치
+    void OnUnitSlotClicked(CardGameManager.UnitCardSlot slot)
+    {
+        if (slot.placedUnit != null) return;
+        if (tileMap == null) return;
+        if (!tileMap.WallCheck(tileGrid.x, tileGrid.y)) { closeButton(); return; }
+        if (!tileMap.UnitCheck(tileGrid.x, tileGrid.y)) { closeButton(); return; }
+
+        // UnitTable에서 프리팹/스탯을 cardId로 조회
+        var udata = DataTableManager.UnitTable?.Get(slot.cardId);
+        if (udata == null) { Debug.LogWarning($"UnitTable에 '{slot.cardId}' 없음"); return; }
+
+        var prefab = LoadUnitPrefab(udata.Prefab);
+        if (prefab == null) { Debug.LogWarning($"유닛 프리팹 로드 실패: '{udata.Prefab}'"); return; }
+
+        Vector3 pos = tileMap.GridToWorld(tileGrid.x, tileGrid.y);
+        pos.y = 3.5f;
+        slot.placedUnit = Instantiate(prefab, pos, Quaternion.identity);
+
+        var unit = slot.placedUnit.GetComponent<UnitBase>();
+        if (unit != null) unit.SetupUnitStatus(udata.Attack, udata.AttackSpeed, udata.Range);
+
+        tileMap.CreateUnit(tileGrid.x, tileGrid.y, slot.placedUnit);
+        if (slot.buttonGo != null) slot.buttonGo.SetActive(false);
+        closeButton();
+    }
+
+    private static GameObject LoadUnitPrefab(string key)
+    {
+        if (string.IsNullOrEmpty(key)) return null;
+        const string prefix = "Resources/";
+        if (key.StartsWith(prefix)) key = key.Substring(prefix.Length);
+        return Resources.Load<GameObject>(key);
+    }
+
     private void Update()
     {
         TileInput();
@@ -157,13 +209,23 @@ public class DefenceGameManager : MonoBehaviour
         menuPanel.gameObject.SetActive(true);
         menuPanel.position = screenPos;
     }
-    public void OnEquip()
+    public void OnCreateWall()
     {
+        if (roundStart)
+        {
+            Debug.Log("게임중에는 벽을 설치할수 없습니다.");
+            return;
+        }
         tileMap.CreateWall(tileGrid.x,tileGrid.y,Instantiate(wallPrefab,tileMap.GridToWorld(tileGrid.x,tileGrid.y),Quaternion.identity));
         closeButton();
     }
     public void OnBreakButton()
     {
+        if(roundStart)
+        {
+            Debug.Log("게임 중에는 벽을 부술수없습니다.");
+            return;
+        }
 
         if(tileMap.UnitCheck(tileGrid.x,tileGrid.y))
         {
@@ -218,34 +280,73 @@ public class DefenceGameManager : MonoBehaviour
     }
     public void GameStartButton(int stage)
     {
+        if (roundStart)
+        {
+            Debug.Log("게임중에는 시작을 누를수없습니다");
+            return;
+        }
         List<Vector2Int> path = Pathfinder.FindPath(tileMap,TileMap.Start,TileMap.Goal);
         if(path == null)
         {
             Debug.Log("길을 찾을수없습니다.");
             return;
         }
-        if(stage%5==0)
+  
+        roundStart = true;
+        // if(stage%5==0)
+        // {
+        //     GameObject gm = Instantiate(bossPrefab,tileMap.GridToWorld(0,0),Quaternion.identity);
+        //     gm.GetComponent<MoveEnemy>().SetPath(path);
+        //     currentStage++;
+        //     return;
+        // }
+        // if(stage%2==0)
+        // {
+            
+        //     currentStage++;
+        //     return;
+        // }
+        // else
+        alivecount = 2*stage;
+        cor = StartCoroutine(SpawnMonsterCort(alivecount,monsterPrefab[0],path));
+        CardGameManager.Instance.EndRound();
+        currentStage++;
+        return;
+    }
+    IEnumerator SpawnMonsterCort(int count,GameObject prefab,List<Vector2Int> path)
+    {
+        float spawndelay = 0.5f;
+        float c = 0;
+        while(c<count)
         {
-            GameObject gm = Instantiate(bossPrefab,tileMap.GridToWorld(0,0),Quaternion.identity);
-            gm.GetComponent<MoveEnemy>().SetPath(path);
-            currentStage++;
-            return;
+            
+            Vector3 pos = tileMap.GridToWorld(TileMap.Start);
+            GameObject go =Instantiate(prefab,pos,Quaternion.identity);
+            go.GetComponent<MoveEnemy>().SetPath(path);
+            c++;
+            yield return new WaitForSeconds(spawndelay);
         }
-        if(stage%2==0)
+    
+        roundStart = false; 
+        cor = null;
+    }
+
+    public void EnemyDie()
+    {
+        alivecount--;
+        if(alivecount<=0)
         {
-            GameObject gm = Instantiate(monsterPrefab[0],tileMap.GridToWorld(0,0),Quaternion.identity);
-            gm.GetComponent<MoveEnemy>().SetPath(path);
-            currentStage++;
-            return;
-        }
-        else
-        {
-            GameObject gm = Instantiate(monsterPrefab[0],tileMap.GridToWorld(0,0),Quaternion.identity);
-            gm.GetComponent<MoveEnemy>().SetPath(path);
-            currentStage++;
-            return;
+            RoundEnd();
         }
     }
+    private void RoundEnd()
+    {
+        roundStart = false;
+        CardGameManager.Instance.StartRound();
+        Debug.Log("라운드 종료 준비라운드!");
+    }
+
+
     private void DifficultyWallCreate(int wallCount)
     {
         if (tileMap == null || wallPrefab == null) return;

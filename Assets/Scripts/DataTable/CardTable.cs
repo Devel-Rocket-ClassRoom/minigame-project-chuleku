@@ -9,7 +9,6 @@ public class CardTable : DataTable
         public CardType Type { get; set; }
         public string Name { get; set; }
         public string Desc { get; set; }
-        public int Attack { get; set; }
         public int Mana { get; set; }
         public string Image { get; set; }
     }

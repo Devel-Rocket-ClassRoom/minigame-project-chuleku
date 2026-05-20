@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Tile
   - TileMap
+  - Liner
+  - Enemy
+  - MagicDeck
   layers:
   - Default
   - TransparentFX

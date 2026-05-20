@@ -10,9 +10,10 @@ public abstract class UnitBase : MonoBehaviour
     protected DamageAble currentTarget;
     private float cooldownTimer;
 
-    protected virtual void Awake()
+    protected virtual void OnEnable()
     {
         animator = GetComponentInChildren<Animator>();
+        sensor = transform.GetComponentInChildren<RangeSensor>();
     }
     public void SetupUnitStatus(int attack, float attackSpeed, float range)
     {

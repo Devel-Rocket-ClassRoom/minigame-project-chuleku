@@ -38,6 +38,7 @@ public class Goblin : DamageAble
     }
     public void AnimationDestroy()
     {
+        DefenceGameManager.Instance.EnemyDie();
         Destroy(gameObject);
     }
 }

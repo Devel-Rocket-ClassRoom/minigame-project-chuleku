@@ -4,7 +4,7 @@ public abstract class EffectCardBase : CardBase
 {
     [SerializeField] protected CardType currentCardType = CardType.Effect;
 
-    void OnEnable()
+    public override void OnEnable()
     {
         useAble = true;
     }

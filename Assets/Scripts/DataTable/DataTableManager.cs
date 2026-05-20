@@ -7,6 +7,8 @@ public static class DataTableManager
 
     public static StringTable StringTable => Get<StringTable>(DataTableIds.String);
     public static CardTable CardTable => Get<CardTable>(DataTableIds.Card);
+    public static UnitTable UnitTable => Get<UnitTable>(DataTableIds.Unit);
+    public static MagicTable MagicTable => Get<MagicTable>(DataTableIds.Magic);
 
     static DataTableManager()
     {
@@ -22,6 +24,14 @@ public static class DataTableManager
         var cardTable = new CardTable();
         cardTable.Load(DataTableIds.Card);
         tables.Add(DataTableIds.Card, cardTable);
+
+        var unitTable = new UnitTable();
+        unitTable.Load(DataTableIds.Unit);
+        tables.Add(DataTableIds.Unit, unitTable);
+
+        var magicTable = new MagicTable();
+        magicTable.Load(DataTableIds.Magic);
+        tables.Add(DataTableIds.Magic, magicTable);
     }
 
     public static T Get<T>(string id) where T : DataTable

@@ -6,7 +6,7 @@ public class RangeSensor : MonoBehaviour
 {
     private readonly List<DamageAble> targets = new();
 
-    void Awake()
+    void OnEnable()
     {
         GetComponent<SphereCollider>().isTrigger = true;
       

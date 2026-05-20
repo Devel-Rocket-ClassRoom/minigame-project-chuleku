@@ -1,0 +1,4 @@
+Id,Attack,AttackSpeed,Range,Prefab
+Archer,10,1,10,Resources/UnitPrefab/Archer
+
+

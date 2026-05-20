@@ -10,6 +10,7 @@ public class ResourceManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI shardText;
     [SerializeField] private TextMeshProUGUI manaText;
     [SerializeField] private TextMeshProUGUI healthText;
+    public TextMeshProUGUI enemyCountText;
     
 
     public static ResourceManager Instance {get; private set;}

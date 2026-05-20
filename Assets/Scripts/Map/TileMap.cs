@@ -109,7 +109,11 @@ public class TileMap : MonoBehaviour
     public void BreakUnit(int x,int z)
     {
         if(tiles[x,z].Wall == null||tiles[x,z].Unit ==null) return;
-        Destroy(tiles[x,z].Unit);
+        var unitGo = tiles[x,z].Unit;
+        // 카드 매니저 측 슬롯 placedUnit/패널 버튼도 동기화
+        if (CardGameManager.Instance != null)
+            CardGameManager.Instance.NotifyPlacedUnitRemoved(unitGo);
+        Destroy(unitGo);
         tiles[x,z].Unit = null;
     }
     public bool DonCreateCheck(int x, int z)
