@@ -6,6 +6,6 @@ public class LostGoldCoin : ResourceCardBase
 
     public override void UseResource()
     {
-        ResourceManager.Instance.AddGold(1);
+        ResourceManager.Instance.AddGold(2);
     }
 }

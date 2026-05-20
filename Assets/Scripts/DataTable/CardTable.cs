@@ -11,6 +11,7 @@ public class CardTable : DataTable
         public string Desc { get; set; }
         public int Mana { get; set; }
         public string Image { get; set; }
+        public int Cost {get; set;}
     }
 
     private readonly Dictionary<string, Data> table = new Dictionary<string, Data>();

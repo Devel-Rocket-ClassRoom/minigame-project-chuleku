@@ -47,9 +47,10 @@ public class FireBall : MagicBase, IBeginDragHandler, IDragHandler, IEndDragHand
             FireBallobj obj = fireball.GetComponent<FireBallobj>();
             if(obj !=null)
             {
-               obj.Setup(tileWorldPos,radius);   
+               obj.Setup(tileWorldPos,radius);
             }
-            Destroy(gameObject);
+            MagicManager.Instance.UseMagic(instanceId);
+            // Destroy(gameObject);
         }
             
     }

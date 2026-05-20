@@ -28,6 +28,7 @@ public class DefenceGameManager : MonoBehaviour
      public GameObject unitPrefab;
      public GameObject bossPrefab;
      public GameObject[] monsterPrefab;
+     public int allCount =0;
      public int alivecount = 0;
      public Camera cam;
      public PathPreview pathPreview;
@@ -61,6 +62,7 @@ public class DefenceGameManager : MonoBehaviour
         if(!gm.GetComponent<TileMap>())return;
         currentStage = 1;
         alivecount = 0;
+        allCount = 0;
 
     }
     void Start()
@@ -216,7 +218,15 @@ public class DefenceGameManager : MonoBehaviour
             Debug.Log("게임중에는 벽을 설치할수 없습니다.");
             return;
         }
-        tileMap.CreateWall(tileGrid.x,tileGrid.y,Instantiate(wallPrefab,tileMap.GridToWorld(tileGrid.x,tileGrid.y),Quaternion.identity));
+        if(ResourceManager.Instance.TrySpendGold(3))
+        {
+            tileMap.CreateWall(tileGrid.x,tileGrid.y,Instantiate(wallPrefab,tileMap.GridToWorld(tileGrid.x,tileGrid.y),Quaternion.identity));
+
+        }
+        else
+        {
+            Debug.Log("골드가 부족합니다.");
+        }
         closeButton();
     }
     public void OnBreakButton()
@@ -229,7 +239,14 @@ public class DefenceGameManager : MonoBehaviour
 
         if(tileMap.UnitCheck(tileGrid.x,tileGrid.y))
         {
-            tileMap.BreakWall(tileGrid.x,tileGrid.y);
+            if(ResourceManager.Instance.TrySpendGold(2))
+            {
+                tileMap.BreakWall(tileGrid.x,tileGrid.y); 
+            }
+            else
+            {
+                Debug.Log("골드 부족");
+            }
         }
         else
         {
@@ -308,6 +325,8 @@ public class DefenceGameManager : MonoBehaviour
         // }
         // else
         alivecount = 2*stage;
+        allCount = 2*stage;
+        ResourceManager.Instance.enemyCountText.text = $"{alivecount}/{allCount}";
         cor = StartCoroutine(SpawnMonsterCort(alivecount,monsterPrefab[0],path));
         CardGameManager.Instance.EndRound();
         currentStage++;
@@ -326,14 +345,13 @@ public class DefenceGameManager : MonoBehaviour
             c++;
             yield return new WaitForSeconds(spawndelay);
         }
-    
-        roundStart = false; 
         cor = null;
     }
 
     public void EnemyDie()
     {
         alivecount--;
+        ResourceManager.Instance.enemyCountText.text = $"{alivecount}/{allCount}";
         if(alivecount<=0)
         {
             RoundEnd();

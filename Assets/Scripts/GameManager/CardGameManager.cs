@@ -59,6 +59,8 @@ public class CardGameManager : MonoBehaviour
         {
             AddResourceCard("LostGold");
         }
+        AddEffectCard("IllegalMagic");
+
         Shuffle(deck);
         StartRound();
 
@@ -73,6 +75,30 @@ public class CardGameManager : MonoBehaviour
         var inst = NewInstance(cardId);
         deck.Add(inst);
         return inst;
+    }
+    public void BuyArcherButton()//테스트용 궁수 구매버튼
+    {
+        BuyCard("Archer");
+    }
+
+    // 상점 구매: CardTable의 Cost를 골드로 차감하고 타입에 맞게 등록.
+    // 골드 부족 시 null 반환, 아무것도 변경하지 않음.
+    public CardInstance BuyCard(string cardId)
+    {
+        var data = DataTableManager.CardTable.Get(cardId);
+        if (data == null) return null;
+        if (!ResourceManager.Instance.TrySpendGold(data.Cost)){
+            Debug.Log("골드 가 부족");
+            return null;
+        }
+
+        switch (data.Type)
+        {
+            case CardType.Unit:     return AddUnitCard(cardId);
+            case CardType.Effect:   return AddEffectCard(cardId);
+            case CardType.Resource: return AddResourceCard(cardId);
+            default:                return AddDeckCard(cardId);
+        }
     }
 
     // 유닛 카드: 덱 + 유닛 패널에 같은 InstanceId로 동시 등록 (GDD 4.3)

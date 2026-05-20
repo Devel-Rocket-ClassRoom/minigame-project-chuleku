@@ -40,4 +40,12 @@ public class MagicTable : DataTable
         if (string.IsNullOrEmpty(key) || !table.ContainsKey(key)) return null;
         return table[key];
     }
+
+    // 무작위 마법 획득 효과(예: IllegalMagic)에서 사용.
+    public string GetRandomId()
+    {
+        if (table.Count == 0) return null;
+        var keys = new List<string>(table.Keys);
+        return keys[Random.Range(0, keys.Count)];
+    }
 }
