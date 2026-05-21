@@ -337,6 +337,7 @@ public class DefenceGameManager : MonoBehaviour
         if (path == null)
         {
             Debug.Log("경로를 찾을 수 없습니다.");
+            tileMap.WarningWallColor(currentStage);
             return;
         }
         pathPreview.Show(tileMap, path);
@@ -357,6 +358,7 @@ public class DefenceGameManager : MonoBehaviour
         if(path == null)
         {
             Debug.Log("길을 찾을수없습니다.");
+             tileMap.WarningWallColor(currentStage);
             return;
         }
         var Groups = DataTableManager.StageTable.Get(stage);

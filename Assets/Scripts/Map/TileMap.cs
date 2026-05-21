@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using Unity.AppUI.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,6 +16,7 @@ public class TileMap : MonoBehaviour
     Tile[,] tiles;
     Vector3 origin;
     public Vector3 Origin => origin;
+    private Coroutine colorcor;
 
     void Awake()
     {
@@ -24,6 +27,8 @@ public class TileMap : MonoBehaviour
             Debug.LogError("TileMap: 자식 타일이 없음");
             return;
         }
+        if(colorcor!=null) StopCoroutine(colorcor);
+        colorcor =null;
 
         origin = FindOrigin();
         CellSize = DetectCellSize();
@@ -165,6 +170,34 @@ public class TileMap : MonoBehaviour
                     BreakWall(j,i,0,0);
                 }
             }
+        }
+    }
+    public void WarningWallColor(int stage)
+    {
+        if(colorcor!=null) StopCoroutine(colorcor);
+        colorcor =null;
+        colorcor = StartCoroutine(WarningWallColorcort(stage));
+        
+    }
+    public IEnumerator WarningWallColorcort(int stage)
+    {
+        List<(Renderer rend,Color origin)> original = new(); 
+        foreach(Transform t in transform)
+        {
+            var (x,y) = WorldToGrid(t.position);
+            if (!IsInBounds(x, y)) continue;
+            if(tiles[x,y].wallStageID==stage)
+            {   
+                if (tiles[x,y].Wall == null) continue;
+                var rend = tiles[x,y].Wall.GetComponent<Renderer>();
+                original.Add((rend,rend.material.color));
+                rend.material.color = Color.red;
+            }
+        }
+        yield return new WaitForSeconds(3f);
+        foreach(var (r,c) in original)
+        {
+            if(r!=null) r.material.color = c;
         }
     }
 }
