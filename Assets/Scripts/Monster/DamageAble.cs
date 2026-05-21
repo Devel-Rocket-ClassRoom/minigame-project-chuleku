@@ -16,6 +16,7 @@ public abstract class DamageAble : MonoBehaviour
     {
         if(isDead) return;
         float actualDamage = Mathf.Max(damage - defense, 0);
+        if(actualDamage<1) actualDamage = 1;
         health -= actualDamage;
         if (health <= 0)
         {
