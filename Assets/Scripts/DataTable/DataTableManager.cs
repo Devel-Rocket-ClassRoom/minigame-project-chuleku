@@ -9,6 +9,7 @@ public static class DataTableManager
     public static CardTable CardTable => Get<CardTable>(DataTableIds.Card);
     public static UnitTable UnitTable => Get<UnitTable>(DataTableIds.Unit);
     public static MagicTable MagicTable => Get<MagicTable>(DataTableIds.Magic);
+    public static StageTable StageTable => Get<StageTable>(DataTableIds.Stage);
 
     static DataTableManager()
     {
@@ -32,6 +33,10 @@ public static class DataTableManager
         var magicTable = new MagicTable();
         magicTable.Load(DataTableIds.Magic);
         tables.Add(DataTableIds.Magic, magicTable);
+
+        var stageTable = new StageTable();
+        stageTable.Load(DataTableIds.Stage);
+        tables.Add(DataTableIds.Stage, stageTable);
     }
 
     public static T Get<T>(string id) where T : DataTable

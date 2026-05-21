@@ -1,8 +1,6 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Events;
-using System;
-public class Goblin : DamageAble
+
+public class Skeleton : DamageAble
 {
     private Animator animator;
     private bool dieCheck;
@@ -11,12 +9,12 @@ public class Goblin : DamageAble
         dieCheck = false;
         animator = GetComponent<Animator>();
     }
-    private void OnEnable()
+    void OnEnable()
     {
-        health = 50f;
-        defense = 5;
+        health = 100f;
+        defense = 2;
         type = EnemyType.Minion;
-    }   
+    }
     public override void Die()
     {
         if (dieCheck) return;
@@ -28,4 +26,5 @@ public class Goblin : DamageAble
         DefenceGameManager.Instance.EnemyDie();
         Destroy(gameObject);
     }
+
 }

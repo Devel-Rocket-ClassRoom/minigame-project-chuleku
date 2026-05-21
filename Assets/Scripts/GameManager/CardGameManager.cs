@@ -68,17 +68,19 @@ public class CardGameManager : MonoBehaviour
         {
             AddUnitCard("Archer");
         }
-        for(int i = 0;i<3;i++)
+        for(int i = 0;i<2;i++)
         {
             AddUnitCard("Warrior");
         }
-        for(int i =0;i<6;i++)
+        for(int i =0;i<8;i++)
         {
             AddResourceCard("LostGold");
         }
         AddEffectCard("IllegalMagic");
 
         AddEffectCard("DestroyDraw");
+        AddEffectCard("DestroyDraw");
+    
         Shuffle(deck);
         StartRound();
 
@@ -290,7 +292,12 @@ public class CardGameManager : MonoBehaviour
     {
         Debug.Log($"OnHandCardClicked: card={(card != null ? card.name : "null")}, IsTargeting={IsTargeting}");
         if (!IsTargeting || card == null) return;
-        if (card.gameObject == targetingSource) { Debug.Log("효과 카드 자신은 선택 불가"); return; }
+        if (card.gameObject == targetingSource) 
+        {
+            Debug.Log("효과 카드 자신은 선택 불가");
+            EndTargeting();
+            return; 
+        }
 
         var cb = targetCallback;
         EndTargeting();
@@ -337,15 +344,14 @@ public class CardGameManager : MonoBehaviour
         }
         if (!targetingLine.gameObject.activeSelf) targetingLine.gameObject.SetActive(true);
 
-        Vector2 a = targetingSource.transform.position;
+        Vector2 a = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
         Vector2 b = Mouse.current != null ? Mouse.current.position.ReadValue() : a;
 
-        Vector2 mid = (a + b) * 0.5f;
+        Vector2 dir = b-a;
         float len = Vector2.Distance(a, b);
-        float angle = Mathf.Atan2(b.y - a.y, b.x - a.x) * Mathf.Rad2Deg;
-
-        targetingLine.position = mid;
-        targetingLine.sizeDelta = new Vector2(len, targetingLine.sizeDelta.y); // 두께는 인스펙터 값 유지
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        targetingLine.position = a;
+        targetingLine.sizeDelta = new Vector2(len/2.5f, targetingLine.sizeDelta.y); // 두께는 인스펙터 값 유지
         targetingLine.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 

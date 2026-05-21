@@ -1,0 +1,5 @@
+ID,MonsterName,Prefab,Count,SpawnTime,Delay
+1,Goblin,Resources/MonsterPrefab/Goblin,5,0,0.5
+2,Goblin,Resources/MonsterPrefab/Goblin,3,0,0.5
+2,Skeleton,Resources/MonsterPrefab/Skeleton,5,1.5,0.3
+3,Goblin,Resources/MonsterPrefab/Goblin,10,0,0.5

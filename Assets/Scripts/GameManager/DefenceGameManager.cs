@@ -125,6 +125,13 @@ public class DefenceGameManager : MonoBehaviour
         if (slot.buttonGo != null) slot.buttonGo.SetActive(false);
         closeButton();
     }
+    private static GameObject LoadMonsterPrefab(string key)
+    {
+        if (string.IsNullOrEmpty(key)) return null;
+        const string prefix = "Resources/";
+        if (key.StartsWith(prefix)) key = key.Substring(prefix.Length);
+        return Resources.Load<GameObject>(key);
+    }
 
     private static GameObject LoadUnitPrefab(string key)
     {
@@ -352,47 +359,42 @@ public class DefenceGameManager : MonoBehaviour
             Debug.Log("길을 찾을수없습니다.");
             return;
         }
-  
+        var Groups = DataTableManager.StageTable.Get(stage);
+        if( Groups ==null){
+            Debug.Log("라운드 구현안함");
+            return;
+        }
         roundStart = true;
-        // if(stage%5==0)
-        // {
-        //     GameObject gm = Instantiate(bossPrefab,tileMap.GridToWorld(0,0),Quaternion.identity);
-        //     gm.GetComponent<MoveEnemy>().SetPath(path);
-        //     currentStage++;
-        //     return;
-        // }
-        // if(stage%2==0)
-        // {
-            
-        //     currentStage++;
-        //     return;
-        // }
-        // else
-        alivecount = 2*stage;
-        allCount = 2*stage;
         if(phasecor !=null)StopCoroutine(phasecor);
         phasecor = StartCoroutine(BattlePhaseCor());
+        alivecount = 0;
+        allCount = 0;
+        foreach(var g in Groups)allCount += g.Count;
+        alivecount = allCount;
         ResourceManager.Instance.enemyCountText.text = $"{alivecount}/{allCount}";
-        spawncor = StartCoroutine(SpawnMonsterCort(alivecount,monsterPrefab[0],path));
+        foreach(var g in Groups)
+        {
+            var prefab = LoadMonsterPrefab(g.Prefab);
+            StartCoroutine(SpawnMonsterCort(g.SpawnTime,g.Count,g.Delay,path,prefab));
+        }
         CardGameManager.Instance.EndRound();
         currentStage++;
         return;
     }
-    IEnumerator SpawnMonsterCort(int count,GameObject prefab,List<Vector2Int> path)
+    private IEnumerator SpawnMonsterCort(float spawntime,int count,float delay,List<Vector2Int> path,GameObject prefab)
     {
-        float spawndelay = 0.5f;
+        yield return new WaitForSeconds(spawntime);
         float c = 0;
         while(c<count)
         {
-            
             Vector3 pos = tileMap.GridToWorld(TileMap.Start);
             GameObject go =Instantiate(prefab,pos,Quaternion.identity);
             go.GetComponent<MoveEnemy>().SetPath(path);
             c++;
-            yield return new WaitForSeconds(spawndelay);
+            yield return new WaitForSeconds(delay);
         }
-        spawncor = null;
     }
+
 
     public void EnemyDie()
     {
