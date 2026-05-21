@@ -4,8 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
 {
+    public UiManager Instance {get; private set;}
     private InputAction escKey;
     public GameObject escPanal;
+    public GameObject storeButton;
     void Awake()
     {
         escKey = InputSystem.actions.FindAction("Player/Exit");
@@ -22,6 +24,7 @@ public class UiManager : MonoBehaviour
         if(escKey.WasPerformedThisFrame())
         {
             escPanal.SetActive(true);
+            DefenceGameManager.Instance.closeButton();
             Time.timeScale = 0;
         }
     }
@@ -29,6 +32,7 @@ public class UiManager : MonoBehaviour
     public void ResumeButton()
     {
         escPanal.SetActive(false);
+        
         Time.timeScale = 1;
     }
     public void RestartButton()
@@ -44,4 +48,6 @@ public class UiManager : MonoBehaviour
         Application.Quit();
 #endif
     }
+
+
 }

@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
 using TMPro;
 using System.Collections;
+using Unity.VisualScripting;
 
 public enum Difficulty
 {
@@ -91,6 +92,7 @@ public class DefenceGameManager : MonoBehaviour
 
         if (CardGameManager.Instance != null)
             CardGameManager.Instance.UnitSlotClicked += OnUnitSlotClicked;
+       
     }
 
     void OnDestroy()
@@ -148,6 +150,7 @@ public class DefenceGameManager : MonoBehaviour
     void TileInput()
     {
         if (Mouse.current == null) return;
+        if(Time.timeScale==0)return;
 
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
@@ -319,7 +322,7 @@ public class DefenceGameManager : MonoBehaviour
     {
         GameStartButton(currentStage);
     }
-    private void closeButton()
+    public void closeButton()
     {
         breakButton.SetActive(false);
         equipButton.SetActive(false);

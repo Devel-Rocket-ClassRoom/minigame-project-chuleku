@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.AppUI.UI;
+using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +16,7 @@ public class TileMap : MonoBehaviour
     Tile[,] tiles;
     Vector3 origin;
     public Vector3 Origin => origin;
+    private bool pathCheck;
     private Coroutine colorcor;
 
     void Awake()
@@ -46,6 +47,7 @@ public class TileMap : MonoBehaviour
         }
         tiles[0,0].dontBreak = true;
         tiles[W-1,H-1].dontBreak = true;
+        pathCheck = false;
     }
 
     Vector3 FindOrigin()
@@ -174,6 +176,8 @@ public class TileMap : MonoBehaviour
     }
     public void WarningWallColor(int stage)
     {
+        if(pathCheck)return;
+
         if(colorcor!=null) StopCoroutine(colorcor);
         colorcor =null;
         colorcor = StartCoroutine(WarningWallColorcort(stage));
@@ -181,7 +185,8 @@ public class TileMap : MonoBehaviour
     }
     public IEnumerator WarningWallColorcort(int stage)
     {
-        List<(Renderer rend,Color origin)> original = new(); 
+        pathCheck =true;
+        List<(Renderer rend,Color c)> original = new(); 
         foreach(Transform t in transform)
         {
             var (x,y) = WorldToGrid(t.position);
@@ -199,5 +204,6 @@ public class TileMap : MonoBehaviour
         {
             if(r!=null) r.material.color = c;
         }
+        pathCheck = false;
     }
 }
