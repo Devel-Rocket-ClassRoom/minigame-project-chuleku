@@ -152,8 +152,7 @@ public class CardGameManager : MonoBehaviour
             else Debug.LogWarning($"Behavior 타입을 찾을 수 없음: '{data.Behavior}' (카드 Id: {inst.CardId})");
         }
 
-        var cb = go.GetComponent<CardBase>();
-        if (cb != null)
+        foreach (var cb in go.GetComponents<CardBase>())
         {
             cb.SetCardId(inst.CardId);
             cb.SetInstanceId(inst.InstanceId);

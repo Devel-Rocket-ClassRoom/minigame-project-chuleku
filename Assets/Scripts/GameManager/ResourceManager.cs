@@ -46,7 +46,7 @@ public class ResourceManager : MonoBehaviour
     public void HealEffect(int amount)
     {
         if(amount<=0)return;
-        SetHp(Mathf.Max(maxHp,Hp+amount));
+        SetHp(Mathf.Min(maxHp,Hp+amount));
         if(Hp==0) Debug.Log("체력회복");
     }
 

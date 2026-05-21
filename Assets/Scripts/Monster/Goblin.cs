@@ -15,7 +15,7 @@ public class Goblin : DamageAble
     }
     private void OnEnable()
     {
-        health = 100f;
+        health = 50f;
         defense = 5;
         type = EnemyType.Minion;
     }   

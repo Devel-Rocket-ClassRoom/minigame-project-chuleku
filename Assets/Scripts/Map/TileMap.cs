@@ -89,27 +89,33 @@ public class TileMap : MonoBehaviour
         => new Vector3(origin.x + x * CellSize, 0f, origin.z - z * CellSize);
 
     public Vector3 GridToWorld(Vector2Int g) => GridToWorld(g.x, g.y);
-    public void CreateWall(int x, int z,GameObject gm,int stage)
+    public void CreateWall(int x, int z,GameObject gm,int stage,int cost)
     {
         tiles[x,z].hasWall = true;
         tiles[x,z].Wall = gm;
         tiles[x,z].wallStageID = stage;
+        tiles[x,z].installCost = cost;
     }
     public void BreakWall(int x,int z,int stage,int amount)
     {
         if(tiles[x,z].Wall == null)return;
-        Destroy(tiles[x,z].Wall);
+       
         if(tiles[x,z].wallStageID == stage)
         {
+             Destroy(tiles[x,z].Wall);
             tiles[x,z].Wall = null;
             tiles[x,z].hasWall = false;
+            
             tiles[x,z].wallStageID = -1;
-            ResourceManager.Instance.AddGold(3);
+            ResourceManager.Instance.AddGold(tiles[x,z].installCost);
+            tiles[x,z].installCost = 0;
+            return;
         }
         else
         {
             if(ResourceManager.Instance.TrySpendGold(amount))
             {
+                Destroy(tiles[x,z].Wall);
                 tiles[x,z].Wall = null;
                 tiles[x,z].hasWall = false;
                 tiles[x,z].wallStageID = -1;
