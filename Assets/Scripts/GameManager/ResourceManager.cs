@@ -41,7 +41,11 @@ public class ResourceManager : MonoBehaviour
     {
         if(amount<=0)return;
         SetHp(Mathf.Max(0, Hp - amount));
-        if(Hp==0) Debug.Log("체력 0이 됨");
+        if(Hp==0)
+        {
+            UiManager.Instance.gameoverText.text = "게임 오버!";
+            UiManager.Instance.GameEnd();
+        }
     }
     public void HealEffect(int amount)
     {

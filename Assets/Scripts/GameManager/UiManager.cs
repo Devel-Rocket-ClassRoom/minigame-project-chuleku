@@ -1,17 +1,22 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
 {
-    public UiManager Instance {get; private set;}
+    public static UiManager Instance {get; private set;}
     private InputAction escKey;
     public GameObject escPanal;
     public GameObject storeButton;
+    public GameObject gameEnd;
+    public TextMeshProUGUI gameoverText;
     void Awake()
     {
+        Instance = this;
         escKey = InputSystem.actions.FindAction("Player/Exit");
         escPanal.SetActive(false);
+        gameEnd.SetActive(false);
     }
 
     void Update()
@@ -47,6 +52,11 @@ public class UiManager : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+    public void GameEnd()
+    {
+        Time.timeScale =0;
+        gameEnd.SetActive(true);
     }
 
 

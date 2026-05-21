@@ -366,7 +366,8 @@ public class DefenceGameManager : MonoBehaviour
         }
         var Groups = DataTableManager.StageTable.Get(stage);
         if( Groups ==null){
-            Debug.Log("라운드 구현안함");
+            UiManager.Instance.gameoverText.text = "라운드 미구현";
+            UiManager.Instance.GameEnd();
             return;
         }
         roundStart = true;
