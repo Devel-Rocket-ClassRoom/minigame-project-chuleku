@@ -31,8 +31,10 @@ public abstract class UnitBase : MonoBehaviour
     protected virtual void Update()
     {
         cooldownTimer -= Time.deltaTime;
-     
-        currentTarget = sensor.GetNearest();
+
+        // 현재 타겟이 죽거나 사거리를 벗어났을 때만 새 타겟 탐색 (sticky targeting)
+        if (!sensor.HasTarget(currentTarget))
+            currentTarget = sensor.GetNearest();
         if (currentTarget == null) return;
 
         FaceTarget(currentTarget.transform.position);

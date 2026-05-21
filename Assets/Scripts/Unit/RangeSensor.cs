@@ -37,6 +37,11 @@ public class RangeSensor : MonoBehaviour
         }
         return best;
     }
+
+    public bool HasTarget(DamageAble d)
+    {
+        return d != null && !d.isDead && targets.Contains(d);
+    }
     public void UnitRange(float range)
     {
           GetComponent<SphereCollider>().radius = range;
