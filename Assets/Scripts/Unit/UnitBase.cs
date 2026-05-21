@@ -6,26 +6,51 @@ public abstract class UnitBase : MonoBehaviour
     [SerializeField] protected float attackCooldown = 1f;
     [SerializeField] protected int damage = 10;
 
+    protected int baseDamage;
     protected Animator animator;
     protected DamageAble currentTarget;
     private float cooldownTimer;
+    private bool subscribed;
 
     protected virtual void OnEnable()
     {
         animator = GetComponentInChildren<Animator>();
         sensor = transform.GetComponentInChildren<RangeSensor>();
+
+        if (UpgradeManager.Instance != null && !subscribed)
+        {
+            UpgradeManager.Instance.OnUpgradeChanged += RefreshDamage;
+            subscribed = true;
+        }
     }
+
+    protected virtual void OnDisable()
+    {
+        if (UpgradeManager.Instance != null && subscribed)
+        {
+            UpgradeManager.Instance.OnUpgradeChanged -= RefreshDamage;
+            subscribed = false;
+        }
+    }
+
     public void SetupUnitStatus(int attack, float attackSpeed, float range)
     {
-        this.damage = attack;
+        baseDamage = attack;
+        RefreshDamage();
         // 공격 속도 역수를 취해 쿨타임으로 적용 (공속이 2면 쿨타임은 0.5초)
-        this.attackCooldown = attackSpeed > 0 ? 1f / attackSpeed : 1f; 
-        
+        this.attackCooldown = attackSpeed > 0 ? 1f / attackSpeed : 1f;
+
         // 중요! 가지고 계신 RangeSensor의 사거리 조절 함수 호출
         if (sensor != null)
         {
             sensor.UnitRange(range);
         }
+    }
+
+    private void RefreshDamage()
+    {
+        int bonus = UpgradeManager.Instance != null ? UpgradeManager.Instance.GlobalAttackBonus : 0;
+        damage = baseDamage + bonus;
     }
 
     protected virtual void Update()

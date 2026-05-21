@@ -196,6 +196,9 @@ public class CardGameManager : MonoBehaviour
         deck.AddRange(grave);
         grave.Clear();
         Shuffle(deck);
+
+        if (UpgradeManager.Instance != null)
+            UpgradeManager.Instance.OnRoundEnded();
     }
 
     private static void Shuffle<T>(List<T> list)

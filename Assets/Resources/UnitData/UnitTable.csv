@@ -1,5 +1,5 @@
 Id,Attack,AttackSpeed,Range,Prefab,UpgradeAmount
 Archer,10,1,10,Resources/UnitPrefab/Archer,2
-Warrior,30,0.5,4,Resources/UnitPrefab/Warrior,5
+Warrior,30,2,4,Resources/UnitPrefab/Warrior,5
 
 
