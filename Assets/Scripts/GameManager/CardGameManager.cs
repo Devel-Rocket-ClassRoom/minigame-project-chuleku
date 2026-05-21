@@ -351,7 +351,7 @@ public class CardGameManager : MonoBehaviour
         float len = Vector2.Distance(a, b);
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         targetingLine.position = a;
-        targetingLine.sizeDelta = new Vector2(len/2.5f, targetingLine.sizeDelta.y); // 두께는 인스펙터 값 유지
+        targetingLine.sizeDelta = new Vector2(len, targetingLine.sizeDelta.y); // 두께는 인스펙터 값 유지
         targetingLine.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
