@@ -14,6 +14,7 @@ public class CardTable : DataTable
         public int Cost {get; set;}
         // 효과/자원 카드의 런타임 부착 클래스 이름 (예: "EffectCreateMagic"). 유닛은 비워둠.
         public string Behavior { get; set; }
+        
     }
 
     private readonly Dictionary<string, Data> table = new Dictionary<string, Data>();

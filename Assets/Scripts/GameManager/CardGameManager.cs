@@ -68,6 +68,10 @@ public class CardGameManager : MonoBehaviour
         {
             AddUnitCard("Archer");
         }
+        for(int i = 0;i<3;i++)
+        {
+            AddUnitCard("Warrior");
+        }
         for(int i =0;i<6;i++)
         {
             AddResourceCard("LostGold");
@@ -144,7 +148,7 @@ public class CardGameManager : MonoBehaviour
 
         // 효과/자원 카드는 CSV의 Behavior 컬럼에 적힌 클래스를 런타임에 부착.
         // 같은 프리팹으로 여러 종류의 효과/자원 카드를 처리하기 위함.
-        if ((data.Type == CardType.Effect || data.Type == CardType.Resource)
+        if ((data.Type == CardType.Effect || data.Type == CardType.Resource||data.Type == CardType.Unit)
             && !string.IsNullOrEmpty(data.Behavior))
         {
             var behaviorType = System.Type.GetType(data.Behavior);

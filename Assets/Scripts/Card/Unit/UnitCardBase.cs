@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public abstract class UnitCardBase : CardBase
+public class UnitCardBase : CardBase
 {
     [SerializeField] protected UnitBase unitPrefab;
     protected int cardAttack;
@@ -13,7 +13,7 @@ public abstract class UnitCardBase : CardBase
     [SerializeField] protected TextMeshProUGUI atkText;
     [SerializeField] protected int upgradeAttack;
     [SerializeField] protected int upgradeAmount;
-
+    protected UnitTable.Data unitdata;
 
 
     public int UpgradeAttack => upgradeAttack;
@@ -21,21 +21,23 @@ public abstract class UnitCardBase : CardBase
     public int Attack => cardAttack+upgradeAttack;
     public float AttackSpeed => cardAttackSpeed;
     public float Range => cardRange;
+    public UnitTable.Data UnitData =>unitdata;
 
     public override void Init()
     {
         base.Init();
-
+        cardType = CardType.Unit;
         // 유닛 전용 스탯/프리팹은 UnitTable에서 로드
-        var udata = DataTableManager.UnitTable?.Get(cardId);
-        if (udata != null)
+        unitdata = DataTableManager.UnitTable?.Get(cardId);
+        if (unitdata != null)
         {
-            cardAttack = udata.Attack;
-            cardAttackSpeed = udata.AttackSpeed;
-            cardRange = udata.Range;
-            if (!string.IsNullOrEmpty(udata.Prefab))
+            cardAttack = unitdata.Attack;
+            cardAttackSpeed = unitdata.AttackSpeed;
+            cardRange = unitdata.Range;
+            upgradeAmount = unitdata.UpgradeAmount;
+            if (!string.IsNullOrEmpty(unitdata.Prefab))
             {
-                var go = LoadUnitPrefab(udata.Prefab);
+                var go = LoadUnitPrefab(unitdata.Prefab);
                 if (go != null) unitPrefab = go.GetComponent<UnitBase>();
             }
         }

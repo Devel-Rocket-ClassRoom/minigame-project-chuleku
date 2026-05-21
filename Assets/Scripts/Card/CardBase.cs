@@ -90,6 +90,6 @@ public abstract class CardBase : MonoBehaviour
     protected static Sprite LoadSprite(string imageId)
     {
         if (string.IsNullOrEmpty(imageId)) return null;
-        return Resources.Load<Sprite>($"CardArt/{imageId}");
+        return Resources.Load<Sprite>($"Sprites/Cards/Art/{imageId}");
     }
 }

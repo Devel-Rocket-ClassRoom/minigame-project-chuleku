@@ -9,3 +9,5 @@ MagicName,파이어 볼
 MagicDesc,사용 시 지정범위에 화염구를 날림
 DestroyDrawName,손패 정리
 DestroyDrawDesc,손패 카드 1장을 파괴하고\n2장 드로우
+WarriorName,전사
+WarriorDesc,사거리가 짧은대신\n강력한 공격을한다.

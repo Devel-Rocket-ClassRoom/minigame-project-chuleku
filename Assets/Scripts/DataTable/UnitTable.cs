@@ -10,6 +10,7 @@ public class UnitTable : DataTable
         public float AttackSpeed { get; set; }
         public float Range { get; set; }
         public string Prefab { get; set; }   // Resources 하위 경로 키 (예: "UnitPrefab/Archer")
+        public int UpgradeAmount { get; set; }
     }
 
     private readonly Dictionary<string, Data> table = new();
