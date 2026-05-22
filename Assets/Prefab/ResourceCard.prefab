@@ -1039,11 +1039,12 @@ MonoBehaviour:
   cardId: LostGold
   price: 0
   cost: 0
+  mana: 0
   cardType: 2
   useAble: 0
   nameText: {fileID: 7496573463848793367}
   descText: {fileID: 6602516355836866773}
-  costText: {fileID: 2423752919813582831}
+  manaText: {fileID: 2423752919813582831}
   artworkImage: {fileID: 3543362969481095842}
   currentCardType: 2
   ValueText: {fileID: 3240303097293018778}

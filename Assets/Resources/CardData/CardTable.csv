@@ -4,3 +4,5 @@ IllegalMagic,Effect,EffectName,EffectDesc,0,EffectArt_Spell,3,EffectCreateMagic,
 DestroyDraw,Effect,DestroyDrawName,DestroyDrawDesc,1,MagicArt_Rune,3,EffectDestroyDraw,true
 LostGold,Resource,ResourceName,ResourceDesc,0,ResourceArt_Treasure,1,LostGoldCoin,true
 Warrior,Unit,WarriorName,WarriorDesc,0,UnitArt_Warrior,2,CardWarrior,false
+GogumaCheeseDonGgass,Effect,GcdName,GcdDesc,1,SweetPotatoCheeseTonkatsu,4,gogumacheesedonGgass,true
+BreakShard,Resource,BreakShardName,BreakShardDesc,1,ResourceArt_Treasure,2,BreakShard,true

@@ -438,11 +438,12 @@ MonoBehaviour:
   cardId: 
   price: 0
   cost: 0
+  mana: 0
   cardType: 1
   useAble: 1
   nameText: {fileID: 4373047643836394655}
   descText: {fileID: 6035840906890228188}
-  costText: {fileID: 7309129777212092880}
+  manaText: {fileID: 7309129777212092880}
   artworkImage: {fileID: 4414757472351690037}
 --- !u!1 &2778001767081619927
 GameObject:

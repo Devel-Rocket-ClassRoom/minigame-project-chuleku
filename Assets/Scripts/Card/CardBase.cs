@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public abstract class CardBase : MonoBehaviour
 {
     [SerializeField] protected string cardId;
-    [SerializeField] protected int price;
     [SerializeField] protected int cost;
+    [SerializeField] protected int mana;
     [SerializeField] protected CardType cardType;
 
     [SerializeField] protected bool useAble;
@@ -15,7 +15,7 @@ public abstract class CardBase : MonoBehaviour
     [Header("UI")]
     [SerializeField] protected TextMeshProUGUI nameText;
     [SerializeField] protected TextMeshProUGUI descText;
-    [SerializeField] protected TextMeshProUGUI costText;
+    [SerializeField] protected TextMeshProUGUI manaText;
     [SerializeField] protected Image artworkImage;
 
     public bool UseAble => useAble;
@@ -24,6 +24,7 @@ public abstract class CardBase : MonoBehaviour
     public string CardId => cardId;
     public int InstanceId => instanceId;
     public CardType GetCardType() => cardType;
+    public int GetMana() => mana;
     public int GetCost() => cost;
     public CardTable.Data Data => data;
 
@@ -58,7 +59,8 @@ public abstract class CardBase : MonoBehaviour
     protected virtual void ApplyData()
     {
         cardType = data.Type;
-        cost = data.Mana;
+        cost = data.Cost;
+        mana = data.Mana;
         useAble = data.UseAble;
     }
 
@@ -67,7 +69,7 @@ public abstract class CardBase : MonoBehaviour
     {
         if (nameText != null) nameText.text = GetName();
         if (descText != null) descText.text = GetDesc();
-        if (costText != null) costText.text = cost.ToString();
+        if (manaText != null) manaText.text = mana.ToString();
         if (artworkImage != null)
         {
             var sprite = LoadSprite(data.Image);

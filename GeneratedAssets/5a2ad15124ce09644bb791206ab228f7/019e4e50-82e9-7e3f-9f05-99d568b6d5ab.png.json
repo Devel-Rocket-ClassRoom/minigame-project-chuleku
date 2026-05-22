@@ -1,0 +1,38 @@
+{
+    "asset": "5a2ad15124ce09644bb791206ab228f7",
+    "fileName": "019e4e50-82e9-7e3f-9f05-99d568b6d5ab.png",
+    "prompt": "A delicious sweet potato cheese tonkatsu (katsu) cut in half to show the melted cheese and sweet potato filling, served on a plate. High-detail painterly fantasy game art style, dramatic lighting, dark atmospheric background, matching the visual style and lighting of the reference image.",
+    "negativePrompt": "",
+    "model": "gemini-3.0-pro",
+    "modelName": "Gemini 3.0 Pro",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": [
+            {
+                "doodleReferenceType": 7,
+                "doodle": [],
+                "label": "Image",
+                "strength": 0.25,
+                "invertStrength": false,
+                "assetReferenceGuid": "86651809ccfcc4d4e9a29b152c788ca5",
+                "unlabeledIndex": -1
+            }
+        ]
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

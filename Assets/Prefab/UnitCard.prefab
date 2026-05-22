@@ -168,16 +168,15 @@ MonoBehaviour:
   cardId: 
   price: 0
   cost: 0
+  mana: 0
   cardType: 0
   useAble: 0
   nameText: {fileID: 128430373133044238}
   descText: {fileID: 9029243495604672441}
-  costText: {fileID: 1054921088343376831}
+  manaText: {fileID: 1054921088343376831}
   artworkImage: {fileID: 6765739907891084293}
   unitPrefab: {fileID: 0}
   atkText: {fileID: 8807879803460425855}
-  upgradeAttack: 0
-  upgradeAmount: 0
 --- !u!1 &3197474149360917625
 GameObject:
   m_ObjectHideFlags: 0

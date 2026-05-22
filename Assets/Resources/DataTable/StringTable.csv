@@ -11,3 +11,7 @@ DestroyDrawName,손패 정리
 DestroyDrawDesc,손패 카드 1장을 파괴하고\n2장 드로우
 WarriorName,전사
 WarriorDesc,사거리가 짧은대신\n강력한 공격을한다.
+GcdName,고치돈
+GcdDesc,한장 드로우\n 효과카드일 경우\n 한장 더 드로우
+BreakShardName,부서진 조각
+BreakShardDesc,조각 3개를 획득

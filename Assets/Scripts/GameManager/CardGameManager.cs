@@ -43,7 +43,8 @@ public class CardGameManager : MonoBehaviour
     private readonly List<CardInstance> grave = new();
     private readonly Dictionary<int, GameObject> handObjs = new();
     private int nextInstanceId = 1;
-
+    private CardInstance lastDrawn;
+    public CardInstance LastDrawn => lastDrawn;
     private bool hideCheck;
 
     public IReadOnlyList<UnitCardSlot> UnitSlots => unitSlots;
@@ -183,6 +184,7 @@ public class CardGameManager : MonoBehaviour
             cb.SetInstanceId(inst.InstanceId);
         }
         handObjs[inst.InstanceId] = go;
+        lastDrawn = inst;
     }
 
     // === 손패 → 묘지 ===

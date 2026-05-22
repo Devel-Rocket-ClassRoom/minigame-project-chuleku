@@ -6,7 +6,7 @@ public class EffectDestroyDraw : EffectCardBase
     public override void UseEffect()
     {
         if (CardGameManager.Instance == null) return;
-        if(ResourceManager.Instance.Mana<GetCost())
+        if(ResourceManager.Instance.Mana<mana)
         {
             return;
         }
@@ -19,7 +19,7 @@ public class EffectDestroyDraw : EffectCardBase
             CardGameManager.Instance.DrawCard();
             CardGameManager.Instance.DrawCard();
             CardGameManager.Instance.DrawCard();
-            ResourceManager.Instance.TrySpendMana(GetCost());
+            ResourceManager.Instance.TrySpendMana(GetMana());
             CardGameManager.Instance.DiscardFromHand(gameObject);
         });
     }
