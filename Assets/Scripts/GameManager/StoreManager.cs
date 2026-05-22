@@ -82,6 +82,7 @@ public class StoreManager : MonoBehaviour
     public bool BuyOne(int slotIndex)
     {
         if (slotIndex < 0 || slotIndex >= slots.Count) return false;
+        if(!ResourceManager.Instance.TrySpendMana(1)) return false;
         var s = slots[slotIndex];
         if (s.cardId == null || s.remaining <= 0) return false;
         s.remaining--;

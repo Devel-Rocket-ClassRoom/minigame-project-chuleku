@@ -384,6 +384,7 @@ public class DefenceGameManager : MonoBehaviour
             StartCoroutine(SpawnMonsterCort(g.SpawnTime,g.Count,g.Delay,path,prefab));
         }
         CardGameManager.Instance.EndRound();
+        UiManager.Instance.StartGameUiHide();
         currentStage++;
         return;
     }

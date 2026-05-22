@@ -92,5 +92,14 @@ public class UiManager : MonoBehaviour
         storePanal.anchoredPosition = targetPos;
         storecor = null;
     }
+    public void StartGameUiHide()
+    {
+        if(storecor !=null) StopCoroutine(storecor);
+        storecor = null;
+        StoreManager.Instance.SetMoveHide();
+        DefenceGameManager.Instance.closeButton();
+        storePanal.anchoredPosition = hideStore;
+
+    }
     
 }
