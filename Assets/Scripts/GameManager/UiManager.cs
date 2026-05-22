@@ -25,6 +25,7 @@ public class UiManager : MonoBehaviour
         storecor=null;
         escPanal.SetActive(false);
         gameEnd.SetActive(false);
+        
     }
 
     void Update()
@@ -71,6 +72,7 @@ public class UiManager : MonoBehaviour
     {
         if(storecor != null) StopCoroutine(storecor);
         storecor = null;
+        StoreManager.Instance.SetMoveHide();
         clickCheck = !clickCheck;
         storecor = StartCoroutine(MoveStore());
     }
@@ -90,4 +92,5 @@ public class UiManager : MonoBehaviour
         storePanal.anchoredPosition = targetPos;
         storecor = null;
     }
+    
 }

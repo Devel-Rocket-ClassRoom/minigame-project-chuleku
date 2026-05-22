@@ -48,4 +48,5 @@ public class CardTable : DataTable
         }
         return table[key];
     }
+    public IEnumerable<string> GetAllIds() => table.Keys;
 }
