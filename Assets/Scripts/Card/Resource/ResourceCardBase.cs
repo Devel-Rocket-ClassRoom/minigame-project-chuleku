@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public abstract class ResourceCardBase : CardBase
+public class ResourceCardBase : CardBase
 {
     [SerializeField] protected CardType currentCardType = CardType.Resource;
     [SerializeField] protected TextMeshProUGUI ValueText;
@@ -9,5 +9,5 @@ public abstract class ResourceCardBase : CardBase
     {
         useAble = true;
     }
-    public abstract void UseResource();
+    public virtual void UseResource(){}
 }

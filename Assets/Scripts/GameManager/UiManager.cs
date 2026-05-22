@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,12 +10,19 @@ public class UiManager : MonoBehaviour
     private InputAction escKey;
     public GameObject escPanal;
     public GameObject storeButton;
+    public RectTransform storePanal;
     public GameObject gameEnd;
     public TextMeshProUGUI gameoverText;
+    private bool clickCheck;
+    private Coroutine storecor;
+    private Vector2 hideStore = new Vector2(-40,1000);
+    private Vector2 viewStore = new Vector2(-40,-100);
     void Awake()
     {
         Instance = this;
         escKey = InputSystem.actions.FindAction("Player/Exit");
+        if(storecor!=null) StopCoroutine(storecor);
+        storecor=null;
         escPanal.SetActive(false);
         gameEnd.SetActive(false);
     }
@@ -59,5 +67,27 @@ public class UiManager : MonoBehaviour
         gameEnd.SetActive(true);
     }
 
-
+    public void OnclickStore()
+    {
+        if(storecor != null) StopCoroutine(storecor);
+        storecor = null;
+        clickCheck = !clickCheck;
+        storecor = StartCoroutine(MoveStore());
+    }
+    private IEnumerator MoveStore()
+    {
+        float t = 0;
+        float speed = 30f;
+        Vector2 startPos = storePanal.anchoredPosition;
+        Vector2 targetPos = clickCheck ? viewStore : hideStore;
+   
+        while (t<1f)
+        {
+            t += Time.deltaTime*speed;
+            storePanal.anchoredPosition = Vector2.Lerp(startPos,targetPos,t);
+            yield return null;
+        }
+        storePanal.anchoredPosition = targetPos;
+        storecor = null;
+    }
 }

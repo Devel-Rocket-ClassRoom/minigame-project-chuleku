@@ -18,6 +18,7 @@ public class UnitCardBase : CardBase
     public float AttackSpeed => cardAttackSpeed;
     public float Range => cardRange;
     public UnitTable.Data UnitData => unitdata;
+    public virtual void UseEffect() { }
 
     public override void OnEnable()
     {

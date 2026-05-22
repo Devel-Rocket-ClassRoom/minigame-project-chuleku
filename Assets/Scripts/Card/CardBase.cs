@@ -59,6 +59,7 @@ public abstract class CardBase : MonoBehaviour
     {
         cardType = data.Type;
         cost = data.Mana;
+        useAble = data.UseAble;
     }
 
     // 필드 값을 UI 요소에 표시. 서브클래스가 추가 UI 갱신.
@@ -92,4 +93,5 @@ public abstract class CardBase : MonoBehaviour
         if (string.IsNullOrEmpty(imageId)) return null;
         return Resources.Load<Sprite>($"Sprites/Cards/Art/{imageId}");
     }
+
 }

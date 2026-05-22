@@ -31,6 +31,18 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 Debug.Log("효과 발동!");
                 switch(transform.GetComponent<CardBase>().GetCardType())
                 {
+                    case CardType.Unit:
+                    var unit = transform.GetComponent<UnitCardBase>();
+                    if(unit.UseAble)
+                    {
+                        unit.UseEffect();        
+                        CardGameManager.Instance.DiscardFromHand(transform.gameObject);
+                    }
+                    else
+                    {
+                        Debug.Log("사용 불가능한 카드");        
+                    }
+                    break;
                     case CardType.Effect:
                     // 효과 카드는 즉시 묘지로 보내지 않고 자기가 끝나는 시점에 Discard.
                     // (타겟팅 같은 다단계 효과를 지원하기 위함)

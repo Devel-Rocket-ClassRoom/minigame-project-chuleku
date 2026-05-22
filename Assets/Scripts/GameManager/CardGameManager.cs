@@ -114,11 +114,30 @@ public class CardGameManager : MonoBehaviour
 
         switch (data.Type)
         {
-            case CardType.Unit:     return AddUnitCard(cardId);
-            case CardType.Effect:   return AddEffectCard(cardId);
-            case CardType.Resource: return AddResourceCard(cardId);
+            case CardType.Unit:     return BuyUnitCard(cardId);
+            case CardType.Effect:   return BuyEffectCard(cardId);
+            case CardType.Resource: return BuyResourceCard(cardId);
             default:                return AddDeckCard(cardId);
         }
+    }
+    public CardInstance BuyUnitCard(string cardId)
+    {
+        var inst = NewInstance(cardId);
+        grave.Add(inst);
+        RegisterUnitSlot(inst);
+        return inst;
+    }
+    public CardInstance BuyResourceCard(string cardId)
+    {
+        var inst = NewInstance(cardId);
+        grave.Add(inst);
+        return inst;   
+    }
+    public CardInstance BuyEffectCard(string cardId)
+    {
+        var inst = NewInstance(cardId);
+        grave.Add(inst);
+        return inst;   
     }
 
     // 유닛 카드: 덱 + 유닛 패널에 같은 InstanceId로 동시 등록 (GDD 4.3)
