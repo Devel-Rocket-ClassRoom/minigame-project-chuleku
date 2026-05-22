@@ -5,6 +5,7 @@ using UnityEngine;
 public class RangeSensor : MonoBehaviour
 {
     private readonly List<DamageAble> targets = new();
+    public List<DamageAble> Targets =>targets;
 
     void OnEnable()
     {
@@ -44,6 +45,6 @@ public class RangeSensor : MonoBehaviour
     }
     public void UnitRange(float range)
     {
-          GetComponent<SphereCollider>().radius = range;
+        GetComponent<SphereCollider>().radius = range;
     }
 }

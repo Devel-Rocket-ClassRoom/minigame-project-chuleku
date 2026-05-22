@@ -32,15 +32,25 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 switch(transform.GetComponent<CardBase>().GetCardType())
                 {
                     case CardType.Unit:
-                    var unit = transform.GetComponent<UnitCardBase>();
-                    if(unit.UseAble)
+                    // 프리팹의 베이스 UnitCardBase와 AddComponent로 붙은 자식이 공존하므로
+                    // 자식 타입(가장 구체적인 효과)을 우선 호출.
+                    var units = transform.GetComponents<UnitCardBase>();
+                    UnitCardBase unitTarget = null;
+                    foreach (var u in units)
                     {
-                        unit.UseEffect();        
+                        if (u.GetType() != typeof(UnitCardBase)) { unitTarget = u; break; }
+                    }
+                    if (unitTarget == null && units.Length > 0) unitTarget = units[0];
+                    if (unitTarget == null) break;
+
+                    if (unitTarget.UseAble)
+                    {
+                        unitTarget.UseEffect();
                         CardGameManager.Instance.DiscardFromHand(transform.gameObject);
                     }
                     else
                     {
-                        Debug.Log("사용 불가능한 카드");        
+                        Debug.Log("사용 불가능한 카드");
                     }
                     break;
                     case CardType.Effect:

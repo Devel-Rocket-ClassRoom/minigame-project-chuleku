@@ -6,3 +6,4 @@ LostGold,Resource,ResourceName,ResourceDesc,0,ResourceArt_Treasure,1,LostGoldCoi
 Warrior,Unit,WarriorName,WarriorDesc,0,UnitArt_Warrior,2,CardWarrior,false
 GogumaCheeseDonGgass,Effect,GcdName,GcdDesc,1,SweetPotatoCheeseTonkatsu,4,gogumacheesedonGgass,true
 BreakShard,Resource,BreakShardName,BreakShardDesc,1,ResourceArt_Treasure,2,BreakShard,true
+Wizard,Unit,WizardName,WizardDesc,1,,6,CardWizard,true
