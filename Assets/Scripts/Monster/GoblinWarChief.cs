@@ -9,12 +9,6 @@ public class GoblinWarChief : DamageAble
         dieCheck = false;
         animator = GetComponent<Animator>();
     }
-    void OnEnable()
-    {
-        health = 500;
-        defense = 10;
-        type = EnemyType.Boss;
-    }
     public override void Die()
     {
         if (dieCheck) return;

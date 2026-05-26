@@ -406,7 +406,6 @@ public class DefenceGameManager : MonoBehaviour
         }
         CardGameManager.Instance.EndRound();
         UiManager.Instance.StartGameUiHide();
-        currentStage++;
         return;
     }
     private IEnumerator SpawnMonsterCort(float spawntime,int count,float delay,List<Vector2Int> path,GameObject prefab)
@@ -447,12 +446,15 @@ public class DefenceGameManager : MonoBehaviour
             spawncor = null;
         }
         
+        if (UpgradeManager.Instance != null)
+        UpgradeManager.Instance.OnRoundEnded();
         CardGameManager.Instance.StartRound();
         ResourceManager.Instance.StartRound();
         currenStageText.text = $"스테이지 {currentStage}";
         Debug.Log("라운드 종료 준비라운드!");
         phaseText.text = "메인 페이즈";
         phase = Phase.Main;
+        currentStage++;
     }
 
 

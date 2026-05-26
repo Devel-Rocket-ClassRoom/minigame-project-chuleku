@@ -3,3 +3,5 @@ FireBall,MagicName,MagicDesc,EffectArt_Spell,Resources/MagicPrefab/FireBall,Batt
 Lightning,LightningName,LightningDesc,,Resources/MagicPrefab/Lightning,Battle
 SnowWind,SnowWindName,SnowWindDesc,,Resources/MagicPrefab/SnowWind,Battle
 DarkHands,DarkHandsName,DarkHandsDesc,,Resources/MagicPrefab/DarkHands,Main
+Adrenaline,AdrenalineName,AdrenalineDesc,,Resources/MagicPrefab/Adrenaline,Battle
+ForgeMaster,ForgeMasterName,ForgeMasterDesc,,Resources/MagicPrefab/ForgeMaster,Main

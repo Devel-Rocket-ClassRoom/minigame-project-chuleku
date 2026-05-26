@@ -11,12 +11,6 @@ public class Goblin : DamageAble
         dieCheck = false;
         animator = GetComponent<Animator>();
     }
-    private void OnEnable()
-    {
-        health = 50f;
-        defense = 5;
-        type = EnemyType.Minion;
-    }   
     public override void Die()
     {
         if (dieCheck) return;

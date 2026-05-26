@@ -9,12 +9,6 @@ public class Skeleton : DamageAble
         dieCheck = false;
         animator = GetComponent<Animator>();
     }
-    void OnEnable()
-    {
-        health = 100f;
-        defense = 2;
-        type = EnemyType.Minion;
-    }
     public override void Die()
     {
         if (dieCheck) return;

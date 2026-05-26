@@ -9,7 +9,7 @@ public class StoreManager : MonoBehaviour
     public static StoreManager Instance {get;private set;}
     public Button[] rotateStoreSlot;
     public GameObject storeInfo;
-    public int storeRerollCount;
+    private int storeRerollCount;
     public TextMeshProUGUI RerollCountText;
 
     public class Slot
@@ -77,6 +77,11 @@ public class StoreManager : MonoBehaviour
     public void AddRerollCount(int amount)
     {
         storeRerollCount +=amount;
+    }
+    public void AddStock(int slotIndex,int amount)
+    {
+        if(slotIndex<0||slotIndex>=slots.Count)return;
+        slots[slotIndex].remaining +=amount;
     }
 
     // 리롤: 지정된 슬롯 한 칸만 새 카드로 교체.

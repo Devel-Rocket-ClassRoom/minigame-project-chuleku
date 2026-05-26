@@ -159,7 +159,6 @@ public class UiManager : MonoBehaviour
         infoCost.text = "";
         infoMana.text = "";
         infoState.text = data.Phase == Phase.Main ? "메인 페이즈 전용" : "배틀 페이즈 전용";
-
         if (data.Phase == Phase.Main)
         {
             useButton.SetActive(true);

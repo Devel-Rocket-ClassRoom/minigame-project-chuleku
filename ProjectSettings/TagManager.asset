@@ -9,6 +9,7 @@ TagManager:
   - Liner
   - Enemy
   - MagicDeck
+  - Unit
   layers:
   - Default
   - TransparentFX

@@ -15,3 +15,4 @@ PotofGreed,Effect,PotofGreedName,PotofGreedDesc,0,,5,PotofGreed,true
 AttackUpAPT,Effect,AttackUpAPTName,AttackUpAPTDesc,2,,3,AttackUpAPT,true
 HealingPack,Resource,HealingPackName,HealingPackDesc,0,,4,HealingPack,true
 SiteSupervisor,Resource,SiteSupervisorName,SiteSupervisorDesc,0,,5,SiteSupervisor,true
+StoreOner,Effect,StoreOnerName,StoreOnerDesc,3,,4,StoreOner,true

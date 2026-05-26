@@ -5,8 +5,8 @@ using UnityEngine.EventSystems;
 
 public class FireBall : MagicBase, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    private CricleLiner liner;
     private float radius = 5f;
+    private CricleLiner liner;
     private TileMap tileMap;
     public GameObject Fireball;
     public float speed = 50f;
