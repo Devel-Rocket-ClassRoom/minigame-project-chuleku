@@ -11,6 +11,5 @@ public class BreakShard : ResourceCardBase
         {
             ResourceManager.Instance.AddShard(3);
         }
-        CardGameManager.Instance.DiscardFromHand(gameObject);
     }
 }

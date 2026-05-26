@@ -1,2 +1,5 @@
-Id,Name,Desc,Image,Prefab
-FireBall,MagicName,MagicDesc,EffectArt_Spell,Resources/MagicPrefab/FireBall
+Id,Name,Desc,Image,Prefab,Phase
+FireBall,MagicName,MagicDesc,EffectArt_Spell,Resources/MagicPrefab/FireBall,Battle
+Lightning,LightningName,LightningDesc,,Resources/MagicPrefab/Lightning,Battle
+SnowWind,SnowWindName,SnowWindDesc,,Resources/MagicPrefab/SnowWind,Battle
+DarkHands,DarkHandsName,DarkHandsDesc,,Resources/MagicPrefab/DarkHands,Main

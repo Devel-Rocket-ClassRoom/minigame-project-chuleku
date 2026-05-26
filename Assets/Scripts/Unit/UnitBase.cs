@@ -7,6 +7,7 @@ public abstract class UnitBase : MonoBehaviour
     [SerializeField] protected int damage = 10;
 
     protected int baseDamage;
+    protected int ungradeAmount;
     protected Animator animator;
     protected DamageAble currentTarget;
     private float cooldownTimer;
@@ -33,9 +34,10 @@ public abstract class UnitBase : MonoBehaviour
         }
     }
 
-    public void SetupUnitStatus(int attack, float attackSpeed, float range)
+    public void SetupUnitStatus(int attack, float attackSpeed, float range,int upgradeamount)
     {
         baseDamage = attack;
+        ungradeAmount = upgradeamount;
         RefreshDamage();
         // 공격 속도 역수를 취해 쿨타임으로 적용 (공속이 2면 쿨타임은 0.5초)
         this.attackCooldown = attackSpeed > 0 ? 1f / attackSpeed : 1f;
@@ -50,7 +52,7 @@ public abstract class UnitBase : MonoBehaviour
     private void RefreshDamage()
     {
         int bonus = UpgradeManager.Instance != null ? UpgradeManager.Instance.GlobalAttackBonus : 0;
-        damage = baseDamage + bonus;
+        damage = baseDamage +(ungradeAmount*bonus);
     }
 
     protected virtual void Update()

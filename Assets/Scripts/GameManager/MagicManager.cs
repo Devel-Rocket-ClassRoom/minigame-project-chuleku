@@ -42,11 +42,16 @@ public class MagicManager : MonoBehaviour
         var parent = magicPanelContent != null ? magicPanelContent : transform;
         var go = Instantiate(prefab, parent);
         int id = nextInstanceId++;
-
+        var phase = data.Phase;
         var magic = go.GetComponent<MagicBase>();
-        if (magic != null) magic.SetInstanceId(id);
+        if (magic != null)
+        {
+            magic.SetInstanceId(id);
+            magic.SetMagicId(magicId);
+            magic.SetPhase(phase);
+        }
 
-        magicDeck.Add(new MagicInstance(id, magicId, go));
+        magicDeck.Add(new MagicInstance(id, magicId, go,phase));
         return true;
     }
 
@@ -56,6 +61,7 @@ public class MagicManager : MonoBehaviour
         int idx = magicDeck.FindIndex(m => m.InstanceId == instanceId);
         if (idx < 0) return;
         var inst = magicDeck[idx];
+        if(inst.phase != DefenceGameManager.Instance.CurrentPhase)return;
         magicDeck.RemoveAt(idx);
         if (inst.View != null) Destroy(inst.View);
     }

@@ -10,6 +10,7 @@ public class ResourceManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI shardText;
     [SerializeField] private TextMeshProUGUI manaText;
     [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private TextMeshProUGUI freeCouponText;
     public TextMeshProUGUI enemyCountText;
     
 
@@ -18,11 +19,13 @@ public class ResourceManager : MonoBehaviour
     public int Gold { get; private set; }
     public int Shard { get; private set; }
     public int Mana { get; private set; }
+    public int FreeCreateWallCoupon { get; private set; }
 
     public event Action<int> OnGoldChanged;
     public event Action<int> OnShardChanged;
     public event Action<int> OnManaChanged;
     public event Action<int> OnHpChanged;
+    public event Action<int> OnFreeCouponChanged;
     private int maxMana = 50;
     private int maxHp = 50;
 
@@ -35,6 +38,20 @@ public class ResourceManager : MonoBehaviour
         SetShard(0);
         SetMana(2);
         SetHp(20);
+        var d = DefenceGameManager.Instance.difficulty;
+        switch(d)
+        {
+            case Difficulty.Easy:
+            SetCreateWallCoupon(10);
+            break;
+            case Difficulty.Normal:
+            SetCreateWallCoupon(3);
+            break;
+            case Difficulty.Hard:
+            SetCreateWallCoupon(0);
+            break;
+        }
+        
     }
 
     public void TakeDamage(int amount)
@@ -71,6 +88,11 @@ public class ResourceManager : MonoBehaviour
         if (amount <= 0) return;
         SetMana(Mana + amount);
     }
+    public void AddFreeCreateWallCoupon(int amount)
+    {
+        if(amount <=0)return;
+        SetCreateWallCoupon(FreeCreateWallCoupon+amount);
+    }
 
     public bool TrySpendGold(int amount)
     {
@@ -90,6 +112,12 @@ public class ResourceManager : MonoBehaviour
     {
         if (amount < 0 || Shard < amount) return false;
         SetShard(Shard - amount);
+        return true;
+    }
+    public bool TrySpendFreeCreateWallCoupon(int amount)
+    {
+        if(amount<0|| FreeCreateWallCoupon<amount) return false;
+        SetCreateWallCoupon(FreeCreateWallCoupon-amount);
         return true;
     }
 
@@ -141,6 +169,12 @@ public class ResourceManager : MonoBehaviour
         Shard = value;
         if (shardText != null) shardText.text = value.ToString();
         OnShardChanged?.Invoke(value);
+    }
+    void SetCreateWallCoupon(int value)
+    {
+        FreeCreateWallCoupon = value;
+        if(freeCouponText !=null) freeCouponText.text = value.ToString();
+        OnFreeCouponChanged?.Invoke(value);
     }
 
     void SetMana(int value)

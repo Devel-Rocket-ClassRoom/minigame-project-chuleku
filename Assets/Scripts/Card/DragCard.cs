@@ -3,10 +3,14 @@ using UnityEngine.EventSystems;
 public class DragCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private Transform parentAfterDrag;
-    
+    private int siblingIndexBeforeDrag;
+    private float clickTime;
+
     public void OnBeginDrag(PointerEventData eventData)
     {
+        clickTime = Time.time;
         parentAfterDrag = transform.parent;
+        siblingIndexBeforeDrag = transform.GetSiblingIndex();
         transform.SetParent(transform.root);
     }
 
@@ -18,6 +22,7 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnEndDrag(PointerEventData eventData)
     {
         transform.SetParent(parentAfterDrag);
+        transform.SetSiblingIndex(siblingIndexBeforeDrag);
 
         // 중앙 영역 체크
         float distanceFromCenter = Vector2.Distance(eventData.position, new Vector2(Screen.width / 2, Screen.height / 2));
@@ -68,7 +73,18 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                     if (target != null) target.UseEffect();
                     break;
                     case CardType.Resource:
-                    transform.GetComponent<ResourceCardBase>().UseResource();
+                    // 프리팹의 베이스 ResourceCardBase와 AddComponent로 붙은 자식이 공존하므로
+                    // 자식 타입(가장 구체적인 효과)을 우선 호출.
+                    var resources = transform.GetComponents<ResourceCardBase>();
+                    ResourceCardBase resourceTarget = null;
+                    foreach (var r in resources)
+                    {
+                        if (r.GetType() != typeof(ResourceCardBase)) { resourceTarget = r; break; }
+                    }
+                    if (resourceTarget == null && resources.Length > 0) resourceTarget = resources[0];
+                    if (resourceTarget == null) break;
+
+                    resourceTarget.UseResource();
                     CardGameManager.Instance.DiscardFromHand(transform.gameObject);
                     break;
                 }

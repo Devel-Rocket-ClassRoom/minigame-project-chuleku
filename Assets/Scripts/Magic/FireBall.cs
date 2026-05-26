@@ -22,6 +22,7 @@ public class FireBall : MagicBase, IBeginDragHandler, IDragHandler, IEndDragHand
     protected override void UseEffect(){}
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if(phase !=DefenceGameManager.Instance.CurrentPhase)return;
         liner.ShowCircle(GetMouseWorldPosition(), radius);
     }
 
@@ -33,6 +34,7 @@ public class FireBall : MagicBase, IBeginDragHandler, IDragHandler, IEndDragHand
     public void OnEndDrag(PointerEventData eventData)
     {
         liner.HideCircle(); // 원 숨기기
+        if(phase !=DefenceGameManager.Instance.CurrentPhase)return;
 
         Vector3 worldMousePos = GetMouseWorldPosition();
         var (gx, gz) = tileMap.WorldToGrid(worldMousePos);

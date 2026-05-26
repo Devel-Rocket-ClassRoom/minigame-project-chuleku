@@ -24,6 +24,7 @@ public class CardGameManager : MonoBehaviour
     private GameObject targetingSource; // 효과 카드 자기 자신. 자기 선택 방지용.
     private Transform sourceOriginalParent; // 타겟팅 종료 시 손패로 복귀하기 위해 저장
     private int sourceOriginalSiblingIndex;
+    private bool targetingCancelable = true; // false면 ESC 취소 차단 (효과가 이미 일부 발동된 상태에서 사용)
 
     [Header("Targeting Line")]
     [SerializeField] private RectTransform targetingLine; // 가는 막대 UI Image. 비활성 상태로 씬에 두고 인스펙터에서 연결.
@@ -46,6 +47,7 @@ public class CardGameManager : MonoBehaviour
     private CardInstance lastDrawn;
     public CardInstance LastDrawn => lastDrawn;
     private bool hideCheck;
+    public Dictionary<int,GameObject>HandObjs =>handObjs;
 
     public IReadOnlyList<UnitCardSlot> UnitSlots => unitSlots;
     public IEnumerable<CardBase> HandCards =>
@@ -287,7 +289,7 @@ public class CardGameManager : MonoBehaviour
 
    
 
-    public void BeginTargetHandCard(GameObject source, Action<CardBase> onPicked)
+    public void BeginTargetHandCard(GameObject source, Action<CardBase> onPicked, bool cancelable = true)
     {
         if (IsTargeting)
         {
@@ -297,6 +299,7 @@ public class CardGameManager : MonoBehaviour
         IsTargeting = true;
         targetingSource = source;
         targetCallback = onPicked;
+        targetingCancelable = cancelable;
 
         // 효과 카드를 손패 레이아웃에서 빼고 화면 중앙으로 옮김.
         // 취소 시 복귀를 위해 원래 부모/순서 저장.
@@ -319,7 +322,7 @@ public class CardGameManager : MonoBehaviour
         if (card.gameObject == targetingSource) 
         {
             Debug.Log("효과 카드 자신은 선택 불가");
-            EndTargeting();
+            if (targetingCancelable) EndTargeting();
             return; 
         }
 
@@ -331,6 +334,7 @@ public class CardGameManager : MonoBehaviour
     public void CancelTargeting()
     {
         if (!IsTargeting) return;
+        if (!targetingCancelable) { Debug.Log("취소 불가 타겟팅"); return; }
         // 효과 카드를 손패의 원래 자리로 복귀
         if (targetingSource != null && sourceOriginalParent != null)
         {
@@ -347,11 +351,12 @@ public class CardGameManager : MonoBehaviour
         targetCallback = null;
         targetingSource = null;
         sourceOriginalParent = null;
+        targetingCancelable = true;
     }
 
     void Update()
     {
-        if (IsTargeting && Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (IsTargeting && targetingCancelable && Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
             CancelTargeting();
 
         UpdateTargetingLine();

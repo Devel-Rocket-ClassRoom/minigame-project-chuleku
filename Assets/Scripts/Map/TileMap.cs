@@ -103,19 +103,36 @@ public class TileMap : MonoBehaviour
         tiles[x,z].wallStageID = stage;
         tiles[x,z].installCost = cost;
     }
+    public void CreateWallCoupon(int x, int z,GameObject gm,int stage,int coupon)
+    {
+        tiles[x,z].hasWall = true;
+        tiles[x,z].Wall = gm;
+        tiles[x,z].wallStageID = stage;
+        tiles[x,z].Coupon=coupon;
+    }
     public void BreakWall(int x,int z,int stage,int amount)
     {
         if(tiles[x,z].Wall == null)return;
        
         if(tiles[x,z].wallStageID == stage)
         {
-             Destroy(tiles[x,z].Wall);
+            Destroy(tiles[x,z].Wall);
+            if(tiles[x,z].Coupon == 1)
+            {
+                tiles[x,z].Coupon = -1;
+                ResourceManager.Instance.AddFreeCreateWallCoupon(1);
+                tiles[x,z].Wall = null;
+                tiles[x,z].hasWall = false;
+                tiles[x,z].wallStageID = -1;
+                tiles[x,z].installCost = 0;
+                return;
+            }
             tiles[x,z].Wall = null;
             tiles[x,z].hasWall = false;
-            
             tiles[x,z].wallStageID = -1;
             ResourceManager.Instance.AddGold(tiles[x,z].installCost);
             tiles[x,z].installCost = 0;
+            
             return;
         }
         else
@@ -126,6 +143,7 @@ public class TileMap : MonoBehaviour
                 tiles[x,z].Wall = null;
                 tiles[x,z].hasWall = false;
                 tiles[x,z].wallStageID = -1;
+                tiles[x,z].Coupon = -1;
             }
             else
             {

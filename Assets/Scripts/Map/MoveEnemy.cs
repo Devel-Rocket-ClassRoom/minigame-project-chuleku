@@ -5,7 +5,8 @@ using UnityEngine;
 public class MoveEnemy : MonoBehaviour
 {
     private TileMap tilemap;
-    public float moveSpeed = 5f;
+    public float currentMoveSpeed = 5f;
+    public float moveSpeed= 5f;
     public float turnSpeed = 720f;
     
     private List<Vector2Int> path;
@@ -38,7 +39,7 @@ public class MoveEnemy : MonoBehaviour
                 ? Quaternion.LookRotation(dir)
                 : transform.rotation;
 
-            float duration = Vector3.Distance(from, to) / moveSpeed;
+            float duration = Vector3.Distance(from, to) / currentMoveSpeed;
             float t = 0f;
             while (t < 1f)
             {

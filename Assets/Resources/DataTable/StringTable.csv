@@ -17,3 +17,27 @@ BreakShardName,부서진 조각
 BreakShardDesc,조각 3개를 획득
 WizardName,마법사
 WizardDesc,카드 2장드로우\n공격력1 업그레이드
+GracefulCharityName,천사의 자비
+GracefulCharityDesc,카드 3장 드로우 후\n2장을 묘지로 보냄
+ManaCollecterName,마나 수집가
+ManaCollecterDesc,마나+1 \n패에 효과카드가 없을시\n2장드로우
+SpoonKillerName,숟가락 살인마
+SpoonKillerDesc,사용시 공격력+1\n긴 사거리로 빠르게 공격함
+MagicName,파이어 볼
+MagicDesc,일정범위 피해를 입힘
+LightningName,라이트닝
+LightningDesc,일정범위 지속피해를 입힘
+SnowWindName,눈 바람
+SnowWindDesc,적 전체 20%슬로우
+HealingPackName,힐 팩
+HealingPackDesc,체력 회복 +1\n골드+1 드로우+1
+SiteSupervisorName,건설 관리자
+SiteSupervisorDesc,벽 무료쿠폰2장 지급\n골드+3
+AttackUpAPTName,강호아파트
+AttackUpAPTDesc,업그레이드 +2
+PotofGreedName,욕망의 항아리
+PotofGreedDesc,2장 드로우
+WaterRocketName,물로켓
+WaterRocketDesc,패에 유닛카드 만큼 드로우
+DarkHandsName,어둠의 손
+DarkHandsDesc,메인페이즈에 사용가능\n드로우 +3

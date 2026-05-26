@@ -1,6 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Phase
+{
+    Battle,
+    Main,
+}
 public class MagicTable : DataTable
 {
     public class Data
@@ -10,6 +15,7 @@ public class MagicTable : DataTable
         public string Desc { get; set; }    // StringTable 키
         public string Image { get; set; }   // Resources/CardArt 하위 키
         public string Prefab { get; set; }  // Resources 하위 경로 키 (예: "MagicPrefab/Fireball")
+        public Phase Phase{ get; set; }
     }
 
     private readonly Dictionary<string, Data> table = new();

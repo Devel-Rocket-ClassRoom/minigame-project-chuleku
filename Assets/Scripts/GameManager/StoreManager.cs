@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,8 @@ public class StoreManager : MonoBehaviour
     public static StoreManager Instance {get;private set;}
     public Button[] rotateStoreSlot;
     public GameObject storeInfo;
+    public int storeRerollCount;
+    public TextMeshProUGUI RerollCountText;
 
     public class Slot
     {
@@ -37,11 +40,13 @@ public class StoreManager : MonoBehaviour
     }
     void Start()
     {
+        storeRerollCount = 0;
         allstock = DataTableManager.CardTable.GetAllIds().ToList();
         for(int i =0;i<6;i++)
         {
             RollStock(i);
         }
+        RerollCountText.text = $"남은 리롤 : {storeRerollCount}";
     }
 
     // slotIndex 자리에 카드 1종을 뽑아 재고 6으로 채운다. 풀에서 영구 제거.
@@ -50,14 +55,14 @@ public class StoreManager : MonoBehaviour
         while (slots.Count <= slotIndex) slots.Add(new Slot());
         if (allstock.Count == 0)
         {
-            slots[slotIndex] = new Slot { cardId = null, remaining = 0 };
+            // slots[slotIndex] = new Slot { cardId = null, remaining = 0 };
             return;
         }
         
 
         int idx = Random.Range(0, allstock.Count);
         string picked = allstock[idx];
-
+        if(picked == null) return;
         // swap-and-pop으로 풀에서 영구 제거
         int last = allstock.Count - 1;
         allstock[idx] = allstock[last];
@@ -69,12 +74,19 @@ public class StoreManager : MonoBehaviour
         var data = DataTableManager.CardTable.Get(picked);
         rotateStoreSlot[slotIndex].GetComponent<Image>().sprite = LoadSprite(data.Image);
     }
+    public void AddRerollCount(int amount)
+    {
+        storeRerollCount +=amount;
+    }
 
     // 리롤: 지정된 슬롯 한 칸만 새 카드로 교체.
     // 기존 카드는 풀로 되돌리지 않음 → "한 번 뜬 매물은 다시 안 뜸" 규칙 유지.
     public void RerollStock(int slotIndex)
     {
+        if(storeRerollCount<1)return;
         if (slotIndex < 0 || slotIndex >= slots.Count) return;
+        storeRerollCount --;
+        RerollCountText.text = $"남은 리롤 : {storeRerollCount}";
         RollStock(slotIndex);
     }
 

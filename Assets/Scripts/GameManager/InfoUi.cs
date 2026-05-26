@@ -54,13 +54,14 @@ public class InfoUi : MonoBehaviour
     }
     public void OnBuy(string cardId,int stockslot)
     {
+        var data = DataTableManager.CardTable.Get(cardId);
+        if (data == null) return;
+        if(ResourceManager.Instance.Gold<data.Cost)return;
         if (StoreManager.Instance.BuyOne(stockslot))
         {
             CardGameManager.Instance.BuyCard(cardId);
         }
-        
         ViewInfo(cardId,StoreManager.Instance.GetSlot(stockslot).remaining,StoreManager.Instance.perslot,stockslot);
-        
     }
     protected static Sprite LoadSprite(string imageId)
     {

@@ -6,12 +6,15 @@ public class MagicInstance
 {
     public int InstanceId;
     public string MagicId;
+    public Phase phase;
     public GameObject View;
 
-    public MagicInstance(int instanceId, string magicId, GameObject view)
+
+    public MagicInstance(int instanceId, string magicId, GameObject view,Phase phase)
     {
         InstanceId = instanceId;
         MagicId = magicId;
         View = view;
+        this.phase = phase;
     }
 }

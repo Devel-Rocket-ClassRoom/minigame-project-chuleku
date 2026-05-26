@@ -28,8 +28,8 @@ public class DefenceGameManager : MonoBehaviour
      public TextMeshProUGUI phaseText;
      public GameObject summonButton;
      public GameObject summonScrollView;
-     
-     public GameObject unitPrefab;
+    public GameObject unitPrefab;
+    public Phase CurrentPhase => phase;
      public GameObject bossPrefab;
      public GameObject[] monsterPrefab;
      public int allCount =0;
@@ -44,6 +44,7 @@ public class DefenceGameManager : MonoBehaviour
      private float pressStartTime;
      private bool isPressing;
      private bool roundStart;
+     private Phase phase;
      private Coroutine spawncor;
      private Coroutine phasecor;
 
@@ -71,6 +72,7 @@ public class DefenceGameManager : MonoBehaviour
         currentStage = 1;
         currenStageText.text = $"스테이지 {currentStage}";
         phaseText.text = "메인 페이즈";
+        phase = Phase.Main;
         alivecount = 0;
         allCount = 0;
 
@@ -121,7 +123,7 @@ public class DefenceGameManager : MonoBehaviour
         slot.placedUnit = Instantiate(prefab, pos, Quaternion.identity);
 
         var unit = slot.placedUnit.GetComponent<UnitBase>();
-        if (unit != null) unit.SetupUnitStatus(udata.Attack, udata.AttackSpeed, udata.Range);
+        if (unit != null) unit.SetupUnitStatus(udata.Attack, udata.AttackSpeed, udata.Range,udata.UpgradeAmount);
 
         tileMap.CreateUnit(tileGrid.x, tileGrid.y, slot.placedUnit);
         if (slot.buttonGo != null) slot.buttonGo.SetActive(false);
@@ -170,6 +172,7 @@ public class DefenceGameManager : MonoBehaviour
             if (Time.unscaledTime - pressStartTime <= clickThreshold)
             {
                 HandleTileClick(Mouse.current.position.ReadValue());
+                UiManager.Instance.CloseInfo();
             }
         }
     }
@@ -192,6 +195,9 @@ public class DefenceGameManager : MonoBehaviour
             if(tileMap.DonCreateCheck(gx,gz))return;
             tileGrid = new Vector2Int(gx,gz);
             equipButton.SetActive(true);
+            if(ResourceManager.Instance.FreeCreateWallCoupon>=1)
+            createWallText.text = "벽 생성 (쿠폰)";
+            else createWallText.text = $"벽 생성(-{createWallCost})";
             MoveMenuToTile(tileWorldPos);
         }
         else if(tileMap.IsInBounds(gx,gz)&&!tileMap.IsWalkable(gx,gz))
@@ -218,7 +224,14 @@ public class DefenceGameManager : MonoBehaviour
                 }
                 if(tileMap.TilesView[gx,gz].wallStageID==currentStage)
                 {
-                    breakText.text = $"벽 부수기(+{tileMap.TilesView[gx,gz].installCost})";
+                    if(tileMap.TilesView[gx,gz].Coupon==1)
+                    {
+                        breakText.text = $"벽 부수기(쿠폰+1)";
+                    }
+                    else
+                    {
+                        breakText.text = $"벽 부수기(+{tileMap.TilesView[gx,gz].installCost})";
+                    }
                 }
                 else
                 {
@@ -257,6 +270,13 @@ public class DefenceGameManager : MonoBehaviour
         if (roundStart)
         {
             Debug.Log("게임중에는 벽을 설치할수 없습니다.");
+            closeButton();
+            return;
+        }
+        if(ResourceManager.Instance.FreeCreateWallCoupon>=1)
+        {
+            ResourceManager.Instance.TrySpendFreeCreateWallCoupon(1);
+            tileMap.CreateWallCoupon(tileGrid.x,tileGrid.y,Instantiate(wallPrefab,tileMap.GridToWorld(tileGrid.x,tileGrid.y),Quaternion.identity),currentStage,1);
             closeButton();
             return;
         }
@@ -371,6 +391,7 @@ public class DefenceGameManager : MonoBehaviour
             return;
         }
         roundStart = true;
+        phase = Phase.Battle;
         if(phasecor !=null)StopCoroutine(phasecor);
         phasecor = StartCoroutine(BattlePhaseCor());
         alivecount = 0;
@@ -431,6 +452,7 @@ public class DefenceGameManager : MonoBehaviour
         currenStageText.text = $"스테이지 {currentStage}";
         Debug.Log("라운드 종료 준비라운드!");
         phaseText.text = "메인 페이즈";
+        phase = Phase.Main;
     }
 
 

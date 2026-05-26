@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// "손패 카드 1장을 파괴하고 2장 드로우". 타겟팅 인프라(CardGameManager)에 위임.
+// "손패 카드 1장을 파괴하고 3장 드로우". 타겟팅 인프라(CardGameManager)에 위임.
 public class EffectDestroyDraw : EffectCardBase
 {
     public override void UseEffect()
