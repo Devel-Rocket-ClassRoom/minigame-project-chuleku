@@ -204,18 +204,33 @@ public class TileMap : MonoBehaviour
     public IEnumerator WarningWallColorcort(int stage)
     {
         pathCheck =true;
-        List<(Renderer rend,Color c)> original = new(); 
-        foreach(Transform t in transform)
+        var thisRound = new List<Vector2Int>();
+        for (int z = 0; z < H; z++)
+            for (int x = 0; x < W; x++)
+                if (tiles[x, z] != null && tiles[x, z].hasWall && tiles[x, z].wallStageID == stage)
+                    thisRound.Add(new Vector2Int(x, z));
+
+        var culprits = new List<Vector2Int>();
+        foreach (var w in thisRound)
         {
-            var (x,y) = WorldToGrid(t.position);
-            if (!IsInBounds(x, y)) continue;
-            if(tiles[x,y].wallStageID==stage)
-            {   
-                if (tiles[x,y].Wall == null) continue;
-                var rend = tiles[x,y].Wall.GetComponent<Renderer>();
-                original.Add((rend,rend.material.color));
-                rend.material.color = Color.red;
-            }
+            var t = tiles[w.x, w.y];
+            t.hasWall = false;
+            var path = Pathfinder.FindPath(this, TileMap.Start, TileMap.Goal);
+            t.hasWall = true;      
+            if (path != null) culprits.Add(w);
+        }
+
+        var target = culprits.Count > 0 ? culprits : thisRound;
+        
+        var original = new List<(Renderer rend, Color c)>();
+        foreach(var g in target)
+        {
+            var wall = tiles[g.x, g.y].Wall;
+            if (wall == null) continue;
+            var rend = wall.GetComponent<Renderer>();
+            if (rend == null) continue;
+            original.Add((rend, rend.material.color));
+            rend.material.color = Color.red;
         }
         yield return new WaitForSeconds(3f);
         foreach(var (r,c) in original)
@@ -224,4 +239,5 @@ public class TileMap : MonoBehaviour
         }
         pathCheck = false;
     }
+    
 }
