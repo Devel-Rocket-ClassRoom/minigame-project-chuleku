@@ -24,8 +24,15 @@ public class LightningObj : MonoBehaviour
             {
                 if(c.CompareTag("Enemy"))
                 {
-                    float pierce = c.GetComponent<DamageAble>().defense;
-                    c.GetComponent<DamageAble>().TakeDamage(10+pierce);
+                    DamageAble d = c.GetComponent<DamageAble>();
+                    if (d.type == EnemyType.Minion)
+                    {
+                        d.TakeDamage(d.health*0.01f,true);
+                    }
+                    else if(d.type==EnemyType.Boss)
+                    {
+                        d.TakeDamage(15,true);
+                    }
                 }
             }
             yield return new WaitForSeconds(0.25f);

@@ -18,6 +18,7 @@ public class GoblinWarChief : DamageAble
     public void AnimationDestroy()
     {
         DefenceGameManager.Instance.EnemyDie();
+        DefenceGameManager.Instance.BossKill();
         ResourceManager.Instance.AddShard(2);
         Destroy(gameObject);
     }

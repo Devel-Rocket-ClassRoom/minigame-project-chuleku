@@ -6,3 +6,10 @@ ID,MonsterName,Prefab,Count,SpawnTime,Delay
 4,Skeleton,Resources/MonsterPrefab/Skeleton,8,0,0.3
 4,Goblin,Resources/MonsterPrefab/Goblin,6,3,0.8
 5,GoblinWarChief,Resources/MonsterPrefab/GoblinWarChief,1,0,0
+6,Goblin,Resource/MonsterPrefab/Goblin,10,0,0.4
+6,Skeleton,Resource/MonsterPrefab/Skeleton,5,1.6,0.5
+7,Goblin,Resource/MonsterPrefab/Goblin,25,0,0.7
+8,Skeleton,Resource/MonsterPrefab/Skeleton,20,0,0.5
+9,Goblin,Resource/MonsterPrefab/Goblin,10,0,0.3
+9,Skeleton,Resource/MonsterPrefab/Skeleton,20,0,0.5
+10,GoblinWarChief,Resource/MonsterPrefab/GoblinWarChief,2,0,8

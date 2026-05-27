@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,6 +14,7 @@ public class UiManager : MonoBehaviour
     public GameObject storeButton;
     public RectTransform storePanal;
     public GameObject gameEnd;
+    public GameObject BossBonusPanal;
     public TextMeshProUGUI gameoverText;
     private bool clickCheck;
     private Coroutine storecor;
@@ -37,6 +39,7 @@ public class UiManager : MonoBehaviour
         escPanal.SetActive(false);
         gameEnd.SetActive(false);
         info.SetActive(false);
+        BossBonusPanal.SetActive(false);
     }
 
     void Update()
@@ -189,5 +192,34 @@ public class UiManager : MonoBehaviour
         return Resources.Load<Sprite>($"Sprites/Cards/Art/{imageId}");
     }
 
-    
+    public void KillBoss()
+    {
+        BossBonusPanal.SetActive(true);
+    } 
+    public void AddRandomCard()
+    {
+        var c = DataTableManager.CardTable.GetAllIds().ToList();
+        int i = Random.Range(0,c.Count);
+        CardGameManager.Instance.AddDeckCard(c[i]);
+        BossBonusPanal.SetActive(false);
+    }
+    public void AddReroll()
+    {
+        StoreManager.Instance.AddRerollCount(3);
+         BossBonusPanal.SetActive(false);
+    }
+    public void AddUpgrade()
+    {
+        UpgradeManager.Instance.AddAttackBonus(1,Scope.Permanent);
+        BossBonusPanal.SetActive(false);
+    }
+    public void AddDrawCard()
+    {
+        CardGameManager.Instance.DrawCard();
+        CardGameManager.Instance.DrawCard();
+        CardGameManager.Instance.DrawCard();
+        CardGameManager.Instance.DrawCard();
+        CardGameManager.Instance.DrawCard();
+         BossBonusPanal.SetActive(false);
+    }
 }

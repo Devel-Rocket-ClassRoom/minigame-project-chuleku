@@ -10,7 +10,6 @@ public class ArmorBreaker : MagicBase, IBeginDragHandler, IDragHandler, IEndDrag
     private float distance = 500f;
     private CricleLiner liner;
     private TileMap tileMap;
-    public GameObject powerUpEffect;
     private Vector3 pos;
     public GameObject effectprefab;
     void OnEnable()
@@ -62,7 +61,7 @@ public class ArmorBreaker : MagicBase, IBeginDragHandler, IDragHandler, IEndDrag
 
     protected override void UseEffect()
     {
-        Collider[] col = Physics.OverlapSphere(transform.position,distance);
+        Collider[] col = Physics.OverlapSphere(pos,distance);
         foreach(var c in col)
         {
             if(c.CompareTag("Enemy"))
@@ -71,5 +70,6 @@ public class ArmorBreaker : MagicBase, IBeginDragHandler, IDragHandler, IEndDrag
                 // Instantiate(effectprefab,c.gameObject.transform.position,Quaternion.identity);
             }
         }
+        MagicManager.Instance.UseMagic(instanceId);
     }
 }

@@ -47,8 +47,8 @@ public class DefenceGameManager : MonoBehaviour
      private Phase phase;
      private Coroutine spawncor;
      private Coroutine phasecor;
+     private bool bossKillCheck;
 
-     
     public Difficulty difficulty = Difficulty.Easy;
 
 
@@ -455,6 +455,11 @@ public class DefenceGameManager : MonoBehaviour
         phaseText.text = "메인 페이즈";
         phase = Phase.Main;
         currentStage++;
+        if(bossKillCheck)
+        {
+            UiManager.Instance.KillBoss();
+            bossKillCheck=false;
+        }
     }
 
 
@@ -505,5 +510,9 @@ public class DefenceGameManager : MonoBehaviour
             phaseText.text = "배틀 페이즈...";
             yield return new WaitForSeconds(delay);
         }
+    }
+    public void BossKill()
+    {
+        bossKillCheck = true;
     }
 }

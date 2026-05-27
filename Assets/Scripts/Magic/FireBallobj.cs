@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -37,14 +38,22 @@ public class FireBallobj : MonoBehaviour
 
     private void Explode()
     {
-        Debug.Log($"파이어볼 타겟 지점({targetPosition})에서 폭발!");
         Collider[] col = Physics.OverlapSphere(transform.position,fireballdistance);
         foreach(var c in col)
         {
+          
             if(c.CompareTag("Enemy"))
             {
-                float pierce = c.GetComponent<DamageAble>().defense;
-                c.GetComponent<DamageAble>().TakeDamage(50+pierce);
+                DamageAble d = c.GetComponent<DamageAble>();
+                if (d.type == EnemyType.Minion)
+                {
+                    d.TakeDamage(d.health*0.1f,true);
+                }
+                else if(d.type==EnemyType.Boss)
+                {
+                    d.TakeDamage(100,true);
+                }
+                
             }
         }
         Destroy(gameObject);

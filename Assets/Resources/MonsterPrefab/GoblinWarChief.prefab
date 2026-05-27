@@ -133,7 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed46fa01039175342a9a39c58568f8c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoblinWarChief
+  monsterId: GoblinWarChief
   health: 500
+  upHealthAmount: 0
   defense: 8
   type: 0
 --- !u!114 &-6443589692457887653

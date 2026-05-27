@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,6 +44,11 @@ public class StageTable : DataTable
     }
 
     public bool HasStage(int stageId) => table.ContainsKey(stageId);
+
+    internal string Get(string name)
+    {
+        throw new NotImplementedException();
+    }
 
     public int MaxStageId
     {

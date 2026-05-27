@@ -1889,7 +1889,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14a46f7d397a1d40acbea207b8eb9f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Skeleton
-  health: 100
+  monsterId: Skeleton
+  health: 60
+  upHealthAmount: 0
   defense: 2
   type: 1
 --- !u!114 &1251545269695806940

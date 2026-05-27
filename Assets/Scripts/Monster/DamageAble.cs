@@ -56,10 +56,10 @@ public abstract class DamageAble : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage,bool ignoreDefense = false)
     {
         if(isDead) return;
-        float actualDamage = Mathf.Max(damage - defense, 0);
+        float actualDamage = ignoreDefense ? damage : Mathf.Max(damage - defense, 0);
         if(actualDamage<1) actualDamage = 1;
         health -= actualDamage;
         if (health <= 0)

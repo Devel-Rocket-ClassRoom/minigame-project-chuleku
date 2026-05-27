@@ -40,10 +40,14 @@ PotofGreedDesc,2장 드로우
 WaterRocketName,물로켓
 WaterRocketDesc,패에 유닛카드 만큼 드로우
 DarkHandsName,어둠의 손
-DarkHandsDesc,메인페이즈에 사용가능\n드로우 +3
+DarkHandsDesc,드로우 +3
 AdrenalineName,아드레날린
 AdrenalineDesc,일정시간동안 각성해\n모든유닛의 공격력이 상승한다.
 ForgeMasterName,명장의 대장간
 ForgeMasterDesc,이번라운드 업그레이드 +3
 StoreOnerName,상점의 주인
 StoreOnerDesc,모든 상점 매물 +1\n상점 리롤 +2
+ArmorBreakerName,방패 파괴자
+ArmorBreakerDesc,현재 필드에 존재하는\n적 방어력 -1
+OksusuName,옥수수
+OksusuDesc,순순히 옥수수를 넘기면\n유혈사태는 일어나지 않을걸세\n골드+3 마나+1
