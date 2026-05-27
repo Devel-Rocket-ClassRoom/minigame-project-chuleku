@@ -50,6 +50,7 @@ public class DefenceGameManager : MonoBehaviour
      private Coroutine spawncor;
      private Coroutine phasecor;
      private bool bossKillCheck;
+     public bool Round => roundStart;
 
     public Difficulty difficulty = Difficulty.Easy;
 

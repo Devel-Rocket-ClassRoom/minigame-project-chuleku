@@ -86,6 +86,7 @@ public class UiManager : MonoBehaviour
     {
         if(storecor != null) StopCoroutine(storecor);
         storecor = null;
+        if(DefenceGameManager.Instance.Round)return;
         StoreManager.Instance.SetMoveHide();
         clickCheck = !clickCheck;
         storecor = StartCoroutine(MoveStore());
