@@ -99,8 +99,8 @@ public class MouseFollowCamera : MonoBehaviour
 
         Vector3 targetPos = dragAnchorPos + new Vector3(norm.x * positionStrength, 0f, norm.y * positionStrength);
         targetPos = ClampToMaxDistance(targetPos);
-
         transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * smoothness);
+        DefenceGameManager.Instance.closeButton();
     }
 
     Vector3 ClampToMaxDistance(Vector3 pos)
