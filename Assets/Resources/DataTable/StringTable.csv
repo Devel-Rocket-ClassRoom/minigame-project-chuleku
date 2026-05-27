@@ -12,7 +12,7 @@ DestroyDrawDesc,손패 카드 1장을 파괴하고\n2장 드로우
 WarriorName,전사
 WarriorDesc,사거리가 짧은대신\n강력한 공격을한다.
 GcdName,고치돈
-GcdDesc,한장 드로우\n 효과카드일 경우\n 한장 더 드로우
+GcdDesc,드로우 +1\n 효과카드일 경우\n 드로우 +2 마나+1
 BreakShardName,부서진 조각
 BreakShardDesc,조각 3개를 획득
 WizardName,마법사
@@ -55,3 +55,5 @@ Goblin,고블린
 Skeleton,스켈레톤
 GoblinWarChief,고블린 족장
 GoblinTank,큰 고블린
+ChainWizardName,번개 마법사
+ChainWizardDesc,사용시 마법카드 +1\n드로우+1 드로우카드가 \n유닛카드면 드로우+1 마나+1

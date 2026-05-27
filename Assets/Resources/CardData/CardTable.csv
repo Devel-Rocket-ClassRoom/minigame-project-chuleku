@@ -16,3 +16,4 @@ AttackUpAPT,Effect,AttackUpAPTName,AttackUpAPTDesc,2,,3,AttackUpAPT,true
 HealingPack,Resource,HealingPackName,HealingPackDesc,0,,4,HealingPack,true
 SiteSupervisor,Resource,SiteSupervisorName,SiteSupervisorDesc,0,,6,SiteSupervisor,true
 StoreOner,Effect,StoreOnerName,StoreOnerDesc,3,,4,StoreOner,true
+ChainWizard,Unit,ChainWizardName,ChainWizardDesc,1,,5,CardChainWizard,true

@@ -28,10 +28,11 @@ public class Arrow : MonoBehaviour
         if (target == null || target.isDead)
         {
             transform.position += transform.forward * speed * Time.deltaTime;
+            Destroy(gameObject);
             return;
         }
 
-        Vector3 to = target.transform.position;
+        Vector3 to = target.transform.position+Vector3.up*1.2f;
         transform.position = Vector3.MoveTowards(transform.position, to, speed * Time.deltaTime);
         transform.LookAt(to);
     }

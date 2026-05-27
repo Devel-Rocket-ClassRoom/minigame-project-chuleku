@@ -19,6 +19,7 @@ public class gogumacheesedonGgass : EffectCardBase
         if (d.Type == CardType.Effect || (d.Type == CardType.Unit && d.UseAble))
         {
             CardGameManager.Instance.DrawCard();
+            CardGameManager.Instance.DrawCard();
             ResourceManager.Instance.AddMana(1);
         }
         CardGameManager.Instance.DiscardFromHand(gameObject);

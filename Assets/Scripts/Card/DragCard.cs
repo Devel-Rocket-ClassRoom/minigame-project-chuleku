@@ -1,17 +1,36 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 public class DragCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private Transform parentAfterDrag;
     private int siblingIndexBeforeDrag;
+    private Vector3 localPositionBeforeDrag;
     private float clickTime;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (CardGameManager.Instance != null && CardGameManager.Instance.IsTargeting)
+        {
+            if (!CardGameManager.Instance.CanCancelCurrentTargeting())
+            {
+                eventData.pointerDrag = null;
+                return;
+            }
+            CardGameManager.Instance.CancelTargeting();
+        }
         clickTime = Time.time;
         parentAfterDrag = transform.parent;
         siblingIndexBeforeDrag = transform.GetSiblingIndex();
+        localPositionBeforeDrag = transform.localPosition;
         transform.SetParent(transform.root);
+    }
+    public void RestoreToOriginalSlot()
+    {
+        if (parentAfterDrag == null) return;
+        transform.SetParent(parentAfterDrag, true);   // worldPositionStays=true (DOTween 트윈용)
+        transform.SetSiblingIndex(siblingIndexBeforeDrag);
+        transform.DOLocalMove(localPositionBeforeDrag, 0.2f).SetEase(Ease.OutCubic);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -21,9 +40,9 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        transform.SetParent(parentAfterDrag);
+        transform.SetParent(parentAfterDrag,true);
         transform.SetSiblingIndex(siblingIndexBeforeDrag);
-
+        transform.DOLocalMove(localPositionBeforeDrag, 0.2f).SetEase(Ease.OutCubic);
         // 중앙 영역 체크
         float distanceFromCenter = Vector2.Distance(eventData.position, new Vector2(Screen.width / 2, Screen.height / 2));
         float effectRadius = 200f; 

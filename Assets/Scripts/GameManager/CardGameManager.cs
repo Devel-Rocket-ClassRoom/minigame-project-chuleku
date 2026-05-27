@@ -54,6 +54,8 @@ public class CardGameManager : MonoBehaviour
     handObjs.Values.Select(go => go != null ? go.GetComponent<CardBase>() : null)
                    .Where(cb => cb != null);
 
+    public bool CanCancelCurrentTargeting() => IsTargeting && targetingCancelable;
+
     // 유닛 패널 버튼 클릭 시 발생. 실제 배치는 구독자(DefenceGameManager)가 처리.
     public event Action<UnitCardSlot> UnitSlotClicked;
 
@@ -67,10 +69,10 @@ public class CardGameManager : MonoBehaviour
     }
     void Start()
     {
-        // for(int i = 0;i<4;i++)
-        // {
-        //     AddUnitCard("Archer");
-        // }
+        for(int i = 0;i<4;i++)
+        {
+            AddUnitCard("Archer");
+        }
         for(int i = 0;i<2;i++)
         {
             AddUnitCard("Warrior");
@@ -327,7 +329,8 @@ public class CardGameManager : MonoBehaviour
         if (card.gameObject == targetingSource) 
         {
             Debug.Log("효과 카드 자신은 선택 불가");
-            if (targetingCancelable) EndTargeting();
+            if (targetingCancelable)
+            CancelTargeting();
             return; 
         }
 
@@ -341,7 +344,15 @@ public class CardGameManager : MonoBehaviour
         if (!IsTargeting) return;
         if (!targetingCancelable) { Debug.Log("취소 불가 타겟팅"); return; }
         // 효과 카드를 손패의 원래 자리로 복귀
-        if (targetingSource != null && sourceOriginalParent != null)
+        if (targetingSource != null )
+        {
+            var dc = targetingSource.GetComponent<DragCard>();
+            if (dc != null)
+            {
+                dc.RestoreToOriginalSlot();
+            }
+        }
+        else if (sourceOriginalParent != null)
         {
             targetingSource.transform.SetParent(sourceOriginalParent, false);
             targetingSource.transform.SetSiblingIndex(sourceOriginalSiblingIndex);
@@ -405,12 +416,11 @@ public class CardGameManager : MonoBehaviour
             Destroy(handGo);
         }
         handObjs.Remove(instanceId);
-
         deck.RemoveAll(c => c.InstanceId == instanceId);
         grave.RemoveAll(c => c.InstanceId == instanceId);
     }
 
-
+    
     public void HandHide()
     {
         hideCheck = !hideCheck;

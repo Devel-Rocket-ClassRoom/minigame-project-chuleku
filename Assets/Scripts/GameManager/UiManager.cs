@@ -53,6 +53,8 @@ public class UiManager : MonoBehaviour
         {
             escPanal.SetActive(true);
             DefenceGameManager.Instance.closeButton();
+            CloseInfo();
+            StartGameUiHide();
             Time.timeScale = 0;
         }
     }
