@@ -77,6 +77,7 @@ public class StoreManager : MonoBehaviour
     public void AddRerollCount(int amount)
     {
         storeRerollCount +=amount;
+        RerollCountText.text = $"남은 리롤 : {storeRerollCount}";
     }
     public void AddStock(int slotIndex,int amount)
     {
@@ -99,9 +100,11 @@ public class StoreManager : MonoBehaviour
     public bool BuyOne(int slotIndex)
     {
         if (slotIndex < 0 || slotIndex >= slots.Count) return false;
-        if(!ResourceManager.Instance.TrySpendMana(1)) return false;
         var s = slots[slotIndex];
         if (s.cardId == null || s.remaining <= 0) return false;
+        var c = DataTableManager.CardTable.Get(s.cardId);
+        if(ResourceManager.Instance.Gold<c.Cost) return false;
+        if(!ResourceManager.Instance.TrySpendMana(1)) return false;
         s.remaining--;
         return true;
     }

@@ -138,6 +138,7 @@ MonoBehaviour:
   upHealthAmount: 0
   defense: 8
   type: 0
+  shieldPrefab: {fileID: 8957706384153883524, guid: f18c926624fab444b8590442e8f9255a, type: 3}
 --- !u!114 &-6443589692457887653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +179,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!65 &-2902461024942574586
 BoxCollider:

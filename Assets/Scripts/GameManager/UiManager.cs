@@ -206,7 +206,7 @@ public class UiManager : MonoBehaviour
     public void AddReroll()
     {
         StoreManager.Instance.AddRerollCount(3);
-         BossBonusPanal.SetActive(false);
+        BossBonusPanal.SetActive(false);
     }
     public void AddUpgrade()
     {
@@ -220,6 +220,6 @@ public class UiManager : MonoBehaviour
         CardGameManager.Instance.DrawCard();
         CardGameManager.Instance.DrawCard();
         CardGameManager.Instance.DrawCard();
-         BossBonusPanal.SetActive(false);
+        BossBonusPanal.SetActive(false);
     }
 }

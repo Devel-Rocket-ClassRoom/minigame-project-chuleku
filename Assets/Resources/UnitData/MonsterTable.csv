@@ -2,3 +2,4 @@ Id,Prefab,Health,HealthScale,Defence,DefenceScale,MoveSpeed,Type
 Goblin,Resources/MonsterPrefab/Goblin,50,15,5,3,5,Minion
 Skeleton,Resources/MonsterPrefab/Skeleton,60,20,2,1,8,Minion
 GoblinWarChief,Resources/MonsterPrefab/GoblinWarChief,500,100,10,5,3,Boss
+GoblinTank,Resources/MonsterPrefab/GoblinTank,100,50,7,4,2,Minion

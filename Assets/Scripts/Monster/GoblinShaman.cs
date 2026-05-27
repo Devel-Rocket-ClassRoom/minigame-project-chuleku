@@ -1,17 +1,15 @@
 using System.Collections;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class GoblinWarChief : DamageAble
+public class GoblinShaman : DamageAble
 {
     private Animator animator;
-    public GameObject shieldPrefab;
     private bool dieCheck;
     private float cooltime = 5f;
     private float cool =0;
     private bool isCasting;
     private Coroutine scor;
-    void Awake()
+     void Awake()
     {
         dieCheck = false;
         animator = GetComponent<Animator>();
@@ -32,7 +30,7 @@ public class GoblinWarChief : DamageAble
             MonsterSkill();
         }   
     }
-    public override void Die()
+     public override void Die()
     {
         if (dieCheck) return;
         dieCheck = true;
@@ -59,20 +57,6 @@ public class GoblinWarChief : DamageAble
     }
     private IEnumerator SkillCor()
     {
-        float t = 0;
-        GameObject go =Instantiate(shieldPrefab,transform.position,Quaternion.identity);
-        while(t<3f)
-        {
-             t += 0.25f;
-            health +=20+(2*DefenceGameManager.Instance.currentStage);
-            yield return new WaitForSeconds(0.25f);
-        }
-        Destroy(go);
-        cool =0;
-        isCasting = false;
-        scor = null;
-        animator.SetTrigger("Walk");
-        transform.GetComponent<MoveEnemy>().currentMoveSpeed =   transform.GetComponent<MoveEnemy>().moveSpeed;
+        yield return null;
     }
-
 }

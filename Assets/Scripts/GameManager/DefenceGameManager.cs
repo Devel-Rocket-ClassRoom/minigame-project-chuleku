@@ -8,6 +8,8 @@ using UnityEngine.EventSystems;
 using TMPro;
 using System.Collections;
 using Unity.VisualScripting;
+using System.Text.RegularExpressions;
+using NUnit.Framework.Internal;
 
 public enum Difficulty
 {
@@ -94,7 +96,8 @@ public class DefenceGameManager : MonoBehaviour
 
         if (CardGameManager.Instance != null)
             CardGameManager.Instance.UnitSlotClicked += OnUnitSlotClicked;
-       
+        
+        StageCountSet(currentStage);
     }
 
     void OnDestroy()
@@ -193,6 +196,7 @@ public class DefenceGameManager : MonoBehaviour
         {
             closeButton();
             if(tileMap.DonCreateCheck(gx,gz))return;
+            if(roundStart)return;
             tileGrid = new Vector2Int(gx,gz);
             equipButton.SetActive(true);
             if(ResourceManager.Instance.FreeCreateWallCoupon>=1)
@@ -404,6 +408,7 @@ public class DefenceGameManager : MonoBehaviour
             var prefab = LoadMonsterPrefab(g.Prefab);
             StartCoroutine(SpawnMonsterCort(g.SpawnTime,g.Count,g.Delay,path,prefab));
         }
+        
         CardGameManager.Instance.EndRound();
         UiManager.Instance.StartGameUiHide();
         return;
@@ -450,11 +455,12 @@ public class DefenceGameManager : MonoBehaviour
         UpgradeManager.Instance.OnRoundEnded();
         CardGameManager.Instance.StartRound();
         ResourceManager.Instance.StartRound();
-        currenStageText.text = $"스테이지 {currentStage}";
         Debug.Log("라운드 종료 준비라운드!");
         phaseText.text = "메인 페이즈";
         phase = Phase.Main;
         currentStage++;
+        currenStageText.text = $"스테이지 {currentStage}";
+        StageCountSet(currentStage);
         if(bossKillCheck)
         {
             UiManager.Instance.KillBoss();
@@ -509,6 +515,29 @@ public class DefenceGameManager : MonoBehaviour
             yield return new WaitForSeconds(delay);
             phaseText.text = "배틀 페이즈...";
             yield return new WaitForSeconds(delay);
+        }
+    }
+    public void StageCountSet(int stage)
+    {
+        var Groups = DataTableManager.StageTable.Get(stage);
+        if(Groups == null)
+        {
+            Debug.Log("스테이지 미구현");
+            return;
+        }
+        int monsterCount =0;
+        Dictionary<string,int> m = new();
+        foreach(var c in Groups)
+        {
+            monsterCount++;
+            if(monsterCount >1)
+            {
+                ResourceManager.Instance.enemyCountText.text += $"\n{DataTableManager.StringTable?.Get(c.MonsterName)} : {c.Count}";
+            }
+            else
+            {
+                ResourceManager.Instance.enemyCountText.text =$"{DataTableManager.StringTable?.Get(c.MonsterName)} : {c.Count}";  
+            }
         }
     }
     public void BossKill()
