@@ -52,6 +52,7 @@ public class UiManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(HideLoadingPanalCor());
+        
     }
 
     void Update()
@@ -63,11 +64,20 @@ public class UiManager : MonoBehaviour
     {
         if(escKey.WasPerformedThisFrame())
         {
-            escPanal.SetActive(true);
-            DefenceGameManager.Instance.closeButton();
-            CloseInfo();
-            StartGameUiHide();
-            Time.timeScale = 0;
+            bool escCheck = !escPanal.activeSelf;
+            escPanal.SetActive(escCheck);
+            if(escCheck)
+            {
+                DefenceGameManager.Instance.closeButton();
+                CloseInfo();
+                StartGameUiHide();
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
+            
         }
     }
 
@@ -111,6 +121,8 @@ public class UiManager : MonoBehaviour
         float speed = 30f;
         Vector2 startPos = storePanal.anchoredPosition;
         Vector2 targetPos = clickCheck ? viewStore : hideStore;
+        string s = clickCheck ? "OpenSetting" : "CloseSetting";
+        SoundManager.Play(s);
    
         while (t<1f)
         {
@@ -128,6 +140,7 @@ public class UiManager : MonoBehaviour
         StoreManager.Instance.SetMoveHide();
         DefenceGameManager.Instance.closeButton();
         storePanal.anchoredPosition = hideStore;
+        clickCheck = false;
     }
     public void HideStoreButton()
     {
@@ -260,7 +273,7 @@ public class UiManager : MonoBehaviour
         float speed = 15f;
         Vector2 startPos = loadingPanal.anchoredPosition;
         Vector2 targetPos = hideLoading;
-   
+        SoundManager.Play("OutLoading");
         while (t<1f)
         {
             t += Time.deltaTime*speed;

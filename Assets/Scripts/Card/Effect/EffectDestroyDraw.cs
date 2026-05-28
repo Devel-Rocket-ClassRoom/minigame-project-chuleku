@@ -15,6 +15,7 @@ public class EffectDestroyDraw : EffectCardBase
 
         CardGameManager.Instance.BeginTargetHandCard(gameObject, target =>
         {
+            base.UseEffect();
             CardGameManager.Instance.RemoveCardByInstanceId(target.InstanceId);
             CardGameManager.Instance.DrawCard();
             CardGameManager.Instance.DrawCard();

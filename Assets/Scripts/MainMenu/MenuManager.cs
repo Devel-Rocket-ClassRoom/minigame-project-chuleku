@@ -66,6 +66,7 @@ public class MenuManager : MonoBehaviour
         cor = null;
         clickCheck = false;
         cor = StartCoroutine(MoveSelectPanal());
+        SoundManager.Play("CloseSetting");
     }
 
     public void OnSelectDifficulty()
@@ -74,6 +75,7 @@ public class MenuManager : MonoBehaviour
         cor = null;
         clickCheck = true;
         cor = StartCoroutine(MoveSelectPanal());
+        SoundManager.Play("OpenSetting");
     }
 
     public void OnClickSetting()
@@ -82,6 +84,7 @@ public class MenuManager : MonoBehaviour
         cor = null;
         clickCheck = true;
         cor = StartCoroutine(MoveSettingPanalCor());
+        SoundManager.Play("OpenSetting");
     }
     public void ExitSetting()
     {
@@ -89,6 +92,7 @@ public class MenuManager : MonoBehaviour
         cor = null;
         clickCheck = false;
         cor = StartCoroutine(MoveSettingPanalCor());
+        SoundManager.Play("CloseSetting");
     }
     public void OnExit()
     {
@@ -141,6 +145,7 @@ public class MenuManager : MonoBehaviour
         float speed = 15f;
         Vector2 startPos = loadingPanal.anchoredPosition;
         Vector2 targetPos = viewPanal;
+        SoundManager.Play("InLoading");
         while(t<1f)
         {
             t+=Time.deltaTime*speed;

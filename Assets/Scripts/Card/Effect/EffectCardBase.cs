@@ -10,6 +10,7 @@ public class EffectCardBase : CardBase
         if (!string.IsNullOrEmpty(cardId)) Init();
         cardType = CardType.Effect;
         useAble = true;
+        SoundManager.Play("UseCard");
     }
 
     public virtual void UseEffect() { }

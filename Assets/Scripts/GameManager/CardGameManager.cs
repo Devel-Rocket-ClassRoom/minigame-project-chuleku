@@ -222,6 +222,7 @@ public class CardGameManager : MonoBehaviour
         deck.AddRange(grave);
         grave.Clear();
         Shuffle(deck);
+        SoundManager.Play("SuffleCard");
     }
 
     private static void Shuffle<T>(List<T> list)

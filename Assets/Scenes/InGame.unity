@@ -12257,8 +12257,15 @@ MonoBehaviour:
   db: {fileID: 11400000, guid: 9034d99fd80d47d458402588402447a8, type: 2}
   sfxSource: {fileID: 128975356}
   bgmSource: {fileID: 1935173641}
+  mixer: {fileID: 24100000, guid: 1d112216c1018ac48b2db4a375d5019f, type: 2}
+  masterParam: MasterVolume
+  sfxParam: SfxVolume
+  bgmParam: BgmVolume
+  uiParam: UiVolume
+  masterVolume: 1
   sfxVolume: 1
   bgmVolume: 1
+  uiVolume: 1
 --- !u!4 &609205334
 Transform:
   m_ObjectHideFlags: 0

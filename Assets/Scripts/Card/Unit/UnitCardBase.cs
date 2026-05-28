@@ -18,7 +18,7 @@ public class UnitCardBase : CardBase
     public float AttackSpeed => cardAttackSpeed;
     public float Range => cardRange;
     public UnitTable.Data UnitData => unitdata;
-    public virtual void UseEffect() { }
+    public virtual void UseEffect() { SoundManager.Play("UseCard");}
 
     public override void OnEnable()
     {

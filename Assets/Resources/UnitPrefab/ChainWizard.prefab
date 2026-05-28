@@ -1978,6 +1978,7 @@ MonoBehaviour:
   maxBounces: 3
   falloff: 0.7
   hopDelay: 0.08
+  hitParticlePrefab: {fileID: 4630773119466056336, guid: c1e7b2a1ac2113e4da7583e8959c75b0, type: 3}
   boltMaterial: {fileID: 2100000, guid: 174f10c08ea137a478129f5f75b3ab5b, type: 2}
   muzzle: {fileID: 398278970251007441}
 --- !u!1 &5581003982630881839

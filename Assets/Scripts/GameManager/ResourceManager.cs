@@ -81,6 +81,7 @@ public class ResourceManager : MonoBehaviour
         if (amount <= 0) return;
         SetGold(Gold + amount);
         Spawn($"+{amount}",Color.gold,goldText.transform.position);
+        SoundManager.Play("CoinGet");
     }
 
     public void AddShard(int amount)
@@ -95,6 +96,7 @@ public class ResourceManager : MonoBehaviour
         if (amount <= 0) return;
         SetMana(Mana + amount);
         Spawn($"+{amount}",Color.blue,manaText.transform.position);
+        SoundManager.Play("ManaGet");
     }
     public void AddFreeCreateWallCoupon(int amount)
     {
@@ -154,6 +156,7 @@ public class ResourceManager : MonoBehaviour
         SetGold(Gold + 1);
         Spawn($"+1",Color.gold,goldText.transform.position);
         SpawnDown($"-1",Color.purple,shardText.transform.position);
+        SoundManager.Play("CoinGet");
     }
 
     public void OnChangeManaButton()
@@ -163,6 +166,7 @@ public class ResourceManager : MonoBehaviour
         SetMana(Mana + 1);
         SpawnDown($"-2",Color.purple,shardText.transform.position);
         Spawn($"+1",Color.blue,manaText.transform.position);
+        SoundManager.Play("ManaGet");
     }
 
     // 라운드 전환: 골드 초기화 + 마나 2로 회복. 샤드는 유지.

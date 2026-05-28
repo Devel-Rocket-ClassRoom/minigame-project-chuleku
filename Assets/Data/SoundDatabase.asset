@@ -12,4 +12,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 135ab8a2c317b4849b0319f9a62d4634, type: 3}
   m_Name: SoundDatabase
   m_EditorClassIdentifier: Assembly-CSharp::SoundDatabase
-  entries: []
+  entries:
+  - key: CoinGet
+    clip: {fileID: 8300000, guid: b54d9f975873656479fcedbba7042834, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: ManaGet
+    clip: {fileID: 8300000, guid: 3157bab3f7ec79f41a8c993659a7eff1, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: UseForge
+    clip: {fileID: 8300000, guid: 4d1557e34776e9f47a8998ed4aacd229, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: OpenSetting
+    clip: {fileID: 8300000, guid: 28ba27ed6be44764ea476ec45c85cb9e, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: CloseSetting
+    clip: {fileID: 8300000, guid: dc938a3965f780e4c80f9bec9c3187d7, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: InLoading
+    clip: {fileID: 8300000, guid: 4283a144b1cb15841a15b621533a5395, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: OutLoading
+    clip: {fileID: 8300000, guid: 9d39d05a47e85be4fb16bdcf4e4966cd, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: UseCard
+    clip: {fileID: 8300000, guid: 1fec78cad78e4a04bb57b7058f9dd8ac, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: SuffleCard
+    clip: {fileID: 8300000, guid: 065240e70b8fa4c4eabc56e4e011b028, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
