@@ -27,6 +27,7 @@ public class FireBallobj : MonoBehaviour
                 targetPosition, 
                 speed * Time.deltaTime
             );
+            transform.LookAt(targetPosition);
             yield return null; 
         }
 
