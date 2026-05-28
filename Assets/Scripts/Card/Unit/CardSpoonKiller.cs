@@ -8,5 +8,7 @@ public class CardSpoonKiller : UnitCardBase
         if(!ResourceManager.Instance.TrySpendMana(mana))return;
         base.UseEffect();
         UpgradeManager.Instance.AddAttackBonus(1,Scope.Permanent,0);
+        CardGameManager.Instance.DiscardFromHand(gameObject);
     }
+
 }

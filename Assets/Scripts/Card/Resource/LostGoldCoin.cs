@@ -8,5 +8,6 @@ public class LostGoldCoin : ResourceCardBase
     {
         base.UseResource();
         ResourceManager.Instance.AddGold(2);
+        CardGameManager.Instance.DiscardFromHand(gameObject);
     }
 }

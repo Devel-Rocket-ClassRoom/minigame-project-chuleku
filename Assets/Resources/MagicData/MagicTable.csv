@@ -1,9 +1,9 @@
 Id,Name,Desc,Image,Prefab,Phase
-FireBall,MagicName,MagicDesc,EffectArt_Spell,Resources/MagicPrefab/FireBall,Battle
-Lightning,LightningName,LightningDesc,,Resources/MagicPrefab/Lightning,Battle
-SnowWind,SnowWindName,SnowWindDesc,,Resources/MagicPrefab/SnowWind,Battle
-DarkHands,DarkHandsName,DarkHandsDesc,,Resources/MagicPrefab/DarkHands,Main
-Adrenaline,AdrenalineName,AdrenalineDesc,,Resources/MagicPrefab/Adrenaline,Battle
-ForgeMaster,ForgeMasterName,ForgeMasterDesc,,Resources/MagicPrefab/ForgeMaster,Main
-ArmorBreaker,ArmorBreakerName,ArmorBreakerDesc,,Resources/MagicPrefab/ArmorBreaker,Battle
-Oksusu,OksusuName,OksusuDesc,,Resources/MagicPrefab/Oksusu,Main
+FireBall,MagicName,MagicDesc,FireBallSprite,Resources/MagicPrefab/FireBall,Battle
+Lightning,LightningName,LightningDesc,LightningSprite,Resources/MagicPrefab/Lightning,Battle
+SnowWind,SnowWindName,SnowWindDesc,SnowWindSprite,Resources/MagicPrefab/SnowWind,Battle
+DarkHands,DarkHandsName,DarkHandsDesc,EffectArt_Spell,Resources/MagicPrefab/DarkHands,Main
+Adrenaline,AdrenalineName,AdrenalineDesc,AdrenalineSprite,Resources/MagicPrefab/Adrenaline,Battle
+ForgeMaster,ForgeMasterName,ForgeMasterDesc,ForgeMasterSprite,Resources/MagicPrefab/ForgeMaster,Main
+ArmorBreaker,ArmorBreakerName,ArmorBreakerDesc,ArmorBreakerSprite,Resources/MagicPrefab/ArmorBreaker,Battle
+Oksusu,OksusuName,OksusuDesc,OksusuSprite,Resources/MagicPrefab/Oksusu,Main

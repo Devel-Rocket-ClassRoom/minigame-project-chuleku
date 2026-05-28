@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,11 +8,13 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
     public RectTransform difficultyPanal;
+    public RectTransform settingPanal;
     public GameObject guardPanal;
     public RectTransform loadingPanal;
     private Vector3 viewPanal = Vector3.zero;
     private Vector3 hidePanal = new Vector3(0,1000,0);
     private Vector3 hideLoadingPanal = new Vector3(-2500,0,0);
+    private Vector3 hideSettingPanal = new Vector3(2500,0,0);
     private bool clickCheck;
     public Slider loadingBar;
     private Coroutine cor;
@@ -32,6 +35,8 @@ public class MenuManager : MonoBehaviour
         loadingTextCor=null;
         guardPanal.SetActive(false);
         loadingPanal.anchoredPosition = hideLoadingPanal;
+        settingPanal.anchoredPosition = hideSettingPanal;
+        difficultyPanal.anchoredPosition = hidePanal;
         Loading = false;
         loadingBar.value = 0;
     }
@@ -73,11 +78,25 @@ public class MenuManager : MonoBehaviour
 
     public void OnClickSetting()
     {
-        
+        if(cor!=null)StopCoroutine(cor);
+        cor = null;
+        clickCheck = true;
+        cor = StartCoroutine(MoveSettingPanalCor());
+    }
+    public void ExitSetting()
+    {
+        if(cor!=null)StopCoroutine(cor);
+        cor = null;
+        clickCheck = false;
+        cor = StartCoroutine(MoveSettingPanalCor());
     }
     public void OnExit()
     {
-        
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
     public IEnumerator MoveSelectPanal()
     {
@@ -94,6 +113,24 @@ public class MenuManager : MonoBehaviour
             yield return null;
         }
         difficultyPanal.anchoredPosition = targetPos;
+        cor = null;
+        guardPanal.SetActive(false);
+    }
+    IEnumerator MoveSettingPanalCor()
+    {
+        guardPanal.SetActive(true);
+        float t = 0;
+        float speed = 15f;
+        Vector2 startPos = settingPanal.anchoredPosition;
+        Vector2 targetPos = clickCheck ? viewPanal : hideSettingPanal;
+
+        while(t<1f)
+        {
+            t += Time.deltaTime*speed;
+            settingPanal.anchoredPosition = Vector2.Lerp(startPos,targetPos,t);
+            yield return null;
+        }
+        settingPanal.anchoredPosition = targetPos;
         cor = null;
         guardPanal.SetActive(false);
     }

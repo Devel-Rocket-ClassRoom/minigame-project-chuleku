@@ -396,6 +396,7 @@ public class DefenceGameManager : MonoBehaviour
             return;
         }
         roundStart = true;
+        UiManager.Instance.HideStoreButton();
         phase = Phase.Battle;
         if(phasecor !=null)StopCoroutine(phasecor);
         phasecor = StartCoroutine(BattlePhaseCor());
@@ -462,6 +463,7 @@ public class DefenceGameManager : MonoBehaviour
         currentStage++;
         currenStageText.text = $"스테이지 {currentStage}";
         StageCountSet(currentStage);
+        UiManager.Instance.ViewStoreButton();
         if(bossKillCheck)
         {
             UiManager.Instance.KillBoss();

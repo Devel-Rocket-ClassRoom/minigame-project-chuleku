@@ -11,6 +11,9 @@ public class ResourceManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI manaText;
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI freeCouponText;
+    [SerializeField] private FloatingText prefab;
+    [SerializeField] private RectTransform canvasParent;
+
     public TextMeshProUGUI enemyCountText;
     
 
@@ -68,36 +71,44 @@ public class ResourceManager : MonoBehaviour
     {
         if(amount<=0)return;
         SetHp(Mathf.Min(maxHp,Hp+amount));
+
         if(Hp==0) Debug.Log("체력회복");
+        Spawn($"+{amount}",Color.red,healthText.transform.position);
     }
 
     public void AddGold(int amount)
     {
         if (amount <= 0) return;
         SetGold(Gold + amount);
+        Spawn($"+{amount}",Color.gold,goldText.transform.position);
     }
 
     public void AddShard(int amount)
     {
         if (amount <= 0) return;
         SetShard(Shard + amount);
+        Spawn($"+{amount}",Color.purple,shardText.transform.position);
     }
 
     public void AddMana(int amount)
     {
         if (amount <= 0) return;
         SetMana(Mana + amount);
+        Spawn($"+{amount}",Color.blue,manaText.transform.position);
     }
     public void AddFreeCreateWallCoupon(int amount)
     {
         if(amount <=0)return;
         SetCreateWallCoupon(FreeCreateWallCoupon+amount);
+        Spawn($"+{amount}",Color.gray,freeCouponText.transform.position);
     }
 
     public bool TrySpendGold(int amount)
     {
         if (amount < 0 || Gold < amount) return false;
         SetGold(Gold - amount);
+        if(amount ==0)return true;
+        SpawnDown($"-{amount}",Color.gold,goldText.transform.position);
         return true;
     }
 
@@ -105,6 +116,8 @@ public class ResourceManager : MonoBehaviour
     {
         if (amount < 0 || Mana < amount) return false;
         SetMana(Mana - amount);
+        if(amount ==0)return true;
+        SpawnDown($"-{amount}",Color.blue,manaText.transform.position);
         return true;
     }
 
@@ -112,12 +125,14 @@ public class ResourceManager : MonoBehaviour
     {
         if (amount < 0 || Shard < amount) return false;
         SetShard(Shard - amount);
+        SpawnDown($"-{amount}",Color.purple,shardText.transform.position);
         return true;
     }
     public bool TrySpendFreeCreateWallCoupon(int amount)
     {
         if(amount<0|| FreeCreateWallCoupon<amount) return false;
         SetCreateWallCoupon(FreeCreateWallCoupon-amount);
+        SpawnDown($"-{amount}",Color.gray,freeCouponText.transform.position);
         return true;
     }
 
@@ -127,6 +142,8 @@ public class ResourceManager : MonoBehaviour
         if (Gold < gold || Mana < 1) return false;
         SetGold(Gold - gold);
         SetMana(Mana - 1);
+        SpawnDown($"-{gold}",Color.gold,goldText.transform.position);
+        SpawnDown($"-{1}",Color.blue,manaText.transform.position);
         return true;
     }
 
@@ -135,6 +152,8 @@ public class ResourceManager : MonoBehaviour
         if (Shard < 1) return;
         SetShard(Shard - 1);
         SetGold(Gold + 1);
+        Spawn($"+1",Color.gold,goldText.transform.position);
+        SpawnDown($"-1",Color.purple,shardText.transform.position);
     }
 
     public void OnChangeManaButton()
@@ -142,6 +161,8 @@ public class ResourceManager : MonoBehaviour
         if (Shard < 2) return;
         SetShard(Shard - 2);
         SetMana(Mana + 1);
+        SpawnDown($"-2",Color.purple,shardText.transform.position);
+        Spawn($"+1",Color.blue,manaText.transform.position);
     }
 
     // 라운드 전환: 골드 초기화 + 마나 2로 회복. 샤드는 유지.
@@ -186,5 +207,17 @@ public class ResourceManager : MonoBehaviour
         }
         if (manaText != null) manaText.text = Mana.ToString();
         OnManaChanged?.Invoke(value);
+    }
+    public void Spawn(string msg, Color color, Vector3 worldOrScreenPos)
+    {
+        var ft = Instantiate(prefab, canvasParent);
+        ft.transform.position = worldOrScreenPos;
+        ft.Show(msg, color);
+    }
+    public void SpawnDown(string msg, Color color, Vector3 worldOrScreenPos)
+    {
+        var ft = Instantiate(prefab, canvasParent);
+        ft.transform.position = worldOrScreenPos;
+        ft.Show(msg, color);
     }
 }

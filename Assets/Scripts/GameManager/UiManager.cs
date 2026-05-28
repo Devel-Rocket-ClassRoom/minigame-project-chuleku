@@ -20,6 +20,7 @@ public class UiManager : MonoBehaviour
     private Coroutine storecor;
     private Vector2 hideStore = new Vector2(-40,1000);
     private Vector2 viewStore = new Vector2(-40,-100);
+    private Vector2 hideLoading = new Vector2(-2500,0);
 
     public GameObject info;
     public Image infoImage;
@@ -29,6 +30,9 @@ public class UiManager : MonoBehaviour
     public TextMeshProUGUI infoState;
     public TextMeshProUGUI infoDesc;
     public GameObject useButton;
+    public RectTransform loadingPanal;
+    public TextMeshProUGUI lodingText;
+    public Slider loadingbar;
 
     void Awake()
     {
@@ -40,6 +44,14 @@ public class UiManager : MonoBehaviour
         gameEnd.SetActive(false);
         info.SetActive(false);
         BossBonusPanal.SetActive(false);
+        loadingPanal.anchoredPosition = Vector2.zero;
+        lodingText.text = "Loding!";
+        loadingbar.value = 1f;
+        
+    }
+    void Start()
+    {
+        StartCoroutine(HideLoadingPanalCor());
     }
 
     void Update()
@@ -117,6 +129,14 @@ public class UiManager : MonoBehaviour
         DefenceGameManager.Instance.closeButton();
         storePanal.anchoredPosition = hideStore;
     }
+    public void HideStoreButton()
+    {
+        storeButton.SetActive(false);
+    }
+    public void ViewStoreButton()
+    {
+        storeButton.SetActive(true);
+    }
 
     public void ViewInfo(string cardId)
     {
@@ -192,7 +212,15 @@ public class UiManager : MonoBehaviour
     protected static Sprite LoadSprite(string imageId)
     {
         if (string.IsNullOrEmpty(imageId)) return null;
-        return Resources.Load<Sprite>($"Sprites/Cards/Art/{imageId}");
+        var db = DataManager.Instance != null ? DataManager.Instance.SpriteDB : null;
+        if (db == null)
+        {
+            Debug.LogWarning("DataManager 또는 SpriteDB가 씬에 없음");
+            return null;
+        }
+        var sp = db.Get(imageId);
+        if (sp == null) Debug.LogWarning($"SpriteDatabase에 '{imageId}' 키 없음");
+        return sp;
     }
 
     public void KillBoss()
@@ -224,5 +252,21 @@ public class UiManager : MonoBehaviour
         CardGameManager.Instance.DrawCard();
         CardGameManager.Instance.DrawCard();
         BossBonusPanal.SetActive(false);
+    }
+    IEnumerator HideLoadingPanalCor()
+    {
+        yield return new WaitForSeconds(1f);
+        float t = 0;
+        float speed = 15f;
+        Vector2 startPos = loadingPanal.anchoredPosition;
+        Vector2 targetPos = hideLoading;
+   
+        while (t<1f)
+        {
+            t += Time.deltaTime*speed;
+            loadingPanal.anchoredPosition = Vector2.Lerp(startPos,targetPos,t);
+            yield return null;
+        }
+        loadingPanal.anchoredPosition = targetPos;
     }
 }

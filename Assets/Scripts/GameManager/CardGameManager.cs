@@ -77,17 +77,10 @@ public class CardGameManager : MonoBehaviour
         {
             AddUnitCard("Warrior");
         }
-        // for(int i =0;i<8;i++)
-        // {
-        //     AddResourceCard("LostGold");
-        // }
-        AddEffectCard("IllegalMagic");
-        AddEffectCard("IllegalMagic");
-        AddEffectCard("IllegalMagic");
-        AddEffectCard("IllegalMagic");
-        AddEffectCard("IllegalMagic");
-        AddEffectCard("IllegalMagic");
-        AddEffectCard("IllegalMagic");
+        for(int i =0;i<8;i++)
+        {
+            AddResourceCard("LostGold");
+        }
         AddEffectCard("IllegalMagic");
         AddEffectCard("IllegalMagic");
 

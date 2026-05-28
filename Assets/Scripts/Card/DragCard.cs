@@ -70,7 +70,6 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                     if (unitTarget.UseAble)
                     {
                         unitTarget.UseEffect();
-                        CardGameManager.Instance.DiscardFromHand(transform.gameObject);
                     }
                     else
                     {
@@ -104,7 +103,6 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                     if (resourceTarget == null) break;
 
                     resourceTarget.UseResource();
-                    CardGameManager.Instance.DiscardFromHand(transform.gameObject);
                     break;
                 }
             }

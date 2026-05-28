@@ -21,5 +21,6 @@ public class CardChainWizard : UnitCardBase
         {
             ResourceManager.Instance.AddMana(1);
         }
+        CardGameManager.Instance.DiscardFromHand(gameObject);
     }
 }

@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16dd01a98ec455e44a82a5ae94d24ef1, type: 3}
+  m_Name: SpriteDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteDatabase
+  entries:
+  - key: FireBallSprite
+    sprite: {fileID: 21300000, guid: 4136f31de754d934991e000ddca2cb30, type: 3}
+  - key: ForgeMasterSprite
+    sprite: {fileID: 21300000, guid: 641920ce3bfc1f745aa901513835c7ba, type: 3}
+  - key: AdrenalineSprite
+    sprite: {fileID: 21300000, guid: 6b19e7dc1eaf10e47ab280a8235f1e4e, type: 3}
+  - key: LightningSprite
+    sprite: {fileID: 21300000, guid: bdc3fc79d84863a43a043680d1e4d56e, type: 3}
+  - key: SnowWindSprite
+    sprite: {fileID: 21300000, guid: 8ec0870e5becb17498050005b59c7a9f, type: 3}
+  - key: UnitArt_Archer
+    sprite: {fileID: 21300000, guid: 309400ea6b052c1448e6ba22af455e42, type: 3}
+  - key: EffectArt_Spell
+    sprite: {fileID: 21300000, guid: 5e65ddb97a2cda24e833120004743fd8, type: 3}
+  - key: MagicArt_Rune
+    sprite: {fileID: 21300000, guid: 8031a7f75077df1419ccc584b8d028b7, type: 3}
+  - key: ResourceArt_Treasure
+    sprite: {fileID: 21300000, guid: ae92eaeef72a39d419516934c120fd8c, type: 3}
+  - key: UnitArt_Warrior
+    sprite: {fileID: 21300000, guid: 86651809ccfcc4d4e9a29b152c788ca5, type: 3}
+  - key: SweetPotatoCheeseTonkatsu
+    sprite: {fileID: 21300000, guid: 5a2ad15124ce09644bb791206ab228f7, type: 3}
+  - key: OksusuSprite
+    sprite: {fileID: 21300000, guid: b931ce6def6d5424697345fc2320a665, type: 3}
+  - key: ArmorBreakerSprite
+    sprite: {fileID: 21300000, guid: 641920ce3bfc1f745aa901513835c7ba, type: 3}

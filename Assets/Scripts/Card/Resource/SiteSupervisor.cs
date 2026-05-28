@@ -8,6 +8,7 @@ public class SiteSupervisor : ResourceCardBase
         base.UseResource();
         ResourceManager.Instance.AddFreeCreateWallCoupon(2);
         ResourceManager.Instance.AddGold(3);
-
+        CardGameManager.Instance.DiscardFromHand(gameObject);
+        
     }
 }

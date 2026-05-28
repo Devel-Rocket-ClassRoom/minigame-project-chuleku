@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 16.50331, y: 5.78927}
+  m_AnchoredPosition: {x: 16.503296, y: 5.7892456}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &8217221335227073862
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5e65ddb97a2cda24e833120004743fd8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5bf52cdde21f5e04c94d19a2d7c2ff01, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -89,5 +89,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArmorBreaker
   useAble: 1
-  powerUpEffect: {fileID: 0}
   effectprefab: {fileID: 0}

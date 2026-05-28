@@ -122,6 +122,14 @@ public class StoreManager : MonoBehaviour
     protected static Sprite LoadSprite(string imageId)
     {
         if (string.IsNullOrEmpty(imageId)) return null;
-        return Resources.Load<Sprite>($"Sprites/Cards/Art/{imageId}");
+        var db = DataManager.Instance != null ? DataManager.Instance.SpriteDB : null;
+        if (db == null)
+        {
+            Debug.LogWarning("DataManager 또는 SpriteDB가 씬에 없음");
+            return null;
+        }
+        var sp = db.Get(imageId);
+        if (sp == null) Debug.LogWarning($"SpriteDatabase에 '{imageId}' 키 없음");
+        return sp;
     }
 }

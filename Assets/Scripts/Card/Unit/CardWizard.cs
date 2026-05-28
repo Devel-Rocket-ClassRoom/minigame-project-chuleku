@@ -12,6 +12,7 @@ public class CardWizard : UnitCardBase
         CardGameManager.Instance.DrawCard();
         CardGameManager.Instance.DrawCard();
         UpgradeManager.Instance.AddAttackBonus(1,Scope.Permanent);
+        CardGameManager.Instance.DiscardFromHand(gameObject);
     }
 
 }
