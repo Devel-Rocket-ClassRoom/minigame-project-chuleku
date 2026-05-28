@@ -78,7 +78,7 @@ public class DefenceGameManager : MonoBehaviour
         phase = Phase.Main;
         alivecount = 0;
         allCount = 0;
-
+        difficulty = GameSession.SelectedDifficulty;
     }
     void Start()
     {
