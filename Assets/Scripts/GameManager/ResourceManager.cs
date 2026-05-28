@@ -38,7 +38,7 @@ public class ResourceManager : MonoBehaviour
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
         SetGold(0);
-        SetShard(10);
+        SetShard(0);
         SetMana(2);
         SetHp(20);
         var d = DefenceGameManager.Instance.difficulty;

@@ -23,8 +23,6 @@ ManaCollecterName,마나 수집가
 ManaCollecterDesc,마나+1 \n패에 효과카드가 없을시\n2장드로우
 SpoonKillerName,숟가락 살인마
 SpoonKillerDesc,사용시 공격력+1\n긴 사거리로 빠르게 공격함
-MagicName,파이어 볼
-MagicDesc,일정범위 피해를 입힘
 LightningName,라이트닝
 LightningDesc,일정범위 지속피해를 입힘
 SnowWindName,눈 바람

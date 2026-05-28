@@ -30,10 +30,7 @@ public class DefenceGameManager : MonoBehaviour
      public TextMeshProUGUI phaseText;
      public GameObject summonButton;
      public GameObject summonScrollView;
-    public GameObject unitPrefab;
     public Phase CurrentPhase => phase;
-     public GameObject bossPrefab;
-     public GameObject[] monsterPrefab;
      public int allCount =0;
      public int alivecount = 0;
      private int createWallCost = 3;
@@ -328,20 +325,6 @@ public class DefenceGameManager : MonoBehaviour
             tileMap.BreakUnit(tileGrid.x,tileGrid.y);
         }
         closeButton();
-    }
-    public void OnSummon()
-    {
-
-        if(!tileMap.UnitCheck(tileGrid.x,tileGrid.y))
-        {
-            closeButton();
-            return;
-        }
-        Vector3 pos = tileMap.GridToWorld(tileGrid.x,tileGrid.y);
-        pos.y = 3.5f;
-     
-        tileMap.CreateUnit(tileGrid.x,tileGrid.y,Instantiate(unitPrefab,pos,quaternion.identity));
-         closeButton();
     }
     public void GameStartButton()
     {
