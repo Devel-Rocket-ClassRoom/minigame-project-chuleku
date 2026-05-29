@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
@@ -7,6 +8,11 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private SoundDatabase db;
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private AudioSource bgmSource;
+    
+    [SerializeField] private Slider masterSlider;
+    [SerializeField] private Slider bgmSlider;
+    [SerializeField] private Slider sfxSlider;
+    [SerializeField] private Slider uiSlider;
 
     [SerializeField] private AudioMixer mixer;
     [SerializeField] private string masterParam = "MasterVolume";
@@ -18,6 +24,7 @@ public class SoundManager : MonoBehaviour
     [Range(0f, 1f)] public float sfxVolume = 1f;
     [Range(0f, 1f)] public float bgmVolume = 1f;
     [Range(0f, 1f)] public float uiVolume  = 1f;
+
 
     private const string PrefMaster = "vol_master";
     private const string PrefSfx = "vol_sfx";
@@ -36,6 +43,13 @@ public class SoundManager : MonoBehaviour
         bgmVolume = PlayerPrefs.GetFloat(PrefBgm, bgmVolume);
         uiVolume  = PlayerPrefs.GetFloat(PrefUi,  uiVolume);
         ApplyMixer();
+    }
+    void Start()
+    {
+        masterSlider.value = masterVolume;
+        sfxSlider.value = sfxVolume;
+        bgmSlider.value = bgmVolume;
+        uiSlider.value = uiVolume;
     }
 
     private void ApplyMixer()

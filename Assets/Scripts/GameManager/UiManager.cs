@@ -18,6 +18,7 @@ public class UiManager : MonoBehaviour
     public TextMeshProUGUI gameoverText;
     private bool clickCheck;
     private Coroutine storecor;
+    private Coroutine escCor;
     private Vector2 hideStore = new Vector2(-40,1000);
     private Vector2 viewStore = new Vector2(-40,-100);
     private Vector2 hideLoading = new Vector2(-2500,0);
@@ -33,6 +34,7 @@ public class UiManager : MonoBehaviour
     public RectTransform loadingPanal;
     public TextMeshProUGUI lodingText;
     public Slider loadingbar;
+    public GameObject guardPanal;
 
     void Awake()
     {
@@ -40,10 +42,13 @@ public class UiManager : MonoBehaviour
         escKey = InputSystem.actions.FindAction("Player/Exit");
         if(storecor!=null) StopCoroutine(storecor);
         storecor=null;
+        if(escCor != null) StopCoroutine(escCor);
+        escCor = null;
         escPanal.SetActive(false);
         gameEnd.SetActive(false);
         info.SetActive(false);
         BossBonusPanal.SetActive(false);
+        guardPanal.SetActive(false);
         loadingPanal.anchoredPosition = Vector2.zero;
         lodingText.text = "Loding!";
         loadingbar.value = 1f;
@@ -65,16 +70,23 @@ public class UiManager : MonoBehaviour
         if(escKey.WasPerformedThisFrame())
         {
             bool escCheck = !escPanal.activeSelf;
-            escPanal.SetActive(escCheck);
             if(escCheck)
             {
+                escPanal.SetActive(true);
+                escPanal.transform.localScale = new Vector3(0.1f,0.1f,0.1f);
+                if(escCor != null) StopCoroutine(escCor);
+                escCor = null;
                 DefenceGameManager.Instance.closeButton();
                 CloseInfo();
                 StartGameUiHide();
                 Time.timeScale = 0;
+                escCor = StartCoroutine(OpenEscPanal());
             }
             else
             {
+                if(escCor != null) StopCoroutine(escCor);
+                escCor = null;
+                escCor = StartCoroutine(CloseEscPanal());
                 Time.timeScale = 1;
             }
             
@@ -83,14 +95,16 @@ public class UiManager : MonoBehaviour
 
     public void ResumeButton()
     {
-        escPanal.SetActive(false);
-        
+        if(escCor != null) StopCoroutine(escCor);
+        escCor = null;
+        escCor = StartCoroutine(CloseEscPanal());
         Time.timeScale = 1;
     }
     public void RestartButton()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
     }
     public void ExitButton()
     {
@@ -281,5 +295,38 @@ public class UiManager : MonoBehaviour
             yield return null;
         }
         loadingPanal.anchoredPosition = targetPos;
+    }
+    IEnumerator OpenEscPanal()
+    {
+        guardPanal.SetActive(true);
+        float t =0;
+        float speed = 15f;
+        Vector3 start = new Vector3(0.1f,0.1f,0.1f);
+        Vector3 end = Vector3.one;
+        while(t<1f)
+        {
+            t +=Time.fixedDeltaTime*speed;
+            escPanal.transform.localScale = Vector3.Lerp(start,end,t);
+            yield return null;
+        }
+        escPanal.transform.localScale = end;
+        escCor =null;
+    }
+    IEnumerator CloseEscPanal()
+    {
+        float t =0;
+        float speed = 15f;
+        Vector3 start = escPanal.transform.localScale;
+        Vector3 end = new Vector3(0.1f,0.1f,0.1f);
+        while(t<1f)
+        {
+            t +=Time.fixedDeltaTime*speed;
+            escPanal.transform.localScale = Vector3.Lerp(start,end,t);
+            yield return null;
+        }
+        escPanal.transform.localScale = end;
+        escCor =null;
+        guardPanal.SetActive(false);
+        escPanal.SetActive(false);
     }
 }
