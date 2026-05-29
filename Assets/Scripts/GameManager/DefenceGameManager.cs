@@ -9,7 +9,7 @@ using TMPro;
 using System.Collections;
 using Unity.VisualScripting;
 using System.Text.RegularExpressions;
-using NUnit.Framework.Internal;
+using System.Linq;
 
 public enum Difficulty
 {
@@ -372,7 +372,7 @@ public class DefenceGameManager : MonoBehaviour
              tileMap.WarningWallColor(currentStage);
             return;
         }
-        var Groups = DataTableManager.StageTable.Get(stage);
+        var Groups = DataTableManager.StageTable.Get(GetStageLookupId(stage));
         if( Groups ==null){
             UiManager.Instance.gameoverText.text = "라운드 미구현";
             UiManager.Instance.GameEnd();
@@ -385,13 +385,13 @@ public class DefenceGameManager : MonoBehaviour
         phasecor = StartCoroutine(BattlePhaseCor());
         alivecount = 0;
         allCount = 0;
-        foreach(var g in Groups)allCount += g.Count;
+        foreach(var g in Groups)allCount += GetScaleCount(g.Count,stage);
         alivecount = allCount;
         ResourceManager.Instance.enemyCountText.text = $"{alivecount}/{allCount}";
         foreach(var g in Groups)
         {
             var prefab = LoadMonsterPrefab(g.Prefab);
-            StartCoroutine(SpawnMonsterCort(g.SpawnTime,g.Count,g.Delay,path,prefab));
+            StartCoroutine(SpawnMonsterCort(g.SpawnTime,GetScaleCount(g.Count,stage),g.Delay,path,prefab));
         }
         
         CardGameManager.Instance.EndRound();
@@ -505,7 +505,7 @@ public class DefenceGameManager : MonoBehaviour
     }
     public void StageCountSet(int stage)
     {
-        var Groups = DataTableManager.StageTable.Get(stage);
+        var Groups = DataTableManager.StageTable.Get(GetStageLookupId(stage));
         if(Groups == null)
         {
             Debug.Log("스테이지 미구현");
@@ -518,14 +518,25 @@ public class DefenceGameManager : MonoBehaviour
             monsterCount++;
             if(monsterCount >1)
             {
-                ResourceManager.Instance.enemyCountText.text += $"\n{DataTableManager.StringTable?.Get(c.MonsterName)} : {c.Count}";
+                ResourceManager.Instance.enemyCountText.text += $"\n{DataTableManager.StringTable?.Get(c.MonsterName)} : {GetScaleCount(c.Count,stage)}";
             }
             else
             {
-                ResourceManager.Instance.enemyCountText.text =$"{DataTableManager.StringTable?.Get(c.MonsterName)} : {c.Count}";  
+                ResourceManager.Instance.enemyCountText.text =$"{DataTableManager.StringTable?.Get(c.MonsterName)} : {GetScaleCount(c.Count,stage)}";
             }
         }
     }
+    public static int GetStageLookupId(int stage)
+    {
+        return stage > 10 ? ((stage-6)%5)+1001 : stage;
+    }
+    public static int GetScaleCount(int baseCount,int stage)
+    {
+        if(stage<=10)return baseCount;
+        int loops = (stage-6)/5;
+        return Mathf.RoundToInt(baseCount*(1f+loops*0.3f));
+    }
+
     public void BossKill()
     {
         bossKillCheck = true;

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using TMPro;
 
 public enum Scope
 {
@@ -15,6 +16,7 @@ public class UpgradeManager : MonoBehaviour
 
     private int permanentBonus;
     private int thisRoundBonus;
+    public TextMeshProUGUI upgradeText;
 
     private class TimedEntry
     {
@@ -31,6 +33,7 @@ public class UpgradeManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        upgradeText.text = GlobalAttackBonus.ToString();
     }
 
     public void AddAttackBonus(int amount, Scope scope, float seconds = 0f)
@@ -50,6 +53,7 @@ public class UpgradeManager : MonoBehaviour
                 break;
         }
         OnUpgradeChanged?.Invoke();
+        upgradeText.text = GlobalAttackBonus.ToString();
     }
 
     // CardGameManager.EndRound() 끝에서 호출. ThisRound 보정치를 만료시킨다.
@@ -58,6 +62,7 @@ public class UpgradeManager : MonoBehaviour
         if (thisRoundBonus == 0) return;
         thisRoundBonus = 0;
         OnUpgradeChanged?.Invoke();
+        upgradeText.text = GlobalAttackBonus.ToString();
     }
 
     void Update()
@@ -79,6 +84,7 @@ public class UpgradeManager : MonoBehaviour
         {
             RecalcTimedCache();
             OnUpgradeChanged?.Invoke();
+            upgradeText.text = GlobalAttackBonus.ToString();
         }
     }
 

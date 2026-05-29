@@ -65,6 +65,10 @@ public class GoblinWarChief : DamageAble
         {
              t += 0.25f;
             health +=20+(2*DefenceGameManager.Instance.currentStage);
+            if(health>maxHealth)
+            {
+                health = maxHealth;
+            }
             yield return new WaitForSeconds(0.25f);
         }
         Destroy(go);

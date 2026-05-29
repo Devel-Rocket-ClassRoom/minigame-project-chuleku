@@ -4,8 +4,8 @@ public class BreakShard : ResourceCardBase
 {
     public override void UseResource()
     {
-        base.UseResource();
         if(ResourceManager.Instance.Mana<mana)return;
+        base.UseResource();
 
         if(ResourceManager.Instance.TrySpendMana(mana))
         {
