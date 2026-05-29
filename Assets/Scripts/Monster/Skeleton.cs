@@ -14,6 +14,7 @@ public class Skeleton : DamageAble
         if (dieCheck) return;
         dieCheck = true;
         animator.SetTrigger("Die"); 
+        ScoreManager.Instance.SetScore(10);
     }
     public void AnimationDestroy()
     {

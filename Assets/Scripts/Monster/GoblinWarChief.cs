@@ -37,7 +37,8 @@ public class GoblinWarChief : DamageAble
         if (dieCheck) return;
         dieCheck = true;
         DefenceGameManager.Instance.BossKill();
-        animator.SetTrigger("Die"); 
+        animator.SetTrigger("Die");
+        ScoreManager.Instance.SetScore(100);
     }
     public void AnimationDestroy()
     {

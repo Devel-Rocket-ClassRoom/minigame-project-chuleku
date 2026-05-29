@@ -16,6 +16,7 @@ public class Goblin : DamageAble
         if (dieCheck) return;
         dieCheck = true;
         animator.SetTrigger("Die"); 
+        ScoreManager.Instance.SetScore(10);
     }
     public void AnimationDestroy()
     {

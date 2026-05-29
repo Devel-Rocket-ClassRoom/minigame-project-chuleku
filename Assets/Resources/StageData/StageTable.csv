@@ -21,5 +21,5 @@ ID,MonsterName,Prefab,Count,SpawnTime,Delay
 1003,GoblinTank,Resources/MonsterPrefab/GoblinTank,15,0,0.8
 1004,Goblin,Resources/MonsterPrefab/Goblin,25,0,0.5
 1004,Skeleton,Resources/MonsterPrefab/Skeleton,15,5,0.8
-1005,GoblinWarChief,Resources/MonsterPrefab/GoblinWarChief,3,0,7
-1005,GoblinTank,Resources/MonsterPrefab/GoblinTank,8,0.5,8
+1005,GoblinWarChief,Resources/MonsterPrefab/GoblinWarChief,3,0,4
+1005,GoblinTank,Resources/MonsterPrefab/GoblinTank,8,0.5,0.5

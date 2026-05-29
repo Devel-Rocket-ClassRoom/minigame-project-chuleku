@@ -104,6 +104,7 @@ public class UiManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        ScoreManager.Instance.GameEnd();
         
     }
     public void ExitButton()
@@ -117,7 +118,9 @@ public class UiManager : MonoBehaviour
     public void GameEnd()
     {
         Time.timeScale =0;
+        guardPanal.SetActive(true);
         gameEnd.SetActive(true);
+        ScoreManager.Instance.EndScore();
     }
 
     public void OnclickStore()
