@@ -18,6 +18,8 @@ public class TileMap : MonoBehaviour
     public Vector3 Origin => origin;
     private bool pathCheck;
     private Coroutine colorcor;
+    private bool firstWallBreakCheck;
+    private bool firstCreateWallCheck;
 
     void Awake()
     {
@@ -48,6 +50,8 @@ public class TileMap : MonoBehaviour
         tiles[0,0].dontBreak = true;
         tiles[W-1,H-1].dontBreak = true;
         pathCheck = false;
+        firstWallBreakCheck = false;
+        firstCreateWallCheck = false;
     }
 
     Vector3 FindOrigin()
@@ -102,6 +106,8 @@ public class TileMap : MonoBehaviour
         tiles[x,z].Wall = gm;
         tiles[x,z].wallStageID = stage;
         tiles[x,z].installCost = cost;
+        if(firstCreateWallCheck)return;
+        SoundManager.Play("CreateWall");
     }
     public void CreateWallCoupon(int x, int z,GameObject gm,int stage,int coupon)
     {
@@ -109,10 +115,22 @@ public class TileMap : MonoBehaviour
         tiles[x,z].Wall = gm;
         tiles[x,z].wallStageID = stage;
         tiles[x,z].Coupon=coupon;
+        if(firstCreateWallCheck)return;
+        SoundManager.Play("CreateWall");
     }
     public void BreakWall(int x,int z,int stage,int amount)
     {
         if(tiles[x,z].Wall == null)return;
+
+        if (firstWallBreakCheck)
+        {
+            Destroy(tiles[x,z].Wall);
+            tiles[x,z].Wall = null;
+            tiles[x,z].hasWall = false;
+            tiles[x,z].wallStageID = -1;
+            tiles[x,z].Coupon = -1;
+            return;
+        }
        
         if(tiles[x,z].wallStageID == stage)
         {
@@ -125,6 +143,7 @@ public class TileMap : MonoBehaviour
                 tiles[x,z].hasWall = false;
                 tiles[x,z].wallStageID = -1;
                 tiles[x,z].installCost = 0;
+                SoundManager.Play("BreakWall");
                 return;
             }
             tiles[x,z].Wall = null;
@@ -132,7 +151,7 @@ public class TileMap : MonoBehaviour
             tiles[x,z].wallStageID = -1;
             ResourceManager.Instance.AddGold(tiles[x,z].installCost);
             tiles[x,z].installCost = 0;
-            
+            SoundManager.Play("BreakWall");
             return;
         }
         else
@@ -144,6 +163,7 @@ public class TileMap : MonoBehaviour
                 tiles[x,z].hasWall = false;
                 tiles[x,z].wallStageID = -1;
                 tiles[x,z].Coupon = -1;
+                SoundManager.Play("BreakWall");
             }
             else
             {
@@ -181,6 +201,7 @@ public class TileMap : MonoBehaviour
     }
     public void AllWallBreak()
     {
+        firstWallBreakCheck = true;
         for(int i =0;i<H;i++)
         {
             for(int j=0;j<W;j++)
@@ -191,6 +212,7 @@ public class TileMap : MonoBehaviour
                 }
             }
         }
+        firstWallBreakCheck =false;
     }
     public void WarningWallColor(int stage)
     {
@@ -239,5 +261,8 @@ public class TileMap : MonoBehaviour
         }
         pathCheck = false;
     }
-    
+    public void FirstCreateWall(bool c)
+    {
+        firstCreateWallCheck = c;
+    }
 }

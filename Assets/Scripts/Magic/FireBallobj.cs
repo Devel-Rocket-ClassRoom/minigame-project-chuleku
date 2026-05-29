@@ -7,6 +7,7 @@ public class FireBallobj : MonoBehaviour
     public float speed = 15f;
     private float fireballdistance;
     private Vector3 targetPosition;
+    public GameObject exploedEffect;
     // 카드가 생성 직후 호출해 줄 초기화 함수
     public void Setup(Vector3 targetPos,float radius)
     {
@@ -57,6 +58,8 @@ public class FireBallobj : MonoBehaviour
                 
             }
         }
+        GameObject go = Instantiate(exploedEffect,transform.position,Quaternion.identity);
+        Destroy(go,3f);
         Destroy(gameObject);
     }
 }

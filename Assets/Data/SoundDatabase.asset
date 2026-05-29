@@ -58,3 +58,33 @@ MonoBehaviour:
     volume: 1
     type: 0
     loop: 0
+  - key: DestroyCard
+    clip: {fileID: 8300000, guid: eea5baaa6d3d5d243ba234d031d2e31d, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: CreateWall
+    clip: {fileID: 8300000, guid: 49c6e62fa107fc943b1cfeeb5531041f, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: BreakWall
+    clip: {fileID: 8300000, guid: d65fc7bef481c6f4985b8a2c067dd162, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: DrakHand
+    clip: {fileID: 8300000, guid: b8e4d04e6549d7b4d82f6b93d788f024, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: Oksusu
+    clip: {fileID: 8300000, guid: 2a160c052138d81419899224ffdb349e, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: DropCard
+    clip: {fileID: 8300000, guid: 990dca75ba96b304cbd0febdc954f0e0, type: 3}
+    volume: 1
+    type: 0
+    loop: 0

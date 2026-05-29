@@ -82,6 +82,7 @@ public class CardGameManager : MonoBehaviour
             AddResourceCard("LostGold");
         }
         AddEffectCard("IllegalMagic");
+        AddEffectCard("IllegalMagic");
         AddEffectCard("DestroyDraw");
     
         Shuffle(deck);
@@ -99,11 +100,6 @@ public class CardGameManager : MonoBehaviour
         deck.Add(inst);
         return inst;
     }
-    public void BuyArcherButton()//테스트용 궁수 구매버튼
-    {
-        BuyCard("Archer");
-    }
-
     // 상점 구매: CardTable의 Cost를 골드로 차감하고 타입에 맞게 등록.
     // 골드 부족 시 null 반환, 아무것도 변경하지 않음.
     public CardInstance BuyCard(string cardId)
@@ -219,7 +215,6 @@ public class CardGameManager : MonoBehaviour
         deck.AddRange(grave);
         grave.Clear();
         Shuffle(deck);
-        SoundManager.Play("SuffleCard");
     }
 
     private static void Shuffle<T>(List<T> list)
@@ -236,6 +231,7 @@ public class CardGameManager : MonoBehaviour
         {
             DrawCard();
         }
+        SoundManager.Play("SuffleCard");
     }
 
 
@@ -404,7 +400,10 @@ public class CardGameManager : MonoBehaviour
 
         if (handObjs.TryGetValue(instanceId, out var handGo) && handGo != null)
         {
-            Destroy(handGo);
+            // 즉시 Destroy 대신 dissolve 파티클 재생 후 제거 (CardBase가 지연 처리)
+            var cb = handGo.GetComponent<CardBase>();
+            if (cb != null) cb.PlayDestroyThenRemove();
+            else Destroy(handGo);
         }
         handObjs.Remove(instanceId);
         deck.RemoveAll(c => c.InstanceId == instanceId);

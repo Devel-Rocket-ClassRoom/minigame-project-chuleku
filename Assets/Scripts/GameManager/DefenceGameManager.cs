@@ -462,6 +462,7 @@ public class DefenceGameManager : MonoBehaviour
         int createwall = 0;
         int maxattemps = 200;
         int attemp = 0;
+        tileMap.FirstCreateWall(true);
         while(createwall<wallCount&&attemp<maxattemps)
         {
             attemp++;
@@ -489,6 +490,7 @@ public class DefenceGameManager : MonoBehaviour
             tileMap.AllWallBreak();
             DifficultyWallCreate(wallCount);
         }
+          tileMap.FirstCreateWall(false);
     }
     IEnumerator BattlePhaseCor()
     {

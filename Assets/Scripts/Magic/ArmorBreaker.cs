@@ -67,7 +67,9 @@ public class ArmorBreaker : MagicBase, IBeginDragHandler, IDragHandler, IEndDrag
             if(c.CompareTag("Enemy"))
             {
                 c.GetComponent<DamageAble>().defense -=1;
-                // Instantiate(effectprefab,c.gameObject.transform.position,Quaternion.identity);
+
+                GameObject go = Instantiate(effectprefab,c.gameObject.transform.position,Quaternion.identity,c.gameObject.transform);
+                Destroy(go,3f);
             }
         }
         MagicManager.Instance.UseMagic(instanceId);
