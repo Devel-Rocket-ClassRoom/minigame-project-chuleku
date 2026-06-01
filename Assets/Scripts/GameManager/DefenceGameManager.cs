@@ -79,6 +79,11 @@ public class DefenceGameManager : MonoBehaviour
         difficulty = GameSession.SelectedDifficulty;
         diecheck = false;
     }
+    void Start()
+    {
+        if (CardGameManager.Instance != null)
+            CardGameManager.Instance.UnitSlotClicked += OnUnitSlotClicked;
+    }
 
     void OnDestroy()
     {
@@ -109,6 +114,7 @@ public class DefenceGameManager : MonoBehaviour
         if (unit != null) unit.SetupUnitStatus(udata.Attack, udata.AttackSpeed, udata.Range,udata.UpgradeAmount);
 
         tileMap.CreateUnit(tileGrid.x, tileGrid.y, slot.placedUnit);
+        TutorialManager.Instance?.NotifyUnitPlaced();
         if (slot.buttonGo != null) slot.buttonGo.SetActive(false);
         closeButton();
     }
@@ -261,12 +267,14 @@ public class DefenceGameManager : MonoBehaviour
         {
             ResourceManager.Instance.TrySpendFreeCreateWallCoupon(1);
             tileMap.CreateWallCoupon(tileGrid.x,tileGrid.y,Instantiate(wallPrefab,tileMap.GridToWorld(tileGrid.x,tileGrid.y),Quaternion.identity),currentStage,1);
+            TutorialManager.Instance?.NotifyWallPlaced();
             closeButton();
             return;
         }
         if(ResourceManager.Instance.TrySpendGold(createWallCost))
         {
             tileMap.CreateWall(tileGrid.x,tileGrid.y,Instantiate(wallPrefab,tileMap.GridToWorld(tileGrid.x,tileGrid.y),Quaternion.identity),currentStage,createWallCost);
+            TutorialManager.Instance?.NotifyWallPlaced();
         }
         else
         {
@@ -299,8 +307,9 @@ public class DefenceGameManager : MonoBehaviour
         if(tileMap.UnitCheck(tileGrid.x,tileGrid.y))
         {
 
-            tileMap.BreakWall(tileGrid.x,tileGrid.y,currentStage,v); 
- 
+            tileMap.BreakWall(tileGrid.x,tileGrid.y,currentStage,v);
+            TutorialManager.Instance?.NotifyWallBroken();
+
         }
         else
         {
@@ -310,7 +319,11 @@ public class DefenceGameManager : MonoBehaviour
     }
     public void GameStartButton()
     {
-        GameStartButton(currentStage);
+        // 튜토리얼 StartBattle 단계에서는 전용 작은 웨이브(TutorialStage)를 쓴다.
+        // currentStage 필드는 그대로 1이므로 라운드 종료 후 정상(2)으로 진행된다.
+        bool tut = TutorialManager.Instance != null
+                   && TutorialManager.Instance.Current == TutorialManager.Step.StartBattle;
+        GameStartButton(tut ? TutorialStage : currentStage);
     }
     public void closeButton()
     {
@@ -334,6 +347,7 @@ public class DefenceGameManager : MonoBehaviour
             return;
         }
         pathPreview.Show(tileMap, path);
+        TutorialManager.Instance?.NotifyPathPreviewed();
     }
     public void GameStartButton(int stage)
     {
@@ -361,6 +375,7 @@ public class DefenceGameManager : MonoBehaviour
             return;
         }
         roundStart = true;
+        TutorialManager.Instance?.NotifyBattleStarted();
         UiManager.Instance.HideStoreButton();
         phase = Phase.Battle;
         if(phasecor !=null)StopCoroutine(phasecor);
@@ -418,7 +433,9 @@ public class DefenceGameManager : MonoBehaviour
             spawncor = null;
         }
         if(diecheck)return;
-        
+
+        TutorialManager.Instance?.NotifyRoundEnded();
+
         if (UpgradeManager.Instance != null)
         UpgradeManager.Instance.OnRoundEnded();
         CardGameManager.Instance.StartRound();
@@ -511,12 +528,17 @@ public class DefenceGameManager : MonoBehaviour
             }
         }
     }
+    // 튜토리얼 전용 스테이지 ID. StageTable에 이 ID로 작은 웨이브(예: 기본몬스터 1마리)를 둔다.
+    public const int TutorialStage = 1111;
+
     public static int GetStageLookupId(int stage)
     {
+        if (stage == TutorialStage) return TutorialStage; // 튜토리얼은 무한모드 매핑/스케일을 타지 않음
         return stage > 10 ? ((stage-6)%5)+1001 : stage;
     }
     public static int GetScaleCount(int baseCount,int stage)
     {
+        if (stage == TutorialStage) return baseCount; // 튜토리얼은 마릿수 스케일 안 함
         if(stage<=10)return baseCount;
         int loops = (stage-6)/5;
         return Mathf.RoundToInt(baseCount*(1f+loops*0.3f));
@@ -525,6 +547,14 @@ public class DefenceGameManager : MonoBehaviour
     public void BossKill()
     {
         bossKillCheck = true;
+    }
+
+    // 튜토리얼 전용: 웨이브 없이 페이즈만 임시로 바꾼다(마법 시연용).
+    // roundStart는 건드리지 않으므로 벽 설치 등 준비페이즈 동작은 그대로 가능.
+    public void SetPhase(Phase p)
+    {
+        phase = p;
+        phaseText.text = p == Phase.Battle ? "배틀 페이즈" : "메인 페이즈";
     }
     public void StartGame()
     {
@@ -540,11 +570,10 @@ public class DefenceGameManager : MonoBehaviour
             DifficultyWallCreate(60);
             break;
         }
-
-        if (CardGameManager.Instance != null)
-            CardGameManager.Instance.UnitSlotClicked += OnUnitSlotClicked;
-        
         StageCountSet(currentStage);
         SoundManager.PlayBgm("InGameBGM");
+        currentStage = 1;
+        currenStageText.text = $"스테이지 {currentStage}";
+        phaseText.text = "메인 페이즈";
     }
 }

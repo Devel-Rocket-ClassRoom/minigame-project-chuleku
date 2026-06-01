@@ -40,6 +40,7 @@ public class MouseFollowCamera : MonoBehaviour
 
     void LateUpdate()
     {
+        if(TutorialManager.Instance.IsRunning)return;
         UpdateZoom();
         ApplyZoomDelta();
         UpdateFollow();

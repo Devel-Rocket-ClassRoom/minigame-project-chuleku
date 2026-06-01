@@ -61,6 +61,7 @@ public class FireBallobj : MonoBehaviour
         }
         GameObject go = Instantiate(exploedEffect,transform.position,Quaternion.identity);
         SoundManager.Play("FireBallHit");
+        
         Destroy(go,3f);
         Destroy(gameObject);
     }

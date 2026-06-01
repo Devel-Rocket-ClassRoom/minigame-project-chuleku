@@ -61,6 +61,10 @@ public class ResourceManager : MonoBehaviour
             SetCreateWallCoupon(0);
             break;
         }
+        SetGold(0);
+        SetShard(0);
+        SetMana(2);
+        SetHp(20);
     }
     public void TakeDamage(int amount)
     {

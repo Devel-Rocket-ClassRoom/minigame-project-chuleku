@@ -9,5 +9,6 @@ public class ResourceCardBase : CardBase
     {
         cardType = CardType.Resource;
         SoundManager.Play("UseCard");
+        TutorialManager.Instance?.NotifyCardUsed();
     }
 }

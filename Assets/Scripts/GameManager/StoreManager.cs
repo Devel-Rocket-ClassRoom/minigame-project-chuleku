@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class StoreManager : MonoBehaviour
 {
@@ -136,6 +138,19 @@ public class StoreManager : MonoBehaviour
             RollStock(i);
         }
         RerollCountText.text = $"남은 리롤 : {storeRerollCount}";
-        AddRerollCount(2);
+    }
+
+    public void TutorialRollStock()
+    {
+        while (slots.Count < 6) slots.Add(new Slot());
+        for (int i =0;i<6;i++)
+        {
+            rotateStoreSlot[i].GetComponent<Image>().sprite = LoadSprite("soldout");
+        }
+        slots[0] = new Slot{cardId = "Archer", remaining = StockPerSlot};
+        rotateStoreSlot[0].onClick.RemoveAllListeners();
+        rotateStoreSlot[0].onClick.AddListener(() =>StoreClickedInfo("Archer",0));
+        var data = DataTableManager.CardTable.Get("Archer");
+        rotateStoreSlot[0].GetComponent<Image>().sprite = LoadSprite(data.Image);
     }
 }

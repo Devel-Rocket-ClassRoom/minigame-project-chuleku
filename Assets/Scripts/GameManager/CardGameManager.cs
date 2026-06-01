@@ -386,6 +386,8 @@ public class CardGameManager : MonoBehaviour
         handObjs.Remove(instanceId);
         deck.RemoveAll(c => c.InstanceId == instanceId);
         grave.RemoveAll(c => c.InstanceId == instanceId);
+
+        TutorialManager.Instance?.NotifyCardDestroyed();
     }
 
     
@@ -404,6 +406,20 @@ public class CardGameManager : MonoBehaviour
     }
     public void StartGame()
     {
+        // 이전 판/튜토리얼 잔여물 전부 정리: 덱·묘지·손패·유닛패널 슬롯(버튼/배치유닛 포함).
+        // 컬렉션을 직접 순회하며 Remove하면 "열거 중 수정" 예외가 나므로 ID를 먼저 모은다.
+        var ids = new HashSet<int>();
+        foreach(var d in deck) ids.Add(d.InstanceId);
+        foreach(var g in grave) ids.Add(g.InstanceId);
+        foreach(var id in handObjs.Keys) ids.Add(id);
+        foreach(var s in unitSlots) ids.Add(s.instanceId);
+        foreach(var id in ids) RemoveCardByInstanceId(id);
+
+        deck.Clear();
+        grave.Clear();
+        handObjs.Clear();
+        unitSlots.Clear();
+
         for(int i = 0;i<4;i++)
         {
             AddUnitCard("Archer");
@@ -427,4 +443,6 @@ public class CardGameManager : MonoBehaviour
         DrawCard();
         DrawCard();
     }
+
+ 
 }

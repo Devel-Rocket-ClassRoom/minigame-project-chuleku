@@ -13,7 +13,7 @@ public class MagicManager : MonoBehaviour
 
     private readonly List<MagicInstance> magicDeck = new();
     private int nextInstanceId = 1;
-
+    public GameObject magicdeckpanal;
     public IReadOnlyList<MagicInstance> MagicDeck => magicDeck;
     public int Count => magicDeck.Count;
     public bool IsFull => magicDeck.Count >= MagicMax;
@@ -64,6 +64,7 @@ public class MagicManager : MonoBehaviour
         if(inst.phase != DefenceGameManager.Instance.CurrentPhase)return;
         magicDeck.RemoveAt(idx);
         if (inst.View != null) Destroy(inst.View);
+        TutorialManager.Instance?.NotifyMagicUsed();
     }
 
     private static string StripResourcesPrefix(string key)
@@ -71,5 +72,13 @@ public class MagicManager : MonoBehaviour
         if (string.IsNullOrEmpty(key)) return key;
         const string prefix = "Resources/";
         return key.StartsWith(prefix) ? key.Substring(prefix.Length) : key;
+    }
+    public void TutorialUiOff()
+    {
+        magicdeckpanal.SetActive(false);
+    }
+    public void TutorialUiOn()
+    {
+        magicdeckpanal.SetActive(true);
     }
 }

@@ -60,6 +60,7 @@ public class InfoUi : MonoBehaviour
         if (StoreManager.Instance.BuyOne(stockslot))
         {
             CardGameManager.Instance.BuyCard(cardId);
+            TutorialManager.Instance?.NotifyShopBought();
         }
         ViewInfo(cardId,StoreManager.Instance.GetSlot(stockslot).remaining,StoreManager.Instance.perslot,stockslot);
     }
