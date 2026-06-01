@@ -99,7 +99,7 @@ MonoBehaviour:
     type: 0
     loop: 0
   - key: FireBallHit
-    clip: {fileID: 8300000, guid: 60f6ed50b16504ce78d55e932590f58b, type: 3}
+    clip: {fileID: 8300000, guid: 37e5b8745f2444b32bbaaf27e84feb14, type: 3}
     volume: 1
     type: 0
     loop: 0
@@ -144,7 +144,17 @@ MonoBehaviour:
     type: 0
     loop: 0
   - key: LightningMagic
-    clip: {fileID: 8300000, guid: 728e79458cbc04911928f15ef808c629, type: 3}
+    clip: {fileID: 8300000, guid: 90d25344942ae4617b613919b35931fa, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: Adrenalrin
+    clip: {fileID: 8300000, guid: bf1ada71712224275aea72814760f5de, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: SpoonKillerAttack
+    clip: {fileID: 8300000, guid: dc65f751125ee47c581a347a1dc93025, type: 3}
     volume: 1
     type: 0
     loop: 0

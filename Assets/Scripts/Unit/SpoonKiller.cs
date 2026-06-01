@@ -6,5 +6,6 @@ public class SpoonKiller : UnitBase
     {
         animator.SetTrigger("Attack");
         target.TakeDamage(damage);
+        SoundManager.Play("SpoonKillerAttack");
     }
 }

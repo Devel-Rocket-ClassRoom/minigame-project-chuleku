@@ -77,5 +77,6 @@ public class Adrenaline : MagicBase, IBeginDragHandler, IDragHandler, IEndDragHa
         }
         UpgradeManager.Instance.AddAttackBonus(10,Scope.Timed,8f);
         MagicManager.Instance.UseMagic(instanceId);
+        SoundManager.Play("Adrenalrin");
     }
 }
