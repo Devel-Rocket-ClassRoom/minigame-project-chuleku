@@ -67,28 +67,6 @@ public class CardGameManager : MonoBehaviour
         cardPrefabs[CardType.Effect] = effectMainCard;
         cardPrefabs[CardType.Resource] = resourceMainCard;
     }
-    void Start()
-    {
-        for(int i = 0;i<4;i++)
-        {
-            AddUnitCard("Archer");
-        }
-        for(int i = 0;i<2;i++)
-        {
-            AddUnitCard("Warrior");
-        }
-        for(int i =0;i<8;i++)
-        {
-            AddResourceCard("LostGold");
-        }
-        AddEffectCard("IllegalMagic");
-        AddEffectCard("IllegalMagic");
-        AddEffectCard("DestroyDraw");
-    
-        Shuffle(deck);
-        StartRound();
-
-    }
 
     // === 카드 획득 ===
 
@@ -423,5 +401,30 @@ public class CardGameManager : MonoBehaviour
             hideText.text = "손패 가리기";
         }
         hand.SetActive(!hideCheck);
+    }
+    public void StartGame()
+    {
+        for(int i = 0;i<4;i++)
+        {
+            AddUnitCard("Archer");
+        }
+        for(int i = 0;i<2;i++)
+        {
+            AddUnitCard("Warrior");
+        }
+        for(int i =0;i<8;i++)
+        {
+            AddResourceCard("LostGold");
+        }
+        AddEffectCard("IllegalMagic");
+        AddEffectCard("IllegalMagic");
+        AddEffectCard("DestroyDraw");
+    
+        Shuffle(deck);
+        DrawCard();
+        DrawCard();
+        DrawCard();
+        DrawCard();
+        DrawCard();
     }
 }

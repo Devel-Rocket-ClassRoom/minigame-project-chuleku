@@ -6,14 +6,14 @@ LostGold,Resource,ResourceName,ResourceDesc,0,ResourceArt_Treasure,1,LostGoldCoi
 Warrior,Unit,WarriorName,WarriorDesc,0,UnitArt_Warrior,2,CardWarrior,false
 GogumaCheeseDonGgass,Effect,GcdName,GcdDesc,1,SweetPotatoCheeseTonkatsu,4,gogumacheesedonGgass,true
 BreakShard,Resource,BreakShardName,BreakShardDesc,1,ResourceArt_Treasure,2,BreakShard,true
-Wizard,Unit,WizardName,WizardDesc,1,,6,CardWizard,true
+Wizard,Unit,WizardName,WizardDesc,1,Wizard,6,CardWizard,true
 GracefulCharity,Effect,GracefulCharityName,GracefulCharityDesc,0,,6,GracefulCharity,true
 ManaCollecter,Effect,ManaCollecterName,ManaCollecterDesc,0,,3,ManaCollecter,true
-SpoonKiller,Unit,SpoonKillerName,SpoonKillerDesc,0,,4,CardSpoonKiller,true
+SpoonKiller,Unit,SpoonKillerName,SpoonKillerDesc,0,SpoonKiller,4,CardSpoonKiller,true
 WaterRocket,Effect,WaterRocketName,WaterRocketDesc,1,,2,WaterRocket,true
 PotofGreed,Effect,PotofGreedName,PotofGreedDesc,0,,5,PotofGreed,true
 AttackUpAPT,Effect,AttackUpAPTName,AttackUpAPTDesc,2,,3,AttackUpAPT,true
 HealingPack,Resource,HealingPackName,HealingPackDesc,0,,4,HealingPack,true
 SiteSupervisor,Resource,SiteSupervisorName,SiteSupervisorDesc,0,,6,SiteSupervisor,true
 StoreOner,Effect,StoreOnerName,StoreOnerDesc,3,,4,StoreOner,true
-ChainWizard,Unit,ChainWizardName,ChainWizardDesc,1,,5,CardChainWizard,true
+ChainWizard,Unit,ChainWizardName,ChainWizardDesc,1,ChainWizard,5,CardChainWizard,true

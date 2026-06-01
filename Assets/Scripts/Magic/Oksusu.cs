@@ -6,5 +6,6 @@ public class Oksusu : MagicBase
     {
         ResourceManager.Instance.AddGold(3);
         ResourceManager.Instance.AddMana(1);
+        SoundManager.Play("Oksusu");
     }
 }

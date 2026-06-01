@@ -33,6 +33,7 @@ public class SoundManager : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
         if (sfxSource != null) sfxSource.playOnAwake = false;
         if (bgmSource != null) { bgmSource.playOnAwake = false; bgmSource.loop = true; }
@@ -82,7 +83,8 @@ public class SoundManager : MonoBehaviour
         if (e == null) { Debug.LogWarning($"SoundDatabase에 '{key}' 키 없음"); return; }
         if (Instance.sfxSource == null) { Debug.LogWarning("sfxSource 미할당"); return; }
 
-        Instance.sfxSource.PlayOneShot(e.clip, e.volume * Instance.sfxVolume);
+        // 카테고리(SFX) 볼륨은 믹서가 담당. 여기선 클립별 상대 볼륨만 적용
+        Instance.sfxSource.PlayOneShot(e.clip, e.volume);
     }
 
     // BGM 재생 (같은 곡이면 무시, 다르면 교체)
@@ -96,8 +98,9 @@ public class SoundManager : MonoBehaviour
         var src = Instance.bgmSource;
         if (src.isPlaying && src.clip == e.clip) return;
 
+        // 카테고리(BGM) 볼륨은 믹서가 담당. 여기선 클립별 상대 볼륨만 적용
         src.clip = e.clip;
-        src.volume = e.volume * Instance.bgmVolume;
+        src.volume = e.volume;
         src.loop = e.loop;
         src.Play();
     }

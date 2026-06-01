@@ -21,6 +21,7 @@ public class FireBallobj : MonoBehaviour
 
     private IEnumerator FlyRoutine()
     {
+        SoundManager.Play("FlyFireBall");
         while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(
@@ -49,7 +50,7 @@ public class FireBallobj : MonoBehaviour
                 DamageAble d = c.GetComponent<DamageAble>();
                 if (d.type == EnemyType.Minion)
                 {
-                    d.TakeDamage(d.health*0.1f,true);
+                    d.TakeDamage(d.maxHealth*0.1f,true);
                 }
                 else if(d.type==EnemyType.Boss)
                 {
@@ -59,6 +60,7 @@ public class FireBallobj : MonoBehaviour
             }
         }
         GameObject go = Instantiate(exploedEffect,transform.position,Quaternion.identity);
+        SoundManager.Play("FireBallHit");
         Destroy(go,3f);
         Destroy(gameObject);
     }

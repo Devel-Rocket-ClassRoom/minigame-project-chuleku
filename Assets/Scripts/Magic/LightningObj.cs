@@ -16,6 +16,7 @@ public class LightningObj : MonoBehaviour
     private IEnumerator CorVolt()
     {
         float t =0;
+        SoundManager.Play("LightningMagic");
         while(true)
         {
             t +=Time.deltaTime;
@@ -27,7 +28,7 @@ public class LightningObj : MonoBehaviour
                     DamageAble d = c.GetComponent<DamageAble>();
                     if (d.type == EnemyType.Minion)
                     {
-                        d.TakeDamage(d.health*0.01f,true);
+                        d.TakeDamage(d.maxHealth*0.01f,true);
                     }
                     else if(d.type==EnemyType.Boss)
                     {

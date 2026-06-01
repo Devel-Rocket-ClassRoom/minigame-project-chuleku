@@ -8,5 +8,6 @@ public class DarkHands : MagicBase
         CardGameManager.Instance.DrawCard();
         CardGameManager.Instance.DrawCard();
         CardGameManager.Instance.DrawCard();
+        SoundManager.Play("DrakHand");
     }
 }

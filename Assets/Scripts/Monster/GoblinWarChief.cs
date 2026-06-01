@@ -25,6 +25,8 @@ public class GoblinWarChief : DamageAble
     }
     void Update()
     {
+        if (healthSlider == null) return;
+        healthSlider.value = Mathf.Lerp(healthSlider.value, health, Time.deltaTime * sliderSpeed);
         if(dieCheck) return;
         cool +=Time.deltaTime;
         if(cool>cooltime&&!isCasting)
@@ -37,6 +39,11 @@ public class GoblinWarChief : DamageAble
         if (dieCheck) return;
         dieCheck = true;
         DefenceGameManager.Instance.BossKill();
+        if(scor != null)
+        {
+            StopCoroutine(scor);
+            scor=null;
+        }
         animator.SetTrigger("Die");
         ScoreManager.Instance.SetScore(100);
     }
@@ -62,6 +69,7 @@ public class GoblinWarChief : DamageAble
     {
         float t = 0;
         GameObject go =Instantiate(shieldPrefab,transform.position,Quaternion.identity);
+        SoundManager.Play("WarChiefSkillStart");
         while(t<3f)
         {
              t += 0.25f;
@@ -78,6 +86,7 @@ public class GoblinWarChief : DamageAble
         scor = null;
         animator.SetTrigger("Walk");
         transform.GetComponent<MoveEnemy>().currentMoveSpeed =   transform.GetComponent<MoveEnemy>().moveSpeed;
+        SoundManager.Play("WarChiefSkillEnd");
     }
 
 }

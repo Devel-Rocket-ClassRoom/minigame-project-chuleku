@@ -73,5 +73,6 @@ public class ArmorBreaker : MagicBase, IBeginDragHandler, IDragHandler, IEndDrag
             }
         }
         MagicManager.Instance.UseMagic(instanceId);
+        SoundManager.Play("ArmorBreak");
     }
 }

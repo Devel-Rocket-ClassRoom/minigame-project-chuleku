@@ -40,6 +40,10 @@ public class MenuManager : MonoBehaviour
         Loading = false;
         loadingBar.value = 0;
     }
+    void Start()
+    {
+        SoundManager.PlayBgm("MainMenuBGM");
+    }
 
     public void OnEasy()
     {
@@ -59,6 +63,7 @@ public class MenuManager : MonoBehaviour
         GameSession.SelectedDifficulty = difficulty;
         if(loadcor!=null) StopCoroutine(loadcor);
         loadcor = StartCoroutine(LoadInGame());
+        SoundManager.StopBgm();
     }
     public void OnClickQuit()
     {

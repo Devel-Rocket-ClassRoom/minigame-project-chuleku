@@ -42,6 +42,12 @@ public class ResourceManager : MonoBehaviour
         SetShard(0);
         SetMana(2);
         SetHp(20);
+      
+   
+        
+    }
+    public void StartGame()
+    {
         var d = DefenceGameManager.Instance.difficulty;
         switch(d)
         {
@@ -55,9 +61,7 @@ public class ResourceManager : MonoBehaviour
             SetCreateWallCoupon(0);
             break;
         }
-        
     }
-
     public void TakeDamage(int amount)
     {
         if(amount<=0)return;

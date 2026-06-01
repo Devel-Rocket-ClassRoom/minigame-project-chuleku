@@ -88,3 +88,63 @@ MonoBehaviour:
     volume: 1
     type: 0
     loop: 0
+  - key: ArmorBreak
+    clip: {fileID: 8300000, guid: f9c1b4d79329ec3408868bf1037f4c22, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: FlyFireBall
+    clip: {fileID: 8300000, guid: 7a8ab97b5c5b146dba632734c549caaa, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: FireBallHit
+    clip: {fileID: 8300000, guid: 60f6ed50b16504ce78d55e932590f58b, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: MainMenuBGM
+    clip: {fileID: 8300000, guid: 0741e14a19232084da6c8b22d9e3e327, type: 3}
+    volume: 1
+    type: 1
+    loop: 1
+  - key: InGameBGM
+    clip: {fileID: 8300000, guid: 7ac2750b98686b04ab1bdf5f9fbc79ad, type: 3}
+    volume: 1
+    type: 1
+    loop: 1
+  - key: WarChiefSkillStart
+    clip: {fileID: 8300000, guid: 2084fc484f069964baeadfeece8fef66, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: WarChiefSkillEnd
+    clip: {fileID: 8300000, guid: d017031a1c18c4a4ea4a632a66da97be, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: WarriorAttack
+    clip: {fileID: 8300000, guid: 91a0296ea032a4cc1a89fb8e3f4031d4, type: 3}
+    volume: 0.5
+    type: 0
+    loop: 0
+  - key: ArcherAttack
+    clip: {fileID: 8300000, guid: 47b6fcf75f58445c8bef728f41443ff8, type: 3}
+    volume: 0.5
+    type: 0
+    loop: 0
+  - key: SnowWindMagic
+    clip: {fileID: 8300000, guid: 7144df90ae859434b86fe3228200ef55, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: ArcherPul
+    clip: {fileID: 8300000, guid: 2aaa26216ebbc4043a8ba9331679297a, type: 3}
+    volume: 0.5
+    type: 0
+    loop: 0
+  - key: LightningMagic
+    clip: {fileID: 8300000, guid: 728e79458cbc04911928f15ef808c629, type: 3}
+    volume: 1
+    type: 0
+    loop: 0

@@ -19,7 +19,7 @@ public abstract class DamageAble : MonoBehaviour
     public int defense;
     public Slider healthSlider;
     public EnemyType type;
-    private float sliderSpeed = 5f; 
+    public float sliderSpeed = 5f; 
     public bool isDead{get; private set;}
 
     public string MonsterId => monsterId;

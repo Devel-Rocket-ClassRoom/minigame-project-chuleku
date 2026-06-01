@@ -10,5 +10,6 @@ public class Warrior : UnitBase
         particle.transform.LookAt(new Vector3(target.transform.position.x,transform.position.y,target.transform.position.z));
         particle.Stop();
         particle.Play();
+        SoundManager.Play("WarriorAttack");
     }
 }

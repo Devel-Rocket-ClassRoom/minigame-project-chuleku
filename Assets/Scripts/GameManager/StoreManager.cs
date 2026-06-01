@@ -38,16 +38,6 @@ public class StoreManager : MonoBehaviour
         Instance = this;
         storeInfo.SetActive(false);
     }
-    void Start()
-    {
-        storeRerollCount = 0;
-        allstock = DataTableManager.CardTable.GetAllIds().ToList();
-        for(int i =0;i<6;i++)
-        {
-            RollStock(i);
-        }
-        RerollCountText.text = $"남은 리롤 : {storeRerollCount}";
-    }
 
     // slotIndex 자리에 카드 1종을 뽑아 재고 6으로 채운다. 풀에서 영구 제거.
     public void RollStock(int slotIndex)
@@ -106,6 +96,11 @@ public class StoreManager : MonoBehaviour
         if(ResourceManager.Instance.Gold<c.Cost) return false;
         if(!ResourceManager.Instance.TrySpendMana(1)) return false;
         s.remaining--;
+        if(s.remaining==0)
+        {
+            rotateStoreSlot[slotIndex].GetComponent<Image>().sprite = LoadSprite("soldout");
+            s.cardId = null;
+        }
         return true;
     }
 
@@ -131,5 +126,16 @@ public class StoreManager : MonoBehaviour
         var sp = db.Get(imageId);
         if (sp == null) Debug.LogWarning($"SpriteDatabase에 '{imageId}' 키 없음");
         return sp;
+    }
+    public void StartGame()
+    {
+        storeRerollCount = 0;
+        allstock = DataTableManager.CardTable.GetAllIds().ToList();
+        for(int i =0;i<6;i++)
+        {
+            RollStock(i);
+        }
+        RerollCountText.text = $"남은 리롤 : {storeRerollCount}";
+        AddRerollCount(2);
     }
 }

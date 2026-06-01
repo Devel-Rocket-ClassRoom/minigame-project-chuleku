@@ -58,6 +58,7 @@ public class SnowWind : MagicBase, IBeginDragHandler, IDragHandler, IEndDragHand
         GameObject go = Instantiate(SnowWindObj,pos,Quaternion.identity);
         Destroy(go,10f);
         MagicManager.Instance.UseMagic(instanceId);
+        SoundManager.Play("SnowWindMagic");
     }
 
 }

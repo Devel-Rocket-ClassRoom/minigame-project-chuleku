@@ -121,6 +121,7 @@ public class UiManager : MonoBehaviour
         guardPanal.SetActive(true);
         gameEnd.SetActive(true);
         ScoreManager.Instance.EndScore();
+        DefenceGameManager.Instance.diecheck = true;
     }
 
     public void OnclickStore()

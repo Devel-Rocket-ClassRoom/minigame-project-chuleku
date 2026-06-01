@@ -48,6 +48,7 @@ public class DefenceGameManager : MonoBehaviour
      private Coroutine phasecor;
      private bool bossKillCheck;
      public bool Round => roundStart;
+    public bool diecheck;
 
     public Difficulty difficulty = Difficulty.Easy;
 
@@ -76,26 +77,7 @@ public class DefenceGameManager : MonoBehaviour
         alivecount = 0;
         allCount = 0;
         difficulty = GameSession.SelectedDifficulty;
-    }
-    void Start()
-    {
-        switch(difficulty)
-        {
-            case Difficulty.Easy:
-            DifficultyWallCreate(20);
-            break;
-            case Difficulty.Normal:
-            DifficultyWallCreate(40);
-            break;
-            case Difficulty.Hard:
-            DifficultyWallCreate(60);
-            break;
-        }
-
-        if (CardGameManager.Instance != null)
-            CardGameManager.Instance.UnitSlotClicked += OnUnitSlotClicked;
-        
-        StageCountSet(currentStage);
+        diecheck = false;
     }
 
     void OnDestroy()
@@ -435,6 +417,7 @@ public class DefenceGameManager : MonoBehaviour
             StopCoroutine(spawncor);
             spawncor = null;
         }
+        if(diecheck)return;
         
         if (UpgradeManager.Instance != null)
         UpgradeManager.Instance.OnRoundEnded();
@@ -542,5 +525,26 @@ public class DefenceGameManager : MonoBehaviour
     public void BossKill()
     {
         bossKillCheck = true;
+    }
+    public void StartGame()
+    {
+        switch(difficulty)
+        {
+            case Difficulty.Easy:
+            DifficultyWallCreate(20);
+            break;
+            case Difficulty.Normal:
+            DifficultyWallCreate(40);
+            break;
+            case Difficulty.Hard:
+            DifficultyWallCreate(60);
+            break;
+        }
+
+        if (CardGameManager.Instance != null)
+            CardGameManager.Instance.UnitSlotClicked += OnUnitSlotClicked;
+        
+        StageCountSet(currentStage);
+        SoundManager.PlayBgm("InGameBGM");
     }
 }

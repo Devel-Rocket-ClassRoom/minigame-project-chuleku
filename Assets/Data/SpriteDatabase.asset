@@ -39,3 +39,5 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: b931ce6def6d5424697345fc2320a665, type: 3}
   - key: ArmorBreakerSprite
     sprite: {fileID: 21300000, guid: 641920ce3bfc1f745aa901513835c7ba, type: 3}
+  - key: soldout
+    sprite: {fileID: 21300000, guid: efacef9e143857d4680e613bdb130494, type: 3}
