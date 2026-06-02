@@ -186,7 +186,7 @@ public class DefenceGameManager : MonoBehaviour
             tileGrid = new Vector2Int(gx,gz);
             equipButton.SetActive(true);
             if(ResourceManager.Instance.FreeCreateWallCoupon>=1)
-            createWallText.text = "벽 생성 (쿠폰)";
+            createWallText.text = "벽 생성";
             else createWallText.text = $"벽 생성(-{createWallCost})";
             MoveMenuToTile(tileWorldPos);
         }
@@ -216,7 +216,7 @@ public class DefenceGameManager : MonoBehaviour
                 {
                     if(tileMap.TilesView[gx,gz].Coupon==1)
                     {
-                        breakText.text = $"벽 부수기(쿠폰+1)";
+                        breakText.text = $"벽 부수기";
                     }
                     else
                     {
@@ -367,6 +367,14 @@ public class DefenceGameManager : MonoBehaviour
             Debug.Log("길을 찾을수없습니다.");
              tileMap.WarningWallColor(currentStage);
             return;
+        }
+        if(stage !=1111)
+        {
+            if(TutorialManager.Instance.IsRunning)
+            {
+                Debug.Log("튜토리얼중엔 시작 누를수없습니다.");
+                return;
+            }
         }
         var Groups = DataTableManager.StageTable.Get(GetStageLookupId(stage));
         if( Groups ==null){

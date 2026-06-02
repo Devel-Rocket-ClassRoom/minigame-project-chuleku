@@ -9,7 +9,6 @@ public class SnowWind : MagicBase, IBeginDragHandler, IDragHandler, IEndDragHand
 {
      private CricleLiner liner;
      private float radius = 0.3f;
-     private float alltarget = 300f;
     private TileMap tileMap;
     public GameObject SnowWindObj;
     void OnEnable()

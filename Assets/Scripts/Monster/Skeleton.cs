@@ -15,10 +15,12 @@ public class Skeleton : DamageAble
         dieCheck = true;
         animator.SetTrigger("Die"); 
         ScoreManager.Instance.SetScore(10);
+        SoundManager.Play("EnemyDie");
     }
     public void AnimationDestroy()
     {
         DefenceGameManager.Instance.EnemyDie();
+        
         Destroy(gameObject);
     }
 

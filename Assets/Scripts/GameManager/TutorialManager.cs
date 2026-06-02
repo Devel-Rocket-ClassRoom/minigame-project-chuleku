@@ -17,7 +17,9 @@ public class TutorialManager : MonoBehaviour
     {
         None,        // 비활성
         Intro,       // "적은 시작점→끝점으로 간다" 안내 (다음 버튼)
+        ViewResource,
         BuildWall,   // 벽 설치 유도
+        BuildWallSecond,
         BreakWall,   // 벽 파괴 유도
         PreviewPath, // 경로 미리보기 버튼 유도
         PlaceUnit,   // 유닛 패널에서 벽 위로 배치 유도
@@ -44,11 +46,13 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject tutorialUiPanal;
     [SerializeField] private GameObject tutorialUiSpawn;
     [SerializeField] private GameObject tutorialUiEnd;
+    [SerializeField] private GameObject tutorialUiResource;
     [SerializeField] private GameObject tutorialUiPath;
     [SerializeField] private GameObject tutorialUiGameStartButton;
     [SerializeField] private GameObject uiStartButton;
     [SerializeField] private GameObject uiPath;
     [SerializeField] private GameObject uiStore;
+    [SerializeField] private GameObject uiResourceSpotlight;
 
     [Header("스포트라이트(구멍 강조)")]
     [SerializeField] private TutorialSpotlight spotlight;
@@ -89,6 +93,7 @@ public class TutorialManager : MonoBehaviour
         tutorialUiEnd.SetActive(false);
         tutorialUiPath.SetActive(false);
         tutorialUiGameStartButton.SetActive(false);
+        uiResourceSpotlight.SetActive(false);
         if (spotlight != null) spotlight.Hide(); // 단계 전환 시 이전 구멍 강조 끄기
         first = false;
         path = false;
@@ -105,7 +110,7 @@ public class TutorialManager : MonoBehaviour
         StoreManager.Instance.StartGame();
         ScoreManager.Instance.StartGame();
         uiPath.GetComponent<Canvas>().sortingOrder = 0;
-        uiStartButton.GetComponent<Canvas>().sortingOrder = 0;
+        uiStartButton.GetComponent<Canvas>().sortingOrder = 0;  
         uiStore.GetComponent<Canvas>().sortingOrder = 0;
         skipButton.SetActive(false);
         
@@ -164,7 +169,8 @@ public class TutorialManager : MonoBehaviour
 
         bool manualNext = false; // 플레이어가 "다음"을 눌러야 넘어가는 단계인지
         string msg = "";
-
+        GameObject go = GameObject.FindWithTag("TileMap");
+        var t = go.GetComponent<TileMap>();
         switch (step)
         {
             case Step.Intro:
@@ -174,19 +180,27 @@ public class TutorialManager : MonoBehaviour
                 tutorialUiPanal.SetActive(true);
                 tutorialUiSpawn.SetActive(true);
                 tutorialUiEnd.SetActive(true);
-                GameObject go = GameObject.FindWithTag("TileMap");
-                var t = go.GetComponent<TileMap>();
-                // 시작점(좌상단=Origin) + 끝점(우하단=19,9) 두 곳 동시 강조
-                spotlight.Show(t.Origin, t.GridToWorld(19, 9));
+                spotlight.Show(t.Origin, t.GridToWorld(19,9));
                 if(cor!=null) StopCoroutine(cor);
                 cor = StartCoroutine(SizeEffect());
                 break;
+            case Step.ViewResource:
+                msg = "골드,마나,샤드,쿠폰,체력,업그레이드 순으로 확인할수있습니다.";
+                uiResourceSpotlight.SetActive(true);
+                manualNext = true;
+                break;
             case Step.BuildWall:
-                ResourceManager.Instance.AddFreeCreateWallCoupon(5);
-                msg = "빈 타일을 눌러 벽을 세워 길을 막아보세요.\n벽 생성은 3골드를 필요로합니다.";
+                ResourceManager.Instance.AddGold(6);
+                spotlight.Show(t.GridToWorld(1,0));
+                msg = "빈 타일을 눌러 벽을 세워 길을 막아보세요.\n벽 생성은 3골드를 필요로 합니다.";
+                break;
+            case Step.BuildWallSecond:
+                msg = "빈 타일을 눌러 벽을 세워 길을 막아보세요.\n벽 생성은 3골드를 필요로 합니다.";
+                spotlight.Show(t.GridToWorld(1,1));
                 break;
             case Step.BreakWall:
                 msg = "벽을 설치한 라운드에는 100%환불이 되며\n그 이외 라운드에는 난이도에 따라 1, 2, 3 골드의 비용이 지불됩니다.";
+                spotlight.Show(t.GridToWorld(1,1));
                 break;
             case Step.PreviewPath:
                 msg = "경로 미리보기로 적이 갈 길을 확인하세요.";
@@ -200,6 +214,7 @@ public class TutorialManager : MonoBehaviour
                 break;
             case Step.PlaceUnit:
                 msg = "벽을 누르고 유닛 패널에서 유닛을 벽 위에 배치하세요.";
+
                 CardGameManager.Instance.AddResourceCard("LostGold");
                 CardGameManager.Instance.AddUnitCard("Archer");
                 manualNext = false;
@@ -207,6 +222,7 @@ public class TutorialManager : MonoBehaviour
             case Step.StartBattle:
                 msg = "준비가 끝났으면 게임 시작을 누르세요.";
                 tutorialUiPanal.SetActive(true);
+                tutorialUiGameStartButton.SetActive(true);
                 startbutton = true;
                 if(cor !=null)StopCoroutine(cor);
                 cor = StartCoroutine(SizeEffect());
@@ -214,7 +230,7 @@ public class TutorialManager : MonoBehaviour
                 manualNext = false;
                 break;
             case Step.Battle:
-                msg = "유닛이 자동으로 적을 공격합니다. 라운드가 끝날 때까지 지켜보세요.";
+                msg = "유닛이 자동으로 적을 공격합니다.\n라운드가 끝날 때까지 지켜보세요.";
                 manualNext = false;
                 break;
             case Step.UseCard:
@@ -242,6 +258,7 @@ public class TutorialManager : MonoBehaviour
                 break;
             case Step.BreakCard:
                 msg = "패에 있는 유닛카드를 파괴하면 벽에 배치한 유닛도 파괴됩니다.\n효과카드를 이용해 유닛카드를 파괴해봅시다.";
+                UiManager.Instance.StartGameUiHide();
                 tutorialUiPanal.SetActive(true);
                 guidePanel.SetActive(true);
                 CardGameManager.Instance.AddEffectCard("DestroyDraw");
@@ -294,7 +311,7 @@ public class TutorialManager : MonoBehaviour
     // DefenceGameManager.OnCreateWall 성공 후
     public void NotifyWallPlaced()
     {
-        if (current == Step.BuildWall) Advance();
+        if (current == Step.BuildWall||current == Step.BuildWallSecond) Advance();
     }
 
     // DefenceGameManager.PathButton (경로 표시 성공) 후

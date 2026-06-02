@@ -158,3 +158,18 @@ MonoBehaviour:
     volume: 1
     type: 0
     loop: 0
+  - key: EnemyDie
+    clip: {fileID: 8300000, guid: 2d1ff521351d2e84480cc6b81e34976e, type: 3}
+    volume: 0.5
+    type: 0
+    loop: 0
+  - key: EndPosHit
+    clip: {fileID: 8300000, guid: e1989e44d86d57b4a85a1ad858e46ee7, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: BreakCard
+    clip: {fileID: 8300000, guid: b45c2258944ce48b39701fb3d0b7e887, type: 3}
+    volume: 1
+    type: 0
+    loop: 0

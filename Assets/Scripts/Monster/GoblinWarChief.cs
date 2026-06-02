@@ -46,11 +46,13 @@ public class GoblinWarChief : DamageAble
         }
         animator.SetTrigger("Die");
         ScoreManager.Instance.SetScore(100);
+        SoundManager.Play("EnemyDie");
     }
     public void AnimationDestroy()
     {
         DefenceGameManager.Instance.EnemyDie();
         ResourceManager.Instance.AddShard(2);
+        
         Destroy(gameObject);
     }
     private void MonsterSkill()

@@ -17,10 +17,11 @@ public class EffectDestroyDraw : EffectCardBase
         {
             base.UseEffect();
             CardGameManager.Instance.RemoveCardByInstanceId(target.InstanceId);
+            SoundManager.Play("BreakCard");
             CardGameManager.Instance.DrawCard();
             CardGameManager.Instance.DrawCard();
             CardGameManager.Instance.DrawCard();
-            ResourceManager.Instance.TrySpendMana(GetMana());
+            ResourceManager.Instance.TrySpendMana(mana);
             CardGameManager.Instance.DiscardFromHand(gameObject);
         });
     }

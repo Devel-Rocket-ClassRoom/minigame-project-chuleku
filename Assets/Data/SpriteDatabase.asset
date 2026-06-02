@@ -41,3 +41,21 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 641920ce3bfc1f745aa901513835c7ba, type: 3}
   - key: soldout
     sprite: {fileID: 21300000, guid: efacef9e143857d4680e613bdb130494, type: 3}
+  - key: Wizard
+    sprite: {fileID: 21300000, guid: 7ef56a8a3b11bc34d8085e6e64b2b16b, type: 3}
+  - key: ChainWizard
+    sprite: {fileID: 21300000, guid: e11a6dcbfa5af524c95a6de29c7bc486, type: 3}
+  - key: SpoonKiller
+    sprite: {fileID: 21300000, guid: 3d04346f92341d64a8c12023d57ceedf, type: 3}
+  - key: StoreOner
+    sprite: {fileID: 21300000, guid: cc793fda1c7a35b48bf04418234bfa99, type: 3}
+  - key: BrokenShard
+    sprite: {fileID: 21300000, guid: 92e8e5e6c04bfbe46822c31c174ec9e9, type: 3}
+  - key: WaterRocket
+    sprite: {fileID: 21300000, guid: 63f77a3dc73dc5c46a9f49096b858e75, type: 3}
+  - key: GracefulCharity
+    sprite: {fileID: 21300000, guid: f7a1a491228db70449c0f7e7f0a42b31, type: 3}
+  - key: SiteSupervisor
+    sprite: {fileID: 21300000, guid: 5c682029389acc44ca9e83550038fbe6, type: 3}
+  - key: HealingPack
+    sprite: {fileID: 21300000, guid: b11e6c94cc3c1474db7fcf886af7a763, type: 3}

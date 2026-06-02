@@ -299,6 +299,7 @@ public class UiManager : MonoBehaviour
             yield return null;
         }
         loadingPanal.anchoredPosition = targetPos;
+        loadingPanal.gameObject.SetActive(false);
     }
     IEnumerator OpenEscPanal()
     {

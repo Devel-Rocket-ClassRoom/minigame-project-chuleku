@@ -29,6 +29,7 @@ public class UpgradeManager : MonoBehaviour
     public int GlobalAttackBonus => permanentBonus + thisRoundBonus + timedBonusCache;
 
     public event Action OnUpgradeChanged;
+    private int maxUpgrade = 200;
 
     void Awake()
     {
@@ -41,7 +42,9 @@ public class UpgradeManager : MonoBehaviour
         switch (scope)
         {
             case Scope.Permanent:
-                permanentBonus += amount;
+                // 일반(영구) 업그레이드만 상한 maxUpgrade(200)로 고정.
+                // 이번 라운드/일정 시간 업글은 이 위로 더 쌓일 수 있다.
+                permanentBonus = Mathf.Min(permanentBonus + amount, maxUpgrade);
                 break;
             case Scope.ThisRound:
                 thisRoundBonus += amount;
