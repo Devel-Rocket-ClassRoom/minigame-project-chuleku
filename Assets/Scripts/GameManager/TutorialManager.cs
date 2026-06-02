@@ -82,7 +82,7 @@ public class TutorialManager : MonoBehaviour
         // }
         if(cor != null) StopCoroutine(cor);
         cor =null;
-        tutorialUiPanal.SetActive(false);
+        tutorialUiPanal.SetActive(true);
         first = false;
         path = false;
         startbutton = false;
@@ -114,7 +114,7 @@ public class TutorialManager : MonoBehaviour
         DefenceGameManager.Instance.StartGame();
         ResourceManager.Instance.StartGame();
         StoreManager.Instance.StartGame();
-        ScoreManager.Instance.StartGame();
+        // ScoreManager.Instance.StartGame();
         uiPath.GetComponent<Canvas>().sortingOrder = 0;
         uiPath2.GetComponent<Canvas>().sortingOrder = 0;
         uiStartButton.GetComponent<Canvas>().sortingOrder = 0;  
@@ -202,16 +202,16 @@ public class TutorialManager : MonoBehaviour
                 break;
             case Step.BuildWall:
                 ResourceManager.Instance.AddGold(6);
-                spotlight.Show(t.GridToWorld(1,0));
+                spotlight.Show(t.GridToWorld(3,0));
                 msg = "빈 타일을 눌러 벽을 세워 길을 막아보세요.\n벽 생성은 3골드를 필요로 합니다.";
                 break;
             case Step.BuildWallSecond:
                 msg = "빈 타일을 눌러 벽을 세워 길을 막아보세요.\n벽 생성은 3골드를 필요로 합니다.";
-                spotlight.Show(t.GridToWorld(1,1));
+                spotlight.Show(t.GridToWorld(3,1));
                 break;
             case Step.BreakWall:
                 msg = "벽을 설치한 라운드에는 100%환불이 되며\n그 이외 라운드에는 난이도에 따라 1, 2, 3 골드의 비용이 지불됩니다.";
-                spotlight.Show(t.GridToWorld(1,1));
+                spotlight.Show(t.GridToWorld(3,1));
                 break;
             case Step.PreviewPath:
                 msg = "경로 미리보기로 적이 갈 길을 확인하세요.";

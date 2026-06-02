@@ -11,6 +11,7 @@ public static class DataTableManager
     public static MagicTable MagicTable => Get<MagicTable>(DataTableIds.Magic);
     public static StageTable StageTable => Get<StageTable>(DataTableIds.Stage);
     public static MonsterTable MonsterTable => Get<MonsterTable>(DataTableIds.Monster);
+    public static TipTable TipTable => Get<TipTable>(DataTableIds.Tip);
 
     static DataTableManager()
     {
@@ -42,6 +43,10 @@ public static class DataTableManager
         var monsterTable = new MonsterTable();
         monsterTable.Load(DataTableIds.Monster);
         tables.Add(DataTableIds.Monster, monsterTable);
+
+        var tipTable = new TipTable();
+        tipTable.Load(DataTableIds.Tip);
+        tables.Add(DataTableIds.Tip, tipTable);
     }
 
     public static T Get<T>(string id) where T : DataTable

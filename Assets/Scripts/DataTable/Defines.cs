@@ -15,4 +15,5 @@ public static class DataTableIds
     public static readonly string Magic = "MagicTable";
     public static readonly string Stage = "StageTable";
     public static readonly string Monster = "MonsterTable";
+    public static readonly string Tip = "TipTable";
 }

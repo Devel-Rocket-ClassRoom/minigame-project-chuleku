@@ -42,6 +42,7 @@ public class SnowWind : MagicBase, IBeginDragHandler, IDragHandler, IEndDragHand
     public void OnDrag(PointerEventData eventData)
     {
         liner.ShowCircle(GetMouseWorldPosition(), radius);
+        UiManager.Instance.CloseInfo();
     }
 
     public void OnEndDrag(PointerEventData eventData)

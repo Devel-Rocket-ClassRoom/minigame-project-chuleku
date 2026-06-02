@@ -75,6 +75,7 @@ public class DefenceGameManager : MonoBehaviour
         currentStage = 1;
         currenStageText.text = $"스테이지 {currentStage}";
         phaseText.text = "메인 페이즈";
+        phaseText.color = Color.blue; // 메인 페이즈 = 파랑
         phase = Phase.Main;
         alivecount = 0;
         allCount = 0;
@@ -368,6 +369,7 @@ public class DefenceGameManager : MonoBehaviour
     }
     public void GameStartButton(int stage)
     {
+        if(!TutorialManager.Instance.IsRunning||!TutorialManager.Instance.IsTutorial)return;
         if (roundStart)
         {
             Debug.Log("게임중에는 시작을 누를수없습니다");
@@ -467,6 +469,7 @@ public class DefenceGameManager : MonoBehaviour
         ResourceManager.Instance.StartRound();
         Debug.Log("라운드 종료 준비라운드!");
         phaseText.text = "메인 페이즈";
+        phaseText.color = Color.blue; // 메인 페이즈 = 파랑
         phase = Phase.Main;
         currentStage++;
         currenStageText.text = $"스테이지 {currentStage}";
@@ -520,6 +523,7 @@ public class DefenceGameManager : MonoBehaviour
     IEnumerator BattlePhaseCor()
     {
         float delay = 0.5f;
+        phaseText.color = Color.red; // 배틀 페이즈 = 빨강 (한 번만 설정, 점 애니메이션은 색 유지)
         while(roundStart)
         {
             phaseText.text = "배틀 페이즈.";
@@ -579,6 +583,7 @@ public class DefenceGameManager : MonoBehaviour
     public void SetPhase(Phase p)
     {
         phase = p;
+        phaseText.color = p == Phase.Battle ? Color.red : Color.blue;
         phaseText.text = p == Phase.Battle ? "배틀 페이즈" : "메인 페이즈";
     }
     public void StartGame()
@@ -600,5 +605,6 @@ public class DefenceGameManager : MonoBehaviour
         currentStage = 1;
         currenStageText.text = $"스테이지 {currentStage}";
         phaseText.text = "메인 페이즈";
+        phaseText.color = Color.blue; // 메인 페이즈 = 파랑
     }
 }

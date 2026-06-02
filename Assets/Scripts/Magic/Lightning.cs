@@ -28,6 +28,7 @@ public class Lightning : MagicBase, IBeginDragHandler, IDragHandler, IEndDragHan
     public void OnDrag(PointerEventData eventData)
     {
         liner.ShowCircle(GetMouseWorldPosition(), radius);
+        UiManager.Instance.CloseInfo();
     }
 
     public void OnEndDrag(PointerEventData eventData)

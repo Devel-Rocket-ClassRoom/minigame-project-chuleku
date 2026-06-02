@@ -25,12 +25,12 @@ public class ScoreManager : MonoBehaviour
         scoreText.text = $"현재 점수 : {currentScore}";
         newRecordText.gameObject.SetActive(false);
         gameEnd = false;
-        scoreText.gameObject.SetActive(false);
-    }
-    public void StartGame()
-    {
         scoreText.gameObject.SetActive(true);
     }
+    // public void StartGame()
+    // {
+    //     scoreText.gameObject.SetActive(true);
+    // }
 
     public void SetScore(int score)
     {

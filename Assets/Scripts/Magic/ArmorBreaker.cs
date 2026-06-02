@@ -43,6 +43,7 @@ public class ArmorBreaker : MagicBase, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnDrag(PointerEventData eventData)
     {
         liner.ShowCircle(GetMouseWorldPosition(), radius);
+        UiManager.Instance.CloseInfo();
     }
 
     public void OnEndDrag(PointerEventData eventData)
