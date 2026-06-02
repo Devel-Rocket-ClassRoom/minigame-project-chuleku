@@ -22,6 +22,7 @@ public class MagicManager : MonoBehaviour
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
+        magicdeckpanal.SetActive(false);
     }
 
     // 효과 카드 등 외부에서 호출. 상한 차면 폐기.
@@ -50,7 +51,7 @@ public class MagicManager : MonoBehaviour
             magic.SetMagicId(magicId);
             magic.SetPhase(phase);
         }
-
+        TutorialUiOn();
         magicDeck.Add(new MagicInstance(id, magicId, go,phase));
         return true;
     }
@@ -65,6 +66,10 @@ public class MagicManager : MonoBehaviour
         magicDeck.RemoveAt(idx);
         if (inst.View != null) Destroy(inst.View);
         TutorialManager.Instance?.NotifyMagicUsed();
+        if(magicDeck.Count==0)
+        {
+            TutorialUiOff();
+        }
     }
 
     private static string StripResourcesPrefix(string key)

@@ -74,6 +74,7 @@ public class StoreManager : MonoBehaviour
     public void AddStock(int slotIndex,int amount)
     {
         if(slotIndex<0||slotIndex>=slots.Count)return;
+        if(slots[slotIndex].remaining==0)return;
         slots[slotIndex].remaining +=amount;
     }
 

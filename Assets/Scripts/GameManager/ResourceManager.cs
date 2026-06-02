@@ -233,4 +233,10 @@ public class ResourceManager : MonoBehaviour
         ft.transform.position = worldOrScreenPos;
         ft.Show(msg, color);
     }
+    public void TutorialSetZero()
+    {
+        SetGold(0);
+        SetMana(0);
+        SetCreateWallCoupon(0);
+    }
 }

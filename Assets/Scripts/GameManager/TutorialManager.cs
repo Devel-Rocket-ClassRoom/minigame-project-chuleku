@@ -18,6 +18,7 @@ public class TutorialManager : MonoBehaviour
         None,        // 비활성
         Intro,       // "적은 시작점→끝점으로 간다" 안내 (다음 버튼)
         ViewResource,
+        Camera,
         BuildWall,   // 벽 설치 유도
         BuildWallSecond,
         BreakWall,   // 벽 파괴 유도
@@ -50,7 +51,9 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject tutorialUiPath;
     [SerializeField] private GameObject tutorialUiGameStartButton;
     [SerializeField] private GameObject uiStartButton;
+    [SerializeField] private GameObject uiCardUseLine;
     [SerializeField] private GameObject uiPath;
+    [SerializeField] private GameObject uiPath2;
     [SerializeField] private GameObject uiStore;
     [SerializeField] private GameObject uiResourceSpotlight;
 
@@ -65,7 +68,7 @@ public class TutorialManager : MonoBehaviour
     private bool path;
     private bool startbutton;
     private Coroutine cor;
-
+    public bool IsTutorial => current !=Step.Intro&&current !=Step.ViewResource;
     private const string TutorialDoneKey = "tutorial_done";
 
     void Awake()
@@ -84,6 +87,7 @@ public class TutorialManager : MonoBehaviour
         path = false;
         startbutton = false;
         skipButton.SetActive(false);
+        uiCardUseLine.SetActive(false);
         AllFalse();
     }
     public void AllFalse()
@@ -98,6 +102,8 @@ public class TutorialManager : MonoBehaviour
         first = false;
         path = false;
         startbutton = false;
+        uiCardUseLine.SetActive(false);
+        
     }
 
     public void OnClickNo()
@@ -110,8 +116,9 @@ public class TutorialManager : MonoBehaviour
         StoreManager.Instance.StartGame();
         ScoreManager.Instance.StartGame();
         uiPath.GetComponent<Canvas>().sortingOrder = 0;
+        uiPath2.GetComponent<Canvas>().sortingOrder = 0;
         uiStartButton.GetComponent<Canvas>().sortingOrder = 0;  
-        uiStore.GetComponent<Canvas>().sortingOrder = 0;
+        uiStore.GetComponent<Canvas>().sortingOrder = 1;
         skipButton.SetActive(false);
         
     }
@@ -189,6 +196,10 @@ public class TutorialManager : MonoBehaviour
                 uiResourceSpotlight.SetActive(true);
                 manualNext = true;
                 break;
+            case Step.Camera:
+                msg = "wasd또는 마우스 누른상태로 드래그 하면 화면 이동을 할수있다.";
+                manualNext = true;
+                break;
             case Step.BuildWall:
                 ResourceManager.Instance.AddGold(6);
                 spotlight.Show(t.GridToWorld(1,0));
@@ -204,17 +215,18 @@ public class TutorialManager : MonoBehaviour
                 break;
             case Step.PreviewPath:
                 msg = "경로 미리보기로 적이 갈 길을 확인하세요.";
+                ResourceManager.Instance.TutorialSetZero();
                 tutorialUiPanal.SetActive(true);
                 path = true;
                 tutorialUiPath.SetActive(true);
                 if(cor !=null)StopCoroutine(cor);
                 cor = StartCoroutine(SizeEffect());
                 uiPath.GetComponent<Canvas>().sortingOrder = 180;
+                uiPath2.GetComponent<Canvas>().sortingOrder = 180;
                 manualNext = false;
                 break;
             case Step.PlaceUnit:
                 msg = "벽을 누르고 유닛 패널에서 유닛을 벽 위에 배치하세요.";
-
                 CardGameManager.Instance.AddResourceCard("LostGold");
                 CardGameManager.Instance.AddUnitCard("Archer");
                 manualNext = false;
@@ -234,17 +246,18 @@ public class TutorialManager : MonoBehaviour
                 manualNext = false;
                 break;
             case Step.UseCard:
-                msg = "손패의 자원 카드를 사용해 골드를 얻어보세요.";
+                msg = "손패의 자원 카드를 사용해 골드를 얻어보세요.\n중앙 부분에 카드를 드래그하여 사용 할 수 있습니다.";
                 tutorialUiPanal.SetActive(true);
                 manualNext = true;
                 break;
             case Step.UseCardTest:
                 guidePanel.SetActive(false);
                 CardGameManager.Instance.DrawCard();
+                uiCardUseLine.SetActive(true);
                 manualNext = false;
                 break;
             case Step.Shop:
-                msg = "상점에서 골드와 마나로 카드를 살 수 있습니다.";
+                msg = "상점에서 골드와 마나로 카드를 살 수 있습니다.\n우측 상단에 상점버튼을 누르면 상점이 열립니다.\n상점이 열린채 상점버튼을 한번더 누르면 닫힙니다.";
                 guidePanel.SetActive(true);
                 tutorialUiPanal.SetActive(true);
                 ResourceManager.Instance.AddMana(1);
@@ -257,7 +270,7 @@ public class TutorialManager : MonoBehaviour
                 manualNext = false;
                 break;
             case Step.BreakCard:
-                msg = "패에 있는 유닛카드를 파괴하면 벽에 배치한 유닛도 파괴됩니다.\n효과카드를 이용해 유닛카드를 파괴해봅시다.";
+                msg = "패에 있는 유닛카드를 파괴하면 벽에 배치한 유닛도 파괴됩니다.\n효과카드를 이용해 유닛카드를 파괴 해 봅시다.";
                 UiManager.Instance.StartGameUiHide();
                 tutorialUiPanal.SetActive(true);
                 guidePanel.SetActive(true);

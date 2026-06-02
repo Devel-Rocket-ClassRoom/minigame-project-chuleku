@@ -11,6 +11,7 @@ public class MouseFollowCamera : MonoBehaviour
     [SerializeField] private float zoomMax = 12f;
     [SerializeField] private float dragThreshold = 0.25f;
     [SerializeField] private float maxMoveDistance = 8f;
+    [SerializeField] private float keyboardMoveSpeed = 10f; // Player/Move(WASD) 이동 속도(유닛/초)
 
     private Vector3 forward;
     private float zoomDistance;
@@ -26,6 +27,7 @@ public class MouseFollowCamera : MonoBehaviour
 
     private InputAction mouseClick;
     private InputAction wheelValue;
+    private InputAction moveValue;
 
     void Start()
     {
@@ -36,14 +38,34 @@ public class MouseFollowCamera : MonoBehaviour
         if (cam == null) cam = Camera.main;
         mouseClick = InputSystem.actions.FindAction("Player/Attack");
         wheelValue = InputSystem.actions.FindAction("Player/Wheel");
+        moveValue = InputSystem.actions.FindAction("Player/Move");
     }
 
     void LateUpdate()
     {
-        if(TutorialManager.Instance.IsRunning)return;
+        if(!TutorialManager.Instance.IsTutorial)return;
         UpdateZoom();
         ApplyZoomDelta();
+        UpdateKeyboardMove();
         UpdateFollow();
+    }
+
+    // Player/Move(WASD·게임패드 스틱)로 카메라를 XZ 평면에서 직접 이동.
+    // 마우스 드래그와 같은 maxMoveDistance 범위 제한을 공유한다.
+    void UpdateKeyboardMove()
+    {
+        if (moveValue == null) return;
+
+        Vector2 input = moveValue.ReadValue<Vector2>();
+        if (input.sqrMagnitude < 0.0001f) return;
+
+        Vector3 delta = new Vector3(input.x, 0f, input.y) * keyboardMoveSpeed * Time.deltaTime;
+        Vector3 targetPos = ClampToMaxDistance(transform.position + delta);
+        transform.position = targetPos;
+
+        // 이동 직후 마우스 드래그 기준점도 같이 옮겨, 다음 드래그가 튀지 않게 한다.
+        dragAnchorPos = targetPos;
+        DefenceGameManager.Instance.closeButton();
     }
 
     void UpdateZoom()

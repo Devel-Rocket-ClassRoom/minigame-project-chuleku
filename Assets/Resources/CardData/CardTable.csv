@@ -12,7 +12,7 @@ ManaCollecter,Effect,ManaCollecterName,ManaCollecterDesc,0,,3,ManaCollecter,true
 SpoonKiller,Unit,SpoonKillerName,SpoonKillerDesc,0,SpoonKiller,4,CardSpoonKiller,true
 WaterRocket,Effect,WaterRocketName,WaterRocketDesc,1,WaterRocket,2,WaterRocket,true
 PotofGreed,Effect,PotofGreedName,PotofGreedDesc,0,,5,PotofGreed,true
-AttackUpAPT,Effect,AttackUpAPTName,AttackUpAPTDesc,2,,3,AttackUpAPT,true
+AttackUpAPT,Effect,AttackUpAPTName,AttackUpAPTDesc,2,MasterOfForge,3,AttackUpAPT,true
 HealingPack,Resource,HealingPackName,HealingPackDesc,0,HealingPack,4,HealingPack,true
 SiteSupervisor,Resource,SiteSupervisorName,SiteSupervisorDesc,0,SiteSupervisor,6,SiteSupervisor,true
 StoreOner,Effect,StoreOnerName,StoreOnerDesc,3,StoreOner,4,StoreOner,true

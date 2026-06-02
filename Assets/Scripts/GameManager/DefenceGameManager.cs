@@ -29,6 +29,8 @@ public class DefenceGameManager : MonoBehaviour
      public TextMeshProUGUI currenStageText;
      public TextMeshProUGUI phaseText;
      public GameObject summonButton;
+     public GameObject pathbutton1;
+     public GameObject pathbutton2;
      public GameObject summonScrollView;
     public Phase CurrentPhase => phase;
      public int allCount =0;
@@ -49,7 +51,7 @@ public class DefenceGameManager : MonoBehaviour
      private bool bossKillCheck;
      public bool Round => roundStart;
     public bool diecheck;
-
+    private bool pathOnOff;
     public Difficulty difficulty = Difficulty.Easy;
 
 
@@ -78,6 +80,9 @@ public class DefenceGameManager : MonoBehaviour
         allCount = 0;
         difficulty = GameSession.SelectedDifficulty;
         diecheck = false;
+        pathOnOff = true;
+        pathbutton1.SetActive(false);
+        pathbutton2.SetActive(true);
     }
     void Start()
     {
@@ -346,7 +351,19 @@ public class DefenceGameManager : MonoBehaviour
             tileMap.WarningWallColor(currentStage);
             return;
         }
-        pathPreview.Show(tileMap, path);
+        pathOnOff = !pathOnOff;
+        if(pathOnOff)
+        {
+            pathbutton1.SetActive(false);
+            pathbutton2.SetActive(true);
+            
+        }
+        else
+        {
+            pathbutton1.SetActive(true);
+            pathbutton2.SetActive(false);
+        }
+        tileMap.PathOnOff(pathOnOff);
         TutorialManager.Instance?.NotifyPathPreviewed();
     }
     public void GameStartButton(int stage)

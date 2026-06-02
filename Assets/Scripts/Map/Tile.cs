@@ -10,6 +10,7 @@ public class Tile : MonoBehaviour
     public int Coupon;
     public GameObject Wall;
     public GameObject Unit;
+    public Color origin;
     // public TowerUnit placedUnit;
 
 }

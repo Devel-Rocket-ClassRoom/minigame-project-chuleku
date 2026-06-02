@@ -43,10 +43,10 @@ public class InfoUi : MonoBehaviour
             }
             break;
             case CardType.Effect:
-            infoState.text = $"마나 : {data.Mana}";
+            infoState.text = $"마나 : {data.Mana}\n카드 타입: {data.Type}";
             break;
             case CardType.Resource:
-            infoState.text = $"마나 : {data.Mana}";
+            infoState.text = $"마나 : {data.Mana}\n카드 타입: {data.Type}";
             break;
         }
         infobuyButton.onClick.RemoveAllListeners();

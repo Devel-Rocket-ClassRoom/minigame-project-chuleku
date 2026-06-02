@@ -246,6 +246,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5936041497431322318, guid: 82fa3decb26f46b42bce05b46f1730a9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936041497431322318, guid: 82fa3decb26f46b42bce05b46f1730a9, type: 3}
+      propertyPath: m_RenderAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6988430826881509464, guid: 82fa3decb26f46b42bce05b46f1730a9, type: 3}
       propertyPath: m_Name
       value: Slash_VFX
