@@ -109,7 +109,7 @@ MonoBehaviour:
     type: 1
     loop: 1
   - key: InGameBGM
-    clip: {fileID: 8300000, guid: 7ac2750b98686b04ab1bdf5f9fbc79ad, type: 3}
+    clip: {fileID: 8300000, guid: 4128a4baaa47f8249b149187f12ffcc5, type: 3}
     volume: 1
     type: 1
     loop: 1
@@ -184,7 +184,7 @@ MonoBehaviour:
     type: 0
     loop: 0
   - key: BuyCard
-    clip: {fileID: 8300000, guid: 6350312b9290e4a75b635bdec0e1e4de, type: 3}
+    clip: {fileID: 8300000, guid: e650d8c8dd218404eb7ab355a3e2f4b6, type: 3}
     volume: 1
     type: 0
     loop: 0
@@ -195,6 +195,36 @@ MonoBehaviour:
     loop: 0
   - key: ChainWizardAttack
     clip: {fileID: 8300000, guid: eef75dedbe6554475a96010ccb2c16e4, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: NewRecord
+    clip: {fileID: 8300000, guid: 94ccc4d397c0e6343a82a96616c16101, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: NextRound
+    clip: {fileID: 8300000, guid: 469ba9b3d5c886b4e9c2fa674a03cb7a, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: Noop
+    clip: {fileID: 8300000, guid: 729d6dd51a2a48d449926e592ed814f5, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: UserDie
+    clip: {fileID: 8300000, guid: 8dd4283ce98bbdd4d8965194c8d93322, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: UserDieBGM
+    clip: {fileID: 8300000, guid: 77d2dcdc03bf4ce40954c52d7a508b29, type: 3}
+    volume: 1
+    type: 1
+    loop: 1
+  - key: SpawnUnit
+    clip: {fileID: 8300000, guid: 47f7f75799394d44bb3e2d879baec9c8, type: 3}
     volume: 1
     type: 0
     loop: 0

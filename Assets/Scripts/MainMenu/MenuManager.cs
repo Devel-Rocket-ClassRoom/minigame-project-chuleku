@@ -41,7 +41,7 @@ public class MenuManager : MonoBehaviour
         settingPanal.anchoredPosition = hideSettingPanal;
         difficultyPanal.anchoredPosition = hidePanal;
         Loading = false;
-        loadingBar.value = 0;
+        loadingBar.value = 1;
         tipText.text = "Tip!";
         tipText.text = GameSession.tipText;
     }
@@ -181,6 +181,7 @@ public class MenuManager : MonoBehaviour
         guardPanal.SetActive(true);
         float t =0;
         float speed = 15f;
+        loadingBar.value = 0;
         Vector2 startPos = loadingPanal.anchoredPosition;
         Vector2 targetPos = viewPanal;
         SoundManager.Play("InLoading");

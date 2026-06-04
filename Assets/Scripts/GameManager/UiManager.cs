@@ -38,6 +38,7 @@ public class UiManager : MonoBehaviour
     public TextMeshProUGUI tipText;
     public Slider loadingbar;
     public GameObject guardPanal;
+    private bool isLoading;
 
     void Awake()
     {
@@ -55,6 +56,7 @@ public class UiManager : MonoBehaviour
         loadingPanal.anchoredPosition = Vector2.zero;
         lodingText.text = "Loding!";
         loadingbar.value = 1f;
+        isLoading = false;
         tipText.text = GameSession.tipText;
         
     }
@@ -66,6 +68,7 @@ public class UiManager : MonoBehaviour
 
     void Update()
     {
+        if(isLoading)return;
         Pause();
     }
 
@@ -122,6 +125,7 @@ public class UiManager : MonoBehaviour
 
     IEnumerator ToMainMenuCor()
     {
+        isLoading = true;
         // 1) 로딩패널로 화면 덮기 (hide → view) — MenuManager.LoadInGame과 동일
         guardPanal.SetActive(true);
         loadingPanal.gameObject.SetActive(true);     // reveal 때 꺼졌으므로 다시 켠다
@@ -163,7 +167,7 @@ public class UiManager : MonoBehaviour
             yield return null;
         }
         loadingbar.value = 1f;
-
+        isLoading = false;
         // 3) 씬 전환 직전에 메뉴가 덮은 상태로 시작하도록 신호 + 정리
         menuLoading = false;
         if (menuLoadingTextCor != null) StopCoroutine(menuLoadingTextCor);
@@ -365,6 +369,7 @@ public class UiManager : MonoBehaviour
     }
     IEnumerator HideLoadingPanalCor()
     {
+        isLoading = true;
         yield return new WaitForSeconds(1f);
         float t = 0;
         float speed = 15f;
@@ -378,6 +383,7 @@ public class UiManager : MonoBehaviour
             yield return null;
         }
         loadingPanal.anchoredPosition = targetPos;
+        isLoading = false;
         loadingPanal.gameObject.SetActive(false);
     }
     IEnumerator OpenEscPanal()

@@ -167,11 +167,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitPanel
   cardId: 
-  price: 0
   cost: 0
+  mana: 0
   cardType: 0
   useAble: 0
   nameText: {fileID: 0}
   descText: {fileID: 0}
-  costText: {fileID: 0}
+  manaText: {fileID: 0}
   artworkImage: {fileID: 8445024042837174425}
+  cardEffect: {fileID: 0}
+  destroyFx: {fileID: 0}
+  destroyFxLength: 1
+  destroyRise: 80

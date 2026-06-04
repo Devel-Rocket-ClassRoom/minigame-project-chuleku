@@ -71,6 +71,7 @@ public class ScoreManager : MonoBehaviour
         if(isNewRecord)
         {
             newRecordText.gameObject.SetActive(true);
+            SoundManager.Play("NewRecord");
             StartCoroutine(randomColor());
         }
     }

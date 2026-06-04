@@ -240,7 +240,10 @@ public class CardGameManager : MonoBehaviour
 
         // 런타임 생성된 버튼이라 인스펙터 onClick이 비어 있으므로 여기서 묶어줌
         var btn = btnGo.GetComponent<Button>() ?? btnGo.GetComponentInChildren<Button>();
-        if (btn != null) btn.onClick.AddListener(() => UnitSlotClicked?.Invoke(slot));
+        if (btn != null)
+        {
+            btn.onClick.AddListener(() => UnitSlotClicked?.Invoke(slot));
+        } 
     }
 
     // 외부(TileMap.BreakUnit 등)에서 배치 유닛이 파괴되었을 때 호출.

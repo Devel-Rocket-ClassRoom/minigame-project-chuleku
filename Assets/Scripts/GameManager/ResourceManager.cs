@@ -73,6 +73,8 @@ public class ResourceManager : MonoBehaviour
         if(Hp==0)
         {
             UiManager.Instance.gameoverText.text = "게임 오버!";
+            SoundManager.Play("UserDie");
+            SoundManager.PlayBgm("UserDieBGM");
             UiManager.Instance.GameEnd();
         }
     }

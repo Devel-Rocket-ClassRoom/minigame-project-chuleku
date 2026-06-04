@@ -116,6 +116,7 @@ public class DefenceGameManager : MonoBehaviour
         Vector3 pos = tileMap.GridToWorld(tileGrid.x, tileGrid.y);
         pos.y = 3.5f;
         slot.placedUnit = Instantiate(prefab, pos, Quaternion.identity);
+        SoundManager.Play("SpawnUnit"); // 가드를 모두 통과해 실제 배치(소환)에 성공했을 때만 재생
 
         var unit = slot.placedUnit.GetComponent<UnitBase>();
         if (unit != null) unit.SetupUnitStatus(udata.Attack, udata.AttackSpeed, udata.Range,udata.UpgradeAmount);
@@ -268,6 +269,7 @@ public class DefenceGameManager : MonoBehaviour
         {
             Debug.Log("게임중에는 벽을 설치할수 없습니다.");
             CenterToast.Show("게임 중 에는 벽을 설치 할 수 없습니다.");
+            SoundManager.Play("Noop");
             closeButton();
             return;
         }
@@ -288,6 +290,7 @@ public class DefenceGameManager : MonoBehaviour
         {
             Debug.Log("골드가 부족 합니다.");
             CenterToast.Show("골드가 부족 합니다.");
+            SoundManager.Play("Noop");
         }
         closeButton();
     }
@@ -297,6 +300,7 @@ public class DefenceGameManager : MonoBehaviour
         {
             Debug.Log("게임 중에는 벽을 부술수없습니다.");
             CenterToast.Show("게임 중에는 벽을 부술 수 없습니다.");
+            SoundManager.Play("Noop");
             closeButton();
             return;
         }
@@ -353,6 +357,8 @@ public class DefenceGameManager : MonoBehaviour
         if (path == null)
         {
             Debug.Log("경로를 찾을 수 없습니다.");
+            CenterToast.Show("경로를 찾을 수 없습니다..");
+            SoundManager.Play("Noop");
             tileMap.WarningWallColor(currentStage);
             return;
         }
@@ -388,7 +394,8 @@ public class DefenceGameManager : MonoBehaviour
         {
             Debug.Log("길을 찾을수없습니다.");
             CenterToast.Show("길이 막혀 있어 시작할 수 없습니다.");
-             tileMap.WarningWallColor(currentStage);
+            SoundManager.Play("Noop");
+            tileMap.WarningWallColor(currentStage);
             return;
         }
         if(stage !=1111)
@@ -418,6 +425,7 @@ public class DefenceGameManager : MonoBehaviour
         ResourceManager.Instance.enemyCountText.text = $"{alivecount}/{allCount}";
         spawnCoroutines.Clear();
         SoundManager.Play("RoundStart");
+        SoundManager.Play("NextRound");
         foreach(var g in Groups)
         {
             var prefab = LoadMonsterPrefab(g.Prefab);

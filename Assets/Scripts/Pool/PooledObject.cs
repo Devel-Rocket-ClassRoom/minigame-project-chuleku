@@ -11,7 +11,6 @@ public class PooledObject : MonoBehaviour
     private ParticleSystem[] particles;  // Get 시 리셋해 줄 파티클들
     private Coroutine despawnRoutine;     // 지연 회수 코루틴 핸들
     private bool released;                // 중복 회수 가드
-
     public GameObject SourcePrefab => sourcePrefab;
     public bool IsReleased => released;
 

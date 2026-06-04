@@ -62,6 +62,7 @@ public class InfoUi : MonoBehaviour
             var ft = Instantiate(floatingText,infobuyButton.transform);
             ft.transform.position = infobuyButton.transform.position;
             ft.Show("마나 가 부족합니다.",Color.blue);
+            SoundManager.Play("Noop");
             return;
         }
         if(ResourceManager.Instance.Gold<data.Cost)
@@ -69,6 +70,7 @@ public class InfoUi : MonoBehaviour
             var ft = Instantiate(floatingText,infobuyButton.transform);
             ft.transform.position = infobuyButton.transform.position;
             ft.Show("골드 가 부족합니다.",Color.red);
+            SoundManager.Play("Noop");
             return;   
         }
         if (StoreManager.Instance.BuyOne(stockslot))
