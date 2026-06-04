@@ -43,12 +43,12 @@ public class Lightning : MagicBase, IBeginDragHandler, IDragHandler, IEndDragHan
         {
             Vector3 tileWorldPos = tileMap.GridToWorld(gx, gz);
 
-            GameObject lightning = Instantiate(lightningobj, tileWorldPos, Quaternion.identity);
+            GameObject lightning = PoolManager.Instance.Spawn(lightningobj, tileWorldPos, Quaternion.identity);
             LightningObj obj = lightning.GetComponent<LightningObj>();
             obj.Setup(tileWorldPos,radius);
             MagicManager.Instance.UseMagic(instanceId);
-            Destroy(obj,3.5f);
-            // Destroy(gameObject);
+            // LightningObj가 코루틴 종료 시 스스로 풀로 회수하므로 여기서 별도 처리 안 함
+            // (기존 Destroy(obj,3.5f)는 컴포넌트만 파괴하던 무의미 코드라 제거)
         }
             
     }

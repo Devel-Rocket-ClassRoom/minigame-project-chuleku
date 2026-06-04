@@ -72,8 +72,8 @@ public class Adrenaline : MagicBase, IBeginDragHandler, IDragHandler, IEndDragHa
             while (t != null && !t.CompareTag("Unit")) t = t.parent;
             if (t == null || !seen.Add(t)) continue;
 
-            GameObject go = Instantiate(powerUpEffect, t.position, Quaternion.identity);
-            Destroy(go, 8f);
+            GameObject go = PoolManager.Instance.Spawn(powerUpEffect, t.position, Quaternion.identity);
+            PoolManager.Instance.Despawn(go, 8f);
         }
         UpgradeManager.Instance.AddAttackBonus(10,Scope.Timed,8f);
         MagicManager.Instance.UseMagic(instanceId);

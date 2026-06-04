@@ -59,10 +59,10 @@ public class FireBallobj : MonoBehaviour
                 
             }
         }
-        GameObject go = Instantiate(exploedEffect,transform.position,Quaternion.identity);
+        GameObject go = PoolManager.Instance.Spawn(exploedEffect, transform.position, Quaternion.identity);
         SoundManager.Play("FireBallHit");
-        
-        Destroy(go,3f);
-        Destroy(gameObject);
+
+        PoolManager.Instance.Despawn(go, 3f);
+        PoolManager.Instance.Despawn(gameObject);
     }
 }

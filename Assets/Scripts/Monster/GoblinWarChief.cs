@@ -4,22 +4,16 @@ using UnityEngine;
 
 public class GoblinWarChief : DamageAble
 {
-    private Animator animator;
+    // dieCheck / animator 는 DamageAble base로 이동(OnEnable에서 일괄 리셋)
     public GameObject shieldPrefab;
-    private bool dieCheck;
     private float cooltime = 5f;
     private float cool =0;
     private bool isCasting;
     private Coroutine scor;
-    void Awake()
-    {
-        dieCheck = false;
-        animator = GetComponent<Animator>();
-    }
     protected override void OnEnable()
     {
         base.OnEnable();
-        dieCheck = false;
+        // 이 적 고유 상태만 추가 리셋 (isDead/dieCheck/animator/콜라이더는 base가 처리)
         isCasting = false;
         cool = 0;
     }
@@ -52,8 +46,8 @@ public class GoblinWarChief : DamageAble
     {
         DefenceGameManager.Instance.EnemyDie();
         ResourceManager.Instance.AddShard(2);
-        
-        Destroy(gameObject);
+
+        PoolManager.Instance.Despawn(gameObject);
     }
     private void MonsterSkill()
     {

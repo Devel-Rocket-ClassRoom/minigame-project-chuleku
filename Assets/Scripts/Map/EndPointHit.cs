@@ -11,13 +11,13 @@ public class EndPointHit : MonoBehaviour
             ResourceManager.Instance.TakeDamage(1);
             DefenceGameManager.Instance.EnemyDie();
             SoundManager.Play("EndPosHit");
-            Destroy(other.gameObject);
+            PoolManager.Instance.Despawn(other.gameObject);
             break;
             case EnemyType.Boss:
             ResourceManager.Instance.TakeDamage(10);
             DefenceGameManager.Instance.EnemyDie();
             SoundManager.Play("EndPosHit");
-            Destroy(other.gameObject);
+            PoolManager.Instance.Despawn(other.gameObject);
             break;
         }
     }

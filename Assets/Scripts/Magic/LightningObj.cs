@@ -39,7 +39,7 @@ public class LightningObj : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             if (t > 3.5f)
             {
-                Destroy(gameObject);
+                PoolManager.Instance.Despawn(gameObject);
                 break;
             }
         }

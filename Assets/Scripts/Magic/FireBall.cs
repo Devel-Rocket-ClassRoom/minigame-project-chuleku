@@ -46,7 +46,7 @@ public class FireBall : MagicBase, IBeginDragHandler, IDragHandler, IEndDragHand
             Vector3 tileWorldPos = tileMap.GridToWorld(gx, gz);
             Vector3 spawnPosition = tileWorldPos + spawnPointOffset;
 
-            GameObject fireball = Instantiate(Fireball, spawnPosition, Quaternion.identity);
+            GameObject fireball = PoolManager.Instance.Spawn(Fireball, spawnPosition, Quaternion.identity);
             FireBallobj obj = fireball.GetComponent<FireBallobj>();
             if(obj !=null)
             {

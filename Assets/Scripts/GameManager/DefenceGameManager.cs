@@ -435,7 +435,7 @@ public class DefenceGameManager : MonoBehaviour
         while(c<count)
         {
             Vector3 pos = tileMap.GridToWorld(TileMap.Start);
-            GameObject go =Instantiate(prefab,pos,Quaternion.identity);
+            GameObject go = PoolManager.Instance.Spawn(prefab, pos, Quaternion.identity);
             go.GetComponent<MoveEnemy>().SetPath(path);
             c++;
             yield return new WaitForSeconds(delay);

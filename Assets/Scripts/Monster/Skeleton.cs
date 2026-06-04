@@ -2,13 +2,7 @@ using UnityEngine;
 
 public class Skeleton : DamageAble
 {
-    private Animator animator;
-    private bool dieCheck;
-    void Awake()
-    {
-        dieCheck = false;
-        animator = GetComponent<Animator>();
-    }
+    // dieCheck / animator 는 DamageAble base로 이동(풀 재사용 시 OnEnable에서 일괄 리셋)
     public override void Die()
     {
         if (dieCheck) return;
@@ -20,8 +14,8 @@ public class Skeleton : DamageAble
     public void AnimationDestroy()
     {
         DefenceGameManager.Instance.EnemyDie();
-        
-        Destroy(gameObject);
+
+        PoolManager.Instance.Despawn(gameObject);
     }
 
 }

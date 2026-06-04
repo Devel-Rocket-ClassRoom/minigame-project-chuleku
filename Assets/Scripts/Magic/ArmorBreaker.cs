@@ -69,8 +69,10 @@ public class ArmorBreaker : MagicBase, IBeginDragHandler, IDragHandler, IEndDrag
             {
                 c.GetComponent<DamageAble>().defense -=1;
 
-                GameObject go = Instantiate(effectprefab,c.gameObject.transform.position,Quaternion.identity,c.gameObject.transform);
-                Destroy(go,3f);
+                // 적의 자식으로 붙이지 않는다: 적이 3초 안에 죽으면 자식 이펙트(풀 객체)도
+                // 함께 파괴되어 풀에서 누수되기 때문. 시전 시점 위치에 고정 표시 후 회수.
+                GameObject go = PoolManager.Instance.Spawn(effectprefab, c.transform.position, Quaternion.identity);
+                PoolManager.Instance.Despawn(go, 3f);
             }
         }
         MagicManager.Instance.UseMagic(instanceId);

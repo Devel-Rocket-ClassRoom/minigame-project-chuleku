@@ -24,5 +24,6 @@ public class Wizard : UnitBase
             if (d == null || d.isDead) { list.RemoveAt(i); continue; }
             d.TakeDamage(damage);
         }
+        SoundManager.Play("WizardAttack");
     }
 }

@@ -188,3 +188,13 @@ MonoBehaviour:
     volume: 1
     type: 0
     loop: 0
+  - key: WizardAttack
+    clip: {fileID: 8300000, guid: 53b39570d3fc64c6ea7eabfb471c2772, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: ChainWizardAttack
+    clip: {fileID: 8300000, guid: eef75dedbe6554475a96010ccb2c16e4, type: 3}
+    volume: 1
+    type: 0
+    loop: 0

@@ -13,6 +13,7 @@ public class Arrow : MonoBehaviour
     {
         target = t;
         speed = s;
+        lifetime = 0f; // 풀에서 재사용될 때 이전 수명이 남아 즉시 소멸하지 않도록 초기화
     }
 
     public void ArrowDamage(int dm)
@@ -23,12 +24,12 @@ public class Arrow : MonoBehaviour
     void Update()
     {
         lifetime += Time.deltaTime;
-        if (lifetime > maxLifetime) { Destroy(gameObject); return; }
+        if (lifetime > maxLifetime) { PoolManager.Instance.Despawn(gameObject); return; }
 
         if (target == null || target.isDead)
         {
             transform.position += transform.forward * speed * Time.deltaTime;
-            Destroy(gameObject);
+            PoolManager.Instance.Despawn(gameObject);
             return;
         }
 
@@ -42,7 +43,7 @@ public class Arrow : MonoBehaviour
         if (other.TryGetComponent(out DamageAble d))
         {
             d.TakeDamage(damage);
-            Destroy(gameObject);
+            PoolManager.Instance.Despawn(gameObject);
         }
     }
 }

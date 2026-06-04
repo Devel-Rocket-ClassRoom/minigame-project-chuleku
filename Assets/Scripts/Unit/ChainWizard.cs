@@ -20,6 +20,7 @@ public class ChainWizard : UnitBase
     private IEnumerator ChainRoutine(DamageAble firstTarget)
     {
         yield return new WaitForSeconds(0.5f);
+        SoundManager.Play("ChainWizardAttack");
         var hit = new HashSet<DamageAble> { firstTarget };
         Vector3 prevPos = muzzle != null ? muzzle.position : transform.position; 
         float dmg = damage;

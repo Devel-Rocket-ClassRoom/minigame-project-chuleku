@@ -55,8 +55,8 @@ public class SnowWind : MagicBase, IBeginDragHandler, IDragHandler, IEndDragHand
     protected override void UseEffect()
     {
         Vector3 pos = tileMap.GridToWorld(TileMap.W/2,TileMap.H/2);
-        GameObject go = Instantiate(SnowWindObj,pos,Quaternion.identity);
-        Destroy(go,10f);
+        GameObject go = PoolManager.Instance.Spawn(SnowWindObj, pos, Quaternion.identity);
+        PoolManager.Instance.Despawn(go, 10f);
         MagicManager.Instance.UseMagic(instanceId);
         SoundManager.Play("SnowWindMagic");
     }

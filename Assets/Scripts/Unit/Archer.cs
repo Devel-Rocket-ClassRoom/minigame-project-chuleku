@@ -15,7 +15,7 @@ public class Archer : UnitBase
     public void ThrowArrow()
     {
         if (pendingTarget == null || pendingTarget.isDead) return;
-        var go = Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
+        var go = PoolManager.Instance.Spawn(arrowPrefab, firePoint.position, firePoint.rotation);
         var arrow = go.GetComponent<Arrow>();
         arrow.ArrowDamage((int)damage);
         arrow.Launch(pendingTarget, arrowspeed);
