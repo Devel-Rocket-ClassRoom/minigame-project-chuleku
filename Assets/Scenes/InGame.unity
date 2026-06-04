@@ -2475,6 +2475,7 @@ MonoBehaviour:
   uiPath2: {fileID: 920535020}
   uiStore: {fileID: 1057334511}
   uiResourceSpotlight: {fileID: 1480107362}
+  uiGuardPanal: {fileID: 253293822}
   spotlight: {fileID: 367796401}
 --- !u!4 &93503417
 Transform:
@@ -21191,7 +21192,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1001 &754954500
 PrefabInstance:

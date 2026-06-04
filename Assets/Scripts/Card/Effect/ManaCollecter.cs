@@ -18,6 +18,12 @@ public class ManaCollecter : EffectCardBase
                     CardGameManager.Instance.DiscardFromHand(gameObject);
                     return;
                 }
+                if(co.Value.gameObject.GetComponent<CardBase>().GetCardType()==CardType.Unit&&co.Value.gameObject.GetComponent<CardBase>().UseAble)
+                {
+
+                    CardGameManager.Instance.DiscardFromHand(gameObject);
+                    return;
+                }
             }
             CardGameManager.Instance.DrawCard();
             CardGameManager.Instance.DrawCard();

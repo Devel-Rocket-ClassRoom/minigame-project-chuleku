@@ -435,7 +435,7 @@ public class CardGameManager : MonoBehaviour
         AddEffectCard("IllegalMagic");
         AddEffectCard("IllegalMagic");
         AddEffectCard("DestroyDraw");
-    
+
         Shuffle(deck);
         DrawCard();
         DrawCard();

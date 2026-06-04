@@ -55,6 +55,8 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject uiPath2;
     [SerializeField] private GameObject uiStore;
     [SerializeField] private GameObject uiResourceSpotlight;
+    [SerializeField] private GameObject uiGuardPanal;
+
 
     [Header("스포트라이트(구멍 강조)")]
     [SerializeField] private TutorialSpotlight spotlight;
@@ -74,7 +76,8 @@ public class TutorialManager : MonoBehaviour
     {
         Instance = this;
         tutorialPanal.SetActive(true);
-        if (guidePanel != null) guidePanel.SetActive(false);
+        if (guidePanel != null)
+        guidePanel.SetActive(false);
         // if(PlayerPrefs.GetInt(TutorialDoneKey)==1)
         // {
         //     OnClickNo();
@@ -87,6 +90,7 @@ public class TutorialManager : MonoBehaviour
         startbutton = false;
         skipButton.SetActive(false);
         uiStore.SetActive(false);
+        
         AllFalse();
     }
     public void AllFalse()
@@ -97,10 +101,13 @@ public class TutorialManager : MonoBehaviour
         tutorialUiPath.SetActive(false);
         tutorialUiGameStartButton.SetActive(false);
         uiResourceSpotlight.SetActive(false);
+        guidePanel.SetActive(false);
+        uiGuardPanal.SetActive(false);
         if (spotlight != null) spotlight.Hide(); // 단계 전환 시 이전 구멍 강조 끄기
         first = false;
         path = false;
         startbutton = false;
+        
 
         // 강조용으로 180까지 올렸던 정렬값을 매 단계 기본값으로 되돌린다.
         // (안 하면 한 번 올린 버튼이 이후 단계의 강조 패널(order 100)을 계속 뚫고 나온다)
@@ -108,6 +115,10 @@ public class TutorialManager : MonoBehaviour
         SetCanvasOrder(uiPath2, 0);
         SetCanvasOrder(uiStartButton, 0);
         SetCanvasOrder(uiStore, 1);
+    }
+    void Start()
+    {
+        uiGuardPanal.SetActive(true);
     }
 
     // 지정한 오브젝트의 Canvas sortingOrder를 안전하게 설정.
@@ -212,7 +223,7 @@ public class TutorialManager : MonoBehaviour
                 manualNext = true;
                 break;
             case Step.Camera:
-                msg = "wasd또는 마우스 누른상태로 드래그 하면 화면 이동을 할수있다.";
+                msg = "wasd또는 마우스 누른상태로 드래그 하면\n화면 이동을 할수있다.";
                 manualNext = true;
                 break;
             case Step.BuildWall:
