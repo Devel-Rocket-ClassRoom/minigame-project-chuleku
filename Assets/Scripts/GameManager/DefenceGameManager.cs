@@ -425,7 +425,7 @@ public class DefenceGameManager : MonoBehaviour
         alivecount = allCount;
         ResourceManager.Instance.enemyCountText.text = $"{alivecount}/{allCount}";
         spawnCoroutines.Clear();
-        SoundManager.Play("RoundStart");
+        
         SoundManager.Play("NextRound");
         foreach(var g in Groups)
         {
