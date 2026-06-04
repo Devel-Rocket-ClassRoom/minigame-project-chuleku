@@ -29907,7 +29907,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 500
   m_TargetDisplay: 0
 --- !u!1 &1006782282
 GameObject:
@@ -29968,8 +29968,6 @@ RectTransform:
   - {fileID: 920535021}
   - {fileID: 344655949}
   - {fileID: 1013381105}
-  - {fileID: 1395242528}
-  - {fileID: 1731695470}
   - {fileID: 753522786}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -43539,68 +43537,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49f1a65b22b13064c8cc228bd8f302d2, type: 3}
---- !u!1 &1395242527
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1395242528}
-  - component: {fileID: 1395242530}
-  - component: {fileID: 1395242529}
-  m_Layer: 5
-  m_Name: "\uCE74\uB4DC \uC0AC\uC6A9 \uBC94\uC704 (1)"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1395242528
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1395242527}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.06000042}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1006782283}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.9000015, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1395242529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1395242527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e9dc50d7ad90b24fa674636f415f0e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CardUseSpotlight
-  overlay: {fileID: 0}
-  overlayObject: {fileID: 0}
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.7}
-  softness: 25
-  sortingOrder: 150
---- !u!222 &1395242530
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1395242527}
-  m_CullTransparentMesh: 1
 --- !u!4 &1396427674 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 6569cf30a0856d54da437fcba1ddd221, type: 3}
@@ -55793,68 +55729,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 7bd69d5b6182c85489899da80509fe61, type: 3}
   m_PrefabInstance: {fileID: 1823977561}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1731695469
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1731695470}
-  - component: {fileID: 1731695472}
-  - component: {fileID: 1731695471}
-  m_Layer: 5
-  m_Name: "\uCE74\uB4DC \uC0AC\uC6A9 \uBC94\uC704 (2)"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1731695470
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731695469}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0899992}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1006782283}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.860001, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1731695471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731695469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e9dc50d7ad90b24fa674636f415f0e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CardUseSpotlight
-  overlay: {fileID: 0}
-  overlayObject: {fileID: 0}
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.7}
-  softness: 25
-  sortingOrder: 150
---- !u!222 &1731695472
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731695469}
-  m_CullTransparentMesh: 1
 --- !u!1001 &1735996335
 PrefabInstance:
   m_ObjectHideFlags: 0

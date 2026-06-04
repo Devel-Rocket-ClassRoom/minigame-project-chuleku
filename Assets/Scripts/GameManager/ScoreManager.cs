@@ -60,7 +60,7 @@ public class ScoreManager : MonoBehaviour
         gameEndscoreText.text = "0";
         while(t<1f)
         {
-            t += Time.fixedDeltaTime*speed;
+            t += Time.unscaledDeltaTime*speed; // 결과/일시정지(timeScale=0) 중에도 카운트업 동작 + 프레임레이트 독립
             gameEndscoreText.text = Mathf.RoundToInt(Mathf.Lerp(0,currentScore,t)).ToString();
             yield return null;
         }

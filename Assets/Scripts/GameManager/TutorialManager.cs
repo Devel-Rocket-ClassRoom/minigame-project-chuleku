@@ -182,6 +182,7 @@ public class TutorialManager : MonoBehaviour
     {
         current = step;
         AllFalse();
+        SoundManager.Play("RoundStart");
         ShowStep(step);
     }
 
@@ -429,7 +430,7 @@ public class TutorialManager : MonoBehaviour
         Vector3 twe = new Vector3(2f,2f,2f);
         while(first)
         {
-            t += Time.fixedDeltaTime;
+            t += Time.deltaTime;
             if(change&&t<1f)
             {
                 tutorialUiSpawn.transform.localScale = Vector3.Lerp(twe,one,t);
@@ -449,7 +450,7 @@ public class TutorialManager : MonoBehaviour
         }
         while(path)
         {
-            t += Time.fixedDeltaTime;
+            t += Time.deltaTime;
             if(change&&t<1f)
             {
                 tutorialUiPath.transform.localScale = Vector3.Lerp(twe,one,t);
@@ -467,7 +468,7 @@ public class TutorialManager : MonoBehaviour
         }
         while(startbutton)
         {
-            t += Time.fixedDeltaTime;
+            t += Time.deltaTime;
             if(change&&t<1f)
             {
                 tutorialUiGameStartButton.transform.localScale = Vector3.Lerp(twe,one,t);

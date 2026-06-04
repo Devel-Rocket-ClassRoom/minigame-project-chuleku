@@ -396,7 +396,7 @@ public class UiManager : MonoBehaviour
         Vector3 end = Vector3.one;
         while(t<1f)
         {
-            t +=Time.fixedDeltaTime*speed;
+            t +=Time.unscaledDeltaTime*speed; // ESC 일시정지(timeScale=0) 중에도 동작 + 프레임레이트 독립
             escPanal.transform.localScale = Vector3.Lerp(start,end,t);
             yield return null;
         }
@@ -411,7 +411,7 @@ public class UiManager : MonoBehaviour
         Vector3 end = new Vector3(0.1f,0.1f,0.1f);
         while(t<1f)
         {
-            t +=Time.fixedDeltaTime*speed;
+            t +=Time.unscaledDeltaTime*speed; // ESC 일시정지(timeScale=0) 중에도 동작 + 프레임레이트 독립
             escPanal.transform.localScale = Vector3.Lerp(start,end,t);
             yield return null;
         }
