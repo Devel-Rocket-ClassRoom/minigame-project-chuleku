@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -84,6 +85,8 @@ public class SoundManager : MonoBehaviour
         if (Instance.sfxSource == null) { Debug.LogWarning("sfxSource 미할당"); return; }
 
         // 카테고리(SFX) 볼륨은 믹서가 담당. 여기선 클립별 상대 볼륨만 적용
+        if(Time.time - e.soundTime<0.05f)return;
+        e.soundTime = Time.time;
         Instance.sfxSource.PlayOneShot(e.clip, e.volume);
     }
 
