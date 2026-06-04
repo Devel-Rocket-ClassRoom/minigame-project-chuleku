@@ -61,3 +61,7 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: b11e6c94cc3c1474db7fcf886af7a763, type: 3}
   - key: MasterOfForge
     sprite: {fileID: 21300000, guid: c54faad5f51130047972380355e122d0, type: 3}
+  - key: ManaCollector
+    sprite: {fileID: 21300000, guid: 764e10f6d882f7b43b530e244155284c, type: 3}
+  - key: ManaTreasure
+    sprite: {fileID: 21300000, guid: 24fe2b77ede38ce42962c54c425134ef, type: 3}

@@ -32,7 +32,7 @@ public class LightningObj : MonoBehaviour
                     }
                     else if(d.type==EnemyType.Boss)
                     {
-                        d.TakeDamage(15,true);
+                        d.TakeDamage(15+(DefenceGameManager.Instance.currentStage*2),true);
                     }
                 }
             }

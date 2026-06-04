@@ -6,7 +6,7 @@ EffectDesc,무작위 마법카드를 획득
 ResourceName,누군가 버린 금화
 ResourceDesc,사용 시 골드 +2
 MagicName,파이어 볼
-MagicDesc,사용 시 지정범위에 화염구를 날림
+MagicDesc,사용 시 지정범위에 화염구를 날림\n일반 몬스터는 10%데미지\n보스 몬스터는 100+(스테이지*10)의 데미지
 DestroyDrawName,손패 정리
 DestroyDrawDesc,손패 카드 1장을 파괴하고\n2장 드로우
 WarriorName,전사
@@ -24,7 +24,7 @@ ManaCollecterDesc,마나+1 \n패에 효과카드가 없을시\n2장드로우
 SpoonKillerName,숟가락 살인마
 SpoonKillerDesc,사용시 공격력+1\n긴 사거리로 빠르게 공격함
 LightningName,라이트닝
-LightningDesc,일정범위 지속피해를 입힘
+LightningDesc,일정범위 지속피해를 입힘\n일반 몬스터는 0.25초당 1%데미지\n보스 몬스터는 0.25초당 15+(스테이지*2)의 데미지
 SnowWindName,눈 바람
 SnowWindDesc,적 전체 20%슬로우
 HealingPackName,구급 상자
@@ -33,7 +33,7 @@ SiteSupervisorName,건설 관리자
 SiteSupervisorDesc,벽 무료쿠폰2장 지급\n골드+3
 AttackUpAPTName,장인의 강화
 AttackUpAPTDesc,업그레이드 +2
-PotofGreedName,욕망의 항아리
+PotofGreedName,마력의 유물
 PotofGreedDesc,2장 드로우
 WaterRocketName,물로켓
 WaterRocketDesc,패에 유닛카드 만큼 드로우

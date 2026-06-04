@@ -54,7 +54,7 @@ public class FireBallobj : MonoBehaviour
                 }
                 else if(d.type==EnemyType.Boss)
                 {
-                    d.TakeDamage(100,true);
+                    d.TakeDamage(100+(DefenceGameManager.Instance.currentStage*10),true);
                 }
                 
             }

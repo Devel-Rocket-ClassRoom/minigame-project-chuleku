@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class DragCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    [SerializeField] private float useRadius = 200f; // 화면 중앙 사용 판정 반지름(px) — 스포트라이트와 공유
+
     private Transform parentAfterDrag;
     private int siblingIndexBeforeDrag;
     private Vector3 localPositionBeforeDrag;
@@ -15,7 +17,7 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             if (!CardGameManager.Instance.CanCancelCurrentTargeting())
             {
                 eventData.pointerDrag = null;
-                return;
+                return; // 이 경로는 OnEndDrag가 안 불리므로 스포트라이트도 켜면 안 됨
             }
             CardGameManager.Instance.CancelTargeting();
         }
@@ -24,7 +26,10 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         siblingIndexBeforeDrag = transform.GetSiblingIndex();
         localPositionBeforeDrag = transform.localPosition;
         transform.SetParent(transform.root);
+
+        CardUseSpotlight.Instance?.Show(useRadius);    // 중앙 드롭존 강조 켜기
     }
+
     public void RestoreToOriginalSlot()
     {
         if (parentAfterDrag == null) return;
@@ -40,12 +45,15 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        // 사용/취소 무관하게 드래그가 끝나면 스포트라이트부터 끈다.
+        CardUseSpotlight.Instance?.Hide();
+
         transform.SetParent(parentAfterDrag,true);
         transform.SetSiblingIndex(siblingIndexBeforeDrag);
         transform.DOLocalMove(localPositionBeforeDrag, 0.2f).SetEase(Ease.OutCubic);
         // 중앙 영역 체크
         float distanceFromCenter = Vector2.Distance(eventData.position, new Vector2(Screen.width / 2, Screen.height / 2));
-        float effectRadius = 200f; 
+        float effectRadius = useRadius;
 
         if (distanceFromCenter < effectRadius)
         {

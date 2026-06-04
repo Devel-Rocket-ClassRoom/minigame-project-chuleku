@@ -48,6 +48,7 @@ public class DefenceGameManager : MonoBehaviour
      private Phase phase;
      private Coroutine spawncor;
      private Coroutine phasecor;
+     private readonly List<Coroutine> spawnCoroutines = new List<Coroutine>();
      private bool bossKillCheck;
      public bool Round => roundStart;
     public bool diecheck;
@@ -266,6 +267,7 @@ public class DefenceGameManager : MonoBehaviour
         if (roundStart)
         {
             Debug.Log("게임중에는 벽을 설치할수 없습니다.");
+            CenterToast.Show("게임 중 에는 벽을 설치 할 수 없습니다.");
             closeButton();
             return;
         }
@@ -284,7 +286,8 @@ public class DefenceGameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("골드가 부족합니다.");
+            Debug.Log("골드가 부족 합니다.");
+            CenterToast.Show("골드가 부족 합니다.");
         }
         closeButton();
     }
@@ -293,6 +296,7 @@ public class DefenceGameManager : MonoBehaviour
         if(roundStart)
         {
             Debug.Log("게임 중에는 벽을 부술수없습니다.");
+            CenterToast.Show("게임 중에는 벽을 부술 수 없습니다.");
             closeButton();
             return;
         }
@@ -369,7 +373,6 @@ public class DefenceGameManager : MonoBehaviour
     }
     public void GameStartButton(int stage)
     {
-        if(!TutorialManager.Instance.IsRunning||!TutorialManager.Instance.IsTutorial)return;
         if (roundStart)
         {
             Debug.Log("게임중에는 시작을 누를수없습니다");
@@ -384,6 +387,7 @@ public class DefenceGameManager : MonoBehaviour
         if(path == null)
         {
             Debug.Log("길을 찾을수없습니다.");
+            CenterToast.Show("길이 막혀 있어 시작할 수 없습니다.");
              tileMap.WarningWallColor(currentStage);
             return;
         }
@@ -412,10 +416,12 @@ public class DefenceGameManager : MonoBehaviour
         foreach(var g in Groups)allCount += GetScaleCount(g.Count,stage);
         alivecount = allCount;
         ResourceManager.Instance.enemyCountText.text = $"{alivecount}/{allCount}";
+        spawnCoroutines.Clear();
+        SoundManager.Play("RoundStart");
         foreach(var g in Groups)
         {
             var prefab = LoadMonsterPrefab(g.Prefab);
-            StartCoroutine(SpawnMonsterCort(g.SpawnTime,GetScaleCount(g.Count,stage),g.Delay,path,prefab));
+            spawnCoroutines.Add(StartCoroutine(SpawnMonsterCort(g.SpawnTime,GetScaleCount(g.Count,stage),g.Delay,path,prefab)));
         }
         
         CardGameManager.Instance.EndRound();
@@ -468,18 +474,39 @@ public class DefenceGameManager : MonoBehaviour
         CardGameManager.Instance.StartRound();
         ResourceManager.Instance.StartRound();
         Debug.Log("라운드 종료 준비라운드!");
+
         phaseText.text = "메인 페이즈";
         phaseText.color = Color.blue; // 메인 페이즈 = 파랑
         phase = Phase.Main;
         currentStage++;
         currenStageText.text = $"스테이지 {currentStage}";
         StageCountSet(currentStage);
+        SoundManager.Play("RoundEnd");
         UiManager.Instance.ViewStoreButton();
         if(bossKillCheck)
         {
             UiManager.Instance.KillBoss();
             bossKillCheck=false;
         }
+    }
+
+    // 전투 중 튜토리얼 스킵 등으로 라운드를 강제 종료할 때 필드의 적과 스폰을 모두 정리한다.
+    public void ClearAllEnemies()
+    {
+        // 진행 중인 스폰 코루틴 중단 (더 이상 새 적이 나오지 않게)
+        foreach (var c in spawnCoroutines)
+            if (c != null) StopCoroutine(c);
+        spawnCoroutines.Clear();
+
+        // 필드에 남아있는 적 제거
+        foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+            Destroy(enemy);
+
+        roundStart = false;
+        alivecount = 0;
+        allCount = 0;
+        if (ResourceManager.Instance != null)
+            ResourceManager.Instance.enemyCountText.text = $"{alivecount}/{allCount}";
     }
 
 
@@ -600,6 +627,8 @@ public class DefenceGameManager : MonoBehaviour
             DifficultyWallCreate(60);
             break;
         }
+        if(phasecor !=null)StopCoroutine(phasecor);
+        phasecor = null;
         StageCountSet(currentStage);
         SoundManager.PlayBgm("InGameBGM");
         currentStage = 1;

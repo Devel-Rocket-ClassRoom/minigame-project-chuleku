@@ -51,7 +51,6 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject tutorialUiPath;
     [SerializeField] private GameObject tutorialUiGameStartButton;
     [SerializeField] private GameObject uiStartButton;
-    [SerializeField] private GameObject uiCardUseLine;
     [SerializeField] private GameObject uiPath;
     [SerializeField] private GameObject uiPath2;
     [SerializeField] private GameObject uiStore;
@@ -87,7 +86,7 @@ public class TutorialManager : MonoBehaviour
         path = false;
         startbutton = false;
         skipButton.SetActive(false);
-        uiCardUseLine.SetActive(false);
+        uiStore.SetActive(false);
         AllFalse();
     }
     public void AllFalse()
@@ -102,8 +101,21 @@ public class TutorialManager : MonoBehaviour
         first = false;
         path = false;
         startbutton = false;
-        uiCardUseLine.SetActive(false);
-        
+
+        // 강조용으로 180까지 올렸던 정렬값을 매 단계 기본값으로 되돌린다.
+        // (안 하면 한 번 올린 버튼이 이후 단계의 강조 패널(order 100)을 계속 뚫고 나온다)
+        SetCanvasOrder(uiPath, 0);
+        SetCanvasOrder(uiPath2, 0);
+        SetCanvasOrder(uiStartButton, 0);
+        SetCanvasOrder(uiStore, 1);
+    }
+
+    // 지정한 오브젝트의 Canvas sortingOrder를 안전하게 설정.
+    private void SetCanvasOrder(GameObject go, int order)
+    {
+        if (go == null) return;
+        var c = go.GetComponent<Canvas>();
+        if (c != null) c.sortingOrder = order;
     }
 
     public void OnClickNo()
@@ -120,7 +132,7 @@ public class TutorialManager : MonoBehaviour
         uiStartButton.GetComponent<Canvas>().sortingOrder = 0;  
         uiStore.GetComponent<Canvas>().sortingOrder = 1;
         skipButton.SetActive(false);
-        
+        uiStore.SetActive(true);
     }
 
     public void OnClickYes()
@@ -143,7 +155,10 @@ public class TutorialManager : MonoBehaviour
         current = Step.Done;
         if (guidePanel != null) guidePanel.SetActive(false);
         if (DefenceGameManager.Instance != null)
+        {
+            DefenceGameManager.Instance.ClearAllEnemies(); // 전투 중 스킵 시 필드에 남은 적/스폰 정리
             DefenceGameManager.Instance.SetPhase(Phase.Main); // 임시 전투 페이즈 원복
+        }
         PlayerPrefs.SetInt(TutorialDoneKey, 1);
         OnClickNo();
     }
@@ -192,7 +207,7 @@ public class TutorialManager : MonoBehaviour
                 cor = StartCoroutine(SizeEffect());
                 break;
             case Step.ViewResource:
-                msg = "골드,마나,샤드,쿠폰,체력,업그레이드 순으로 확인할수있습니다.";
+                msg = "골드,마나,샤드,쿠폰,업그레이드 순으로 확인할수있습니다.";
                 uiResourceSpotlight.SetActive(true);
                 manualNext = true;
                 break;
@@ -226,7 +241,7 @@ public class TutorialManager : MonoBehaviour
                 manualNext = false;
                 break;
             case Step.PlaceUnit:
-                msg = "벽을 누르고 유닛 패널에서 유닛을 벽 위에 배치하세요.";
+                msg = "벽을 누르고 유닛 소환 버튼을 누르면 패널이 나옵니다.\n패널에서 아이콘을 클릭시 해당 유닛을 배치 할 수 있습니다.";
                 CardGameManager.Instance.AddResourceCard("LostGold");
                 CardGameManager.Instance.AddUnitCard("Archer");
                 manualNext = false;
@@ -242,7 +257,7 @@ public class TutorialManager : MonoBehaviour
                 manualNext = false;
                 break;
             case Step.Battle:
-                msg = "유닛이 자동으로 적을 공격합니다.\n라운드가 끝날 때까지 지켜보세요.";
+                msg = "유닛이 자동으로 적을 공격합니다.\n적 몬스터가 끝에 도달하면 체력이 깎입니다.\n일반 -1 보스 -10";
                 manualNext = false;
                 break;
             case Step.UseCard:
@@ -253,7 +268,6 @@ public class TutorialManager : MonoBehaviour
             case Step.UseCardTest:
                 guidePanel.SetActive(false);
                 CardGameManager.Instance.DrawCard();
-                uiCardUseLine.SetActive(true);
                 manualNext = false;
                 break;
             case Step.Shop:
@@ -262,6 +276,7 @@ public class TutorialManager : MonoBehaviour
                 tutorialUiPanal.SetActive(true);
                 ResourceManager.Instance.AddMana(1);
                 StoreManager.Instance.TutorialRollStock();
+                uiStore.SetActive(true);
                 uiStore.GetComponent<Canvas>().sortingOrder = 180;
                 manualNext = true;
                 break;
@@ -270,7 +285,7 @@ public class TutorialManager : MonoBehaviour
                 manualNext = false;
                 break;
             case Step.BreakCard:
-                msg = "패에 있는 유닛카드를 파괴하면 벽에 배치한 유닛도 파괴됩니다.\n효과카드를 이용해 유닛카드를 파괴 해 봅시다.";
+                msg = "패에 있는 유닛카드를 파괴하면 \n벽에 배치한 유닛도 파괴됩니다.\n효과카드를 이용해 유닛카드를 파괴 해 봅시다.";
                 UiManager.Instance.StartGameUiHide();
                 tutorialUiPanal.SetActive(true);
                 guidePanel.SetActive(true);
@@ -285,7 +300,7 @@ public class TutorialManager : MonoBehaviour
                 manualNext = false; // 실제로 유닛카드를 파괴하면 NotifyCardDestroyed로 진행
                 break;
             case Step.UseMagic:
-                msg = "마법을 클릭시 왼쪽에서 정보를 확인할수 있습니다.\n마법을 맵 위로 드래그해 사용해보세요.";
+                msg = "마법을 클릭시 왼쪽에서 정보를 확인할수 있습니다.\n전투용 마법은 드래그 해서 사용 할 수 있습니다.\n마법을 맵 위로 드래그해 사용해보세요.";
                 guidePanel.SetActive(true);
                 DefenceGameManager.Instance.SetPhase(Phase.Battle); // 임시 전투 페이즈
                 MagicManager.Instance.AddMagic("FireBall");

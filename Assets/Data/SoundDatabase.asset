@@ -173,3 +173,18 @@ MonoBehaviour:
     volume: 1
     type: 0
     loop: 0
+  - key: RoundStart
+    clip: {fileID: 8300000, guid: 18030fff9bd8c76479a03e2ab500015a, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: RoundEnd
+    clip: {fileID: 8300000, guid: b8e4d04e6549d7b4d82f6b93d788f024, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+  - key: BuyCard
+    clip: {fileID: 8300000, guid: 6350312b9290e4a75b635bdec0e1e4de, type: 3}
+    volume: 1
+    type: 0
+    loop: 0

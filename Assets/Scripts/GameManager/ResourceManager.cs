@@ -231,7 +231,7 @@ public class ResourceManager : MonoBehaviour
     {
         var ft = Instantiate(prefab, canvasParent);
         ft.transform.position = worldOrScreenPos;
-        ft.Show(msg, color);
+        ft.ShowLoss(msg, color);
     }
     public void TutorialSetZero()
     {

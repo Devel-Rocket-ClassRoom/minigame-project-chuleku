@@ -104,6 +104,7 @@ public class StoreManager : MonoBehaviour
             rotateStoreSlot[slotIndex].GetComponent<Image>().sprite = LoadSprite("soldout");
             s.cardId = null;
         }
+        SoundManager.Play("BuyCard");
         return true;
     }
 

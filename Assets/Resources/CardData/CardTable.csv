@@ -8,10 +8,10 @@ GogumaCheeseDonGgass,Effect,GcdName,GcdDesc,1,SweetPotatoCheeseTonkatsu,4,goguma
 BreakShard,Resource,BreakShardName,BreakShardDesc,1,BrokenShard,2,BreakShard,true
 Wizard,Unit,WizardName,WizardDesc,1,Wizard,6,CardWizard,true
 GracefulCharity,Effect,GracefulCharityName,GracefulCharityDesc,0,GracefulCharity,6,GracefulCharity,true
-ManaCollecter,Effect,ManaCollecterName,ManaCollecterDesc,0,,3,ManaCollecter,true
+ManaCollecter,Effect,ManaCollecterName,ManaCollecterDesc,0,ManaCollector,3,ManaCollecter,true
 SpoonKiller,Unit,SpoonKillerName,SpoonKillerDesc,0,SpoonKiller,4,CardSpoonKiller,true
 WaterRocket,Effect,WaterRocketName,WaterRocketDesc,1,WaterRocket,2,WaterRocket,true
-PotofGreed,Effect,PotofGreedName,PotofGreedDesc,0,,5,PotofGreed,true
+PotofGreed,Effect,PotofGreedName,PotofGreedDesc,0,ManaTreasure,5,PotofGreed,true
 AttackUpAPT,Effect,AttackUpAPTName,AttackUpAPTDesc,2,MasterOfForge,3,AttackUpAPT,true
 HealingPack,Resource,HealingPackName,HealingPackDesc,0,HealingPack,4,HealingPack,true
 SiteSupervisor,Resource,SiteSupervisorName,SiteSupervisorDesc,0,SiteSupervisor,6,SiteSupervisor,true

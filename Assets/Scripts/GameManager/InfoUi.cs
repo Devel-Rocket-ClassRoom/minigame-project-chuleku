@@ -12,6 +12,7 @@ public class InfoUi : MonoBehaviour
     public TextMeshProUGUI infoStock;
     public Button infobuyButton;
     public Image infoImage;
+    [SerializeField] private FloatingText floatingText;
     void Awake()
     {
         Instance = this;
@@ -43,10 +44,10 @@ public class InfoUi : MonoBehaviour
             }
             break;
             case CardType.Effect:
-            infoState.text = $"마나 : {data.Mana}\n카드 타입: {data.Type}";
+            infoState.text = $"마나 : {data.Mana}\n카드 타입: 효과";
             break;
             case CardType.Resource:
-            infoState.text = $"마나 : {data.Mana}\n카드 타입: {data.Type}";
+            infoState.text = $"마나 : {data.Mana}\n카드 타입: 자원";
             break;
         }
         infobuyButton.onClick.RemoveAllListeners();
@@ -56,12 +57,26 @@ public class InfoUi : MonoBehaviour
     {
         var data = DataTableManager.CardTable.Get(cardId);
         if (data == null) return;
-        if(ResourceManager.Instance.Gold<data.Cost)return;
+        if(ResourceManager.Instance.Mana <1)
+        {
+            var ft = Instantiate(floatingText,infobuyButton.transform);
+            ft.transform.position = infobuyButton.transform.position;
+            ft.Show("마나 가 부족합니다.",Color.blue);
+            return;
+        }
+        if(ResourceManager.Instance.Gold<data.Cost)
+        {
+            var ft = Instantiate(floatingText,infobuyButton.transform);
+            ft.transform.position = infobuyButton.transform.position;
+            ft.Show("골드 가 부족합니다.",Color.red);
+            return;   
+        }
         if (StoreManager.Instance.BuyOne(stockslot))
         {
             CardGameManager.Instance.BuyCard(cardId);
             TutorialManager.Instance?.NotifyShopBought();
         }
+        
         ViewInfo(cardId,StoreManager.Instance.GetSlot(stockslot).remaining,StoreManager.Instance.perslot,stockslot);
     }
     protected static Sprite LoadSprite(string imageId)

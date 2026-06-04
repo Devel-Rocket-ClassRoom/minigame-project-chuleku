@@ -177,6 +177,7 @@ public class TileMap : MonoBehaviour
             else
             {
                 Debug.Log("벽 부수기 골드 부족");
+                CenterToast.Show("골드가 부족 합니다.");
             }
         }
         
