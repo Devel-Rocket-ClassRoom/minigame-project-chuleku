@@ -396,6 +396,7 @@ public class CardGameManager : MonoBehaviour
     
     public void HandHide()
     {
+        if(TutorialManager.Instance.IsRunning)return;
         hideCheck = !hideCheck;
         if(hideCheck)
         {

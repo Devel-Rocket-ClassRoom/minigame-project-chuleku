@@ -65,6 +65,7 @@ public class TutorialManager : MonoBehaviour
     private Step current = Step.None;
     public Step Current => current;
     public bool IsRunning => current != Step.None && current != Step.Done;
+    public bool TileClick => current == Step.BuildWall|| current == Step.BuildWallSecond||current == Step.BreakWall||current == Step.PlaceUnit;
     private bool first;
     private bool path;
     private bool startbutton;

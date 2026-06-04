@@ -213,6 +213,7 @@ public class UiManager : MonoBehaviour
         storecor = null;
         if(DefenceGameManager.Instance.Round)return;
         StoreManager.Instance.SetMoveHide();
+        CloseInfo();
         clickCheck = !clickCheck;
         storecor = StartCoroutine(MoveStore());
     }

@@ -41,6 +41,7 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnDrag(PointerEventData eventData)
     {
        transform.position = eventData.position;
+       UiManager.Instance.CloseInfo();
     }
 
     public void OnEndDrag(PointerEventData eventData)

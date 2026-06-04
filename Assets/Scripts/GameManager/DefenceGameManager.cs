@@ -144,6 +144,7 @@ public class DefenceGameManager : MonoBehaviour
 
     private void Update()
     {
+        if(TutorialManager.Instance.IsRunning&&!TutorialManager.Instance.TileClick)return;
         TileInput();
     }
     void TileInput()
