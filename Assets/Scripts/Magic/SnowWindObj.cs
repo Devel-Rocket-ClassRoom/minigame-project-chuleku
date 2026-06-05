@@ -26,7 +26,12 @@ public class SnowWindObj : MonoBehaviour
         {
             if(c.CompareTag("Enemy"))
             {
-                c.GetComponent<MoveEnemy>().currentMoveSpeed = c.GetComponent<MoveEnemy>().moveSpeed*0.8f;
+                var enemy = c.GetComponent<MoveEnemy>();
+                float slowed = enemy.moveSpeed * 0.8f;
+                if (enemy.currentMoveSpeed > slowed)
+                    enemy.currentMoveSpeed = slowed;
+                // if(c.GetComponent<MoveEnemy>().currentMoveSpeed <= c.GetComponent<MoveEnemy>().moveSpeed*0.8f)continue;
+                // c.GetComponent<MoveEnemy>().currentMoveSpeed = c.GetComponent<MoveEnemy>().moveSpeed*0.8f;
             }
         }
     }

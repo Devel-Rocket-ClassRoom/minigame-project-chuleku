@@ -131,6 +131,7 @@ public class UiManager : MonoBehaviour
         loadingPanal.gameObject.SetActive(true);     // reveal 때 꺼졌으므로 다시 켠다
         loadingPanal.anchoredPosition = hideLoading; // 화면 밖(hide)에서 시작
         loadingbar.value = 0f;
+        escPanal.SetActive(false);
         SoundManager.Play("InLoading");
         tipText.text = $"Tip!\n{DataTableManager.TipTable.GetRandom()}";
         GameSession.tipText = tipText.text;
