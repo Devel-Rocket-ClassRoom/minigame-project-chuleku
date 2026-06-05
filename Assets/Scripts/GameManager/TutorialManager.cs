@@ -238,7 +238,7 @@ public class TutorialManager : MonoBehaviour
                 spotlight.Show(t.GridToWorld(3,1));
                 break;
             case Step.BreakWall:
-                msg = "벽을 설치한 라운드에는 100%환불이 되며\n그 이외 라운드에는 난이도에 따라 1, 2, 3 골드의 비용이 지불됩니다.";
+                msg = "벽을 파괴 시 설치한 라운드에는 100%환불이 되며\n그 이외 라운드 에는 난이도에 따라 1, 2, 3\n골드의 비용이 지불됩니다.";
                 spotlight.Show(t.GridToWorld(3,1));
                 break;
             case Step.PreviewPath:
