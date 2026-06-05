@@ -150,6 +150,7 @@ public class MouseFollowCamera : MonoBehaviour
 
     void UpdateZoom()
     {
+        if (Time.timeScale == 0f) return; // ESC 패널 등 일시정지(timeScale=0) 중엔 줌 막기
         if (wheelValue == null) return;
         float scroll = wheelValue.ReadValue<Vector2>().y;
         if (Mathf.Abs(scroll) < 0.01f) return;
