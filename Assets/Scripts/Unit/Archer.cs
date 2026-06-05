@@ -6,7 +6,7 @@ public class Archer : UnitBase
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform firePoint;
     private DamageAble pendingTarget;
-    public float arrowspeed = 15f;
+    private float arrowspeed = 30f;
     protected override void Attack(DamageAble target)
     {
         pendingTarget = target;
