@@ -9,6 +9,7 @@ public class CardChainWizard : UnitCardBase
         if (string.IsNullOrEmpty(id)) return;
 
         MagicManager.Instance.AddMagic(id);
+        CardGameManager.Instance.DiscardFromHand(gameObject);
         int beforeId = CardGameManager.Instance.LastDrawn?.InstanceId ?? -1;
         CardGameManager.Instance.DrawCard();
         var last = CardGameManager.Instance.LastDrawn;
@@ -19,7 +20,7 @@ public class CardChainWizard : UnitCardBase
         if (d.Type == CardType.Unit)
         {
             ResourceManager.Instance.AddMana(1);
+            CardGameManager.Instance.DrawCard();
         }
-        CardGameManager.Instance.DiscardFromHand(gameObject);
     }
 }
