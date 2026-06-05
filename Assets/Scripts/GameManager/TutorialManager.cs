@@ -234,15 +234,24 @@ public class TutorialManager : MonoBehaviour
             case Step.BuildWall:
                 ResourceManager.Instance.AddGold(6);
                 spotlight.Show(t.GridToWorld(3,0));
+                first = true;
+                if(cor!=null) StopCoroutine(cor);
+                cor = StartCoroutine(SizeEffect());
                 msg = "빈 타일을 눌러 벽을 세워 길을 막아보세요.\n벽 생성은 3골드를 필요로 합니다.";
                 break;
             case Step.BuildWallSecond:
                 msg = "빈 타일을 눌러 벽을 세워 길을 막아보세요.\n벽 생성은 3골드를 필요로 합니다.";
+                first = true;
+                if(cor!=null) StopCoroutine(cor);
+                cor = StartCoroutine(SizeEffect());
                 spotlight.Show(t.GridToWorld(3,1));
                 break;
             case Step.BreakWall:
                 msg = "벽을 파괴 시 설치한 라운드에는 100%환불이 되며\n그 이외 라운드 에는 난이도에 따라 1, 2, 3\n골드의 비용이 지불됩니다.";
                 spotlight.Show(t.GridToWorld(3,1));
+                first = true;
+                if(cor!=null) StopCoroutine(cor);
+                cor = StartCoroutine(SizeEffect());
                 break;
             case Step.PreviewPath:
                 msg = "경로 미리보기로 적이 갈 길을 확인하세요.";
@@ -256,6 +265,9 @@ public class TutorialManager : MonoBehaviour
                 uiPath2.GetComponent<Canvas>().sortingOrder = 180;
                 spotlight.Show(uiPath.transform.position);
                 manualNext = false;
+                first = true;
+                if(cor!=null) StopCoroutine(cor);
+                cor = StartCoroutine(SizeEffect());
                 break;
             case Step.PlaceUnit:
                 msg = "벽을 누르고 유닛 소환 버튼을 누르면 패널이 나옵니다.\n패널에서 아이콘을 클릭시 해당 유닛을 배치 할 수 있습니다.";
@@ -297,16 +309,25 @@ public class TutorialManager : MonoBehaviour
                 uiStore.GetComponent<Canvas>().sortingOrder = 180;
                 spotlight.Show((RectTransform)uiStore.transform); // UI는 Transform 오버로드로 넘겨야 UI 좌표 처리됨(.position은 월드로 오인)
                 manualNext = false;
+                first = true;
+                if(cor!=null) StopCoroutine(cor);
+                cor = StartCoroutine(SizeEffect());
                 break;
             case Step.ShopImage:
                 msg = "상점 이미지를 클릭하면 정보가 나옵니다.";
                 spotlight.Show((RectTransform)uiShopOneSlotImageClick.transform);
                 manualNext = false;
+                first = true;
+                if(cor!=null) StopCoroutine(cor);
+                cor = StartCoroutine(SizeEffect());
                 break;
             case Step.ShopBuy:
                 msg = "구매 버튼을 눌러 구매해봅니다.\n상점 구매에는 골드와 마나 -1 이 소모가 됩니다.";
                 spotlight.Show((RectTransform)uiShopBuyButton.transform);
                 manualNext = false;
+                first = true;
+                if(cor!=null) StopCoroutine(cor);
+                cor = StartCoroutine(SizeEffect());
                 break;
             case Step.BreakCard:
                 msg = "패에 있는 유닛카드를 파괴하면 \n벽에 배치한 유닛도 파괴됩니다.\n효과카드를 이용해 유닛카드를 파괴 해 봅시다.";

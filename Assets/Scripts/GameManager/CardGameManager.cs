@@ -304,6 +304,7 @@ public class CardGameManager : MonoBehaviour
 
         var cb = targetCallback;
         EndTargeting();
+        SoundManager.Play("ThrowCard");
         cb?.Invoke(card);
     }
 

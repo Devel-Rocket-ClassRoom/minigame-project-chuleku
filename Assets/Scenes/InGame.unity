@@ -47174,9 +47174,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 63f77a3dc73dc5c46a9f49096b858e75, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -65505,10 +65505,10 @@ MonoBehaviour:
   zoomMin: -8
   zoomMax: 15
   dragThreshold: 0.25
-  maxMoveDistanceZoomedIn: 14
-  maxMoveDistanceZoomedOut: 4
+  maxMoveDistanceZoomedIn: 20
+  maxMoveDistanceZoomedOut: 8
   keyboardMoveSpeed: 10
-  edgeSize: 20
+  edgeSize: 22
   edgeMoveSpeed: 10
   groundY: 0
   edgeSpeedSlider: {fileID: 1679482168}

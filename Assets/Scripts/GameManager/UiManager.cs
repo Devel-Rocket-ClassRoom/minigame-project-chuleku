@@ -110,6 +110,7 @@ public class UiManager : MonoBehaviour
     public void RestartButton()
     {
         Time.timeScale = 1f;
+        GameSession.tipText = DataTableManager.TipTable.GetRandom();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         ScoreManager.Instance.GameEnd();
 

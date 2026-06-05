@@ -283,3 +283,9 @@ MonoBehaviour:
     type: 0
     loop: 0
     soundTime: 17.486305
+  - key: ThrowCard
+    clip: {fileID: 8300000, guid: 7db0a56927396ba45a4825ae63325ead, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+    soundTime: 0
