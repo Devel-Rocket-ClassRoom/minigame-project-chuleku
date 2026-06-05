@@ -3,7 +3,6 @@ using UnityEngine;
 public class SnowWindObj : MonoBehaviour
 {
     private float distance = 500f;
-
     void Update()
     {
         SlowMoveEnemy();

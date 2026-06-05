@@ -5190,7 +5190,7 @@ MonoBehaviour:
   AvoidExitSelectedStatus: 1
   MouseExitClip: {fileID: 0}
   MouseExitSoundVolume: 1
-  MouseClickClip: {fileID: 8300000, guid: 3157bab3f7ec79f41a8c993659a7eff1, type: 3}
+  MouseClickClip: {fileID: 8300000, guid: f7ebcb1b65ca2d4419b5233c083745bc, type: 3}
   MouseClickSoundVolume: 1
 --- !u!82 &1481858970
 AudioSource:
@@ -5204,7 +5204,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 5019441698289345216, guid: 1d112216c1018ac48b2db4a375d5019f, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -5457,7 +5457,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 5019441698289345216, guid: 1d112216c1018ac48b2db4a375d5019f, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
