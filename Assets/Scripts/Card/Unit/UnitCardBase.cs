@@ -18,7 +18,15 @@ public class UnitCardBase : CardBase
     public float AttackSpeed => cardAttackSpeed;
     public float Range => cardRange;
     public UnitTable.Data UnitData => unitdata;
-    public virtual void UseEffect() { SoundManager.Play("UseCard");}
+    public virtual void UseEffect()
+    {
+        if(!ResourceManager.Instance.TrySpendMana(mana))
+        {
+            CenterToast.Show("마나가 부족합니다.");
+            return;
+        }
+        SoundManager.Play("UseCard");
+    }
 
     public override void OnEnable()
     {

@@ -4,10 +4,8 @@ public class gogumacheesedonGgass : EffectCardBase
 {
     public override void UseEffect()
     {
-        if (!ResourceManager.Instance.TrySpendMana(mana)) return;
         base.UseEffect();
-        ResourceManager.Instance.AddMana(mana);
-
+        ResourceManager.Instance.AddMana(1);
         int beforeId = CardGameManager.Instance.LastDrawn?.InstanceId ?? -1;
         CardGameManager.Instance.DrawCard();
         var last = CardGameManager.Instance.LastDrawn;

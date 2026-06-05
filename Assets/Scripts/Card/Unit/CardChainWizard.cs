@@ -4,7 +4,6 @@ public class CardChainWizard : UnitCardBase
 {
     public override void UseEffect()
     {
-        if(!ResourceManager.Instance.TrySpendMana(mana))return;
         base.UseEffect();
         string id = DataTableManager.MagicTable?.GetRandomId();
         if (string.IsNullOrEmpty(id)) return;

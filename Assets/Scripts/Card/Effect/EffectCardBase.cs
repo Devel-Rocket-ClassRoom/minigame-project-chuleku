@@ -10,8 +10,16 @@ public class EffectCardBase : CardBase
         if (!string.IsNullOrEmpty(cardId)) Init();
         cardType = CardType.Effect;
         useAble = true;
-        SoundManager.Play("UseCard");
+        
     }
 
-    public virtual void UseEffect() { }
+    public virtual void UseEffect()
+    {
+        if(!ResourceManager.Instance.TrySpendMana(mana))
+        {
+               CenterToast.Show("마나가 부족합니다.");
+               return;
+        }
+        SoundManager.Play("UseCard");
+    }
 }

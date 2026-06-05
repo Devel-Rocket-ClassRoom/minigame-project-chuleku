@@ -10,11 +10,7 @@ public class EffectCreateMagic : EffectCardBase
             Debug.LogWarning("씬에 MagicManager가 없음");
             return;
         }
-        if (!ResourceManager.Instance.TrySpendMana(mana))
-        {
-            Debug.Log("마나 부족");
-            return;
-        }
+        base.UseEffect();
 
         string id = DataTableManager.MagicTable?.GetRandomId();
         if (string.IsNullOrEmpty(id)) return;

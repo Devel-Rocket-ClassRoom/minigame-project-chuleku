@@ -8,6 +8,7 @@ public class EffectDestroyDraw : EffectCardBase
         if (CardGameManager.Instance == null) return;
         if(ResourceManager.Instance.Mana<mana)
         {
+            CenterToast.Show("마나가 부족합니다.");
             return;
         }
 
@@ -15,12 +16,12 @@ public class EffectDestroyDraw : EffectCardBase
 
         CardGameManager.Instance.BeginTargetHandCard(gameObject, target =>
         {
-            base.UseEffect();
             CardGameManager.Instance.RemoveCardByInstanceId(target.InstanceId);
             SoundManager.Play("BreakCard");
             CardGameManager.Instance.DrawCard();
             CardGameManager.Instance.DrawCard();
             CardGameManager.Instance.DrawCard();
+            SoundManager.Play("UseCard");
             ResourceManager.Instance.TrySpendMana(mana);
             CardGameManager.Instance.DiscardFromHand(gameObject);
         });

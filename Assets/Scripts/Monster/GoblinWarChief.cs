@@ -66,10 +66,27 @@ public class GoblinWarChief : DamageAble
         float t = 0;
         GameObject go =Instantiate(shieldPrefab,transform.position,Quaternion.identity);
         SoundManager.Play("WarChiefSkillStart");
+        float skillhealing = 10f;
+        float stagehealing = 1f;
+        switch(DefenceGameManager.Instance.difficulty)
+        {
+            case Difficulty.Easy:
+                skillhealing = 10f;
+                stagehealing = 1f;
+                break;
+            case Difficulty.Normal:
+                skillhealing = 15f;
+                stagehealing = 2f;
+                break;
+            case Difficulty.Hard:
+                skillhealing = 20f;
+                stagehealing = 3f;
+                break;
+        }
         while(t<3f)
         {
-             t += 0.25f;
-            health +=20+(2*DefenceGameManager.Instance.currentStage);
+            t += 0.25f;
+            health +=skillhealing+(stagehealing*DefenceGameManager.Instance.currentStage);
             if(health>maxHealth)
             {
                 health = maxHealth;

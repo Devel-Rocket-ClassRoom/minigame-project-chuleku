@@ -4,7 +4,6 @@ public class WaterRocket : EffectCardBase
 {
     public override void UseEffect()
     {
-        if(!ResourceManager.Instance.TrySpendMana(mana))return;
         base.UseEffect();
         int count = 0;
         var h = CardGameManager.Instance.HandObjs;
