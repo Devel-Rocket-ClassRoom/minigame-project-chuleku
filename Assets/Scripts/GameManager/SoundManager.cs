@@ -32,6 +32,12 @@ public class SoundManager : MonoBehaviour
     private const string PrefBgm = "vol_bgm";
     private const string PrefUi  = "vol_ui";
 
+    // 같은 키 효과음이 너무 짧은 간격으로 중복 재생되는 것만 막는 스로틀.
+    // 상태를 SoundDatabase(SO 에셋)에 저장하면 에디터 세션 간에 값이 남아 소리가 안 나므로,
+    // 런타임 전용 딕셔너리에 보관한다(세션마다 초기화).
+    private const float PlayThrottle = 0.05f;
+    private readonly Dictionary<string, float> lastPlayTime = new Dictionary<string, float>();
+
     void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
@@ -84,9 +90,12 @@ public class SoundManager : MonoBehaviour
         if (e == null) { Debug.LogWarning($"SoundDatabase에 '{key}' 키 없음"); return; }
         if (Instance.sfxSource == null) { Debug.LogWarning("sfxSource 미할당"); return; }
 
+        // 같은 키 중복 재생 스로틀: 런타임 딕셔너리 + 언스케일드 타임(일시정지 timeScale=0 영향 없음)
+        float now = Time.unscaledTime;
+        if (Instance.lastPlayTime.TryGetValue(key, out float last) && now - last < PlayThrottle) return;
+        Instance.lastPlayTime[key] = now;
+
         // 카테고리(SFX) 볼륨은 믹서가 담당. 여기선 클립별 상대 볼륨만 적용
-        if(Time.time - e.soundTime<0.05f)return;
-        e.soundTime = Time.time;
         Instance.sfxSource.PlayOneShot(e.clip, e.volume);
     }
 

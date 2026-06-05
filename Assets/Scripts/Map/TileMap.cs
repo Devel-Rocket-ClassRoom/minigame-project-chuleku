@@ -128,6 +128,12 @@ public class TileMap : MonoBehaviour
     {
         if(tiles[x,z].Wall == null)return;
 
+        if(TutorialManager.Instance.IsRunning&&!TutorialManager.Instance.BreakCheck)
+        {
+            CenterToast.Show("튜토리얼 중엔 부술 수 없습니다.");
+            return;   
+        }
+
         if (firstWallBreakCheck)
         {
             Destroy(tiles[x,z].Wall);
@@ -278,19 +284,62 @@ public class TileMap : MonoBehaviour
     {
         firstCreateWallCheck = c;
     }
-    public void PathColorChange()
-    {
-        if(pathbool)return;
-        // 완주 시 전체 경로, 막혔으면 갈 수 있는 데까지의 부분 경로를 받는다.
-        var path = Pathfinder.FindPathPartial(this, TileMap.Start, TileMap.Goal, out bool reachedGoal);
+    // 클릭으로 선택된 타일(없으면 -1,-1). 경로/원색 베이스 위에 덧칠되는 오버레이.
+    private Vector2Int selected = new Vector2Int(-1, -1);
+    private readonly Color selectColor = Color.lightSkyBlue;
 
-        // 먼저 모든 타일을 원색으로 되돌린다(막혔을 때 "그 이후" 초록색을 지우는 역할).
+    // 타일 선택: 베이스(경로/원색)를 다시 칠한 뒤 그 위에 선택색을 덧칠한다.
+    public void SetSelectedTile(int x, int z)
+    {
+        if(!IsInBounds(x, z))return;
+        selected = new Vector2Int(x, z);
+        RepaintBase();
+        ApplySelectedOverlay();
+    }
+
+    // 선택 해제: 선택이 없으면 베이스 재계산을 건너뛴다(카메라 이동 중 매 프레임 A* 방지).
+    public void ClearSelectedTile()
+    {
+        if(selected.x < 0)return;
+        selected = new Vector2Int(-1, -1);
+        RepaintBase();
+    }
+
+    // 선택된 타일 한 칸에만 선택색을 덧칠. 베이스를 칠한 뒤 마지막에 호출한다.
+    private void ApplySelectedOverlay()
+    {
+        if(selected.x < 0 || !IsInBounds(selected.x, selected.y))return;
+        if((selected.x==0&&selected.y==0)||(selected.x==19&&selected.y==9))return;
+        var t = tiles[selected.x, selected.y];
+        if(t == null)return;
+        var r = t.GetComponent<Renderer>();
+        if(r != null) r.material.color = selectColor;
+    }
+
+    // 현재 path 표시 상태(pathbool)에 맞춰 베이스 색만 다시 칠한다(선택 오버레이 제외).
+    private void RepaintBase()
+    {
+        if(pathbool) ResetAllToOrigin();
+        else PaintPath();
+    }
+
+    private void ResetAllToOrigin()
+    {
         for (int z = 0; z < H; z++)
             for (int x = 0; x < W; x++)
             {
                 if((x==0&&z==0)||(x==19&&z==9))continue; // 시작/끝점은 원색 보존 대상에서 제외
                 tiles[x,z].GetComponent<Renderer>().material.color = tiles[x,z].origin;
             }
+    }
+
+    private void PaintPath()
+    {
+        // 완주 시 전체 경로, 막혔으면 갈 수 있는 데까지의 부분 경로를 받는다.
+        var path = Pathfinder.FindPathPartial(this, TileMap.Start, TileMap.Goal, out bool reachedGoal);
+
+        // 먼저 모든 타일을 원색으로 되돌린다(막혔을 때 "그 이후" 초록색을 지우는 역할).
+        ResetAllToOrigin();
 
         if(path == null)return; // 시작점 자체가 막힘 등 → 경로 없음
 
@@ -304,22 +353,36 @@ public class TileMap : MonoBehaviour
             tiles[p.x,p.y].GetComponent<Renderer>().material.color = pathColor;
         }
     }
+
+    // 벽 생성/제거 등 경로가 바뀔 때 호출. 베이스 재계산 후 선택 오버레이 유지.
+    public void PathColorChange()
+    {
+        RepaintBase();
+        ApplySelectedOverlay();
+    }
+
     public void PathOnOff(bool c)
     {
         pathbool = c;
-        if(pathbool)
-        {
-            for (int z = 0; z < H; z++)
-                for (int x = 0; x < W; x++)
-                {
-                    if((x==0&&z==0)||(x==19&&z==9))continue; // 시작/끝점은 원색 보존 대상에서 제외
-                    tiles[x,z].GetComponent<Renderer>().material.color = tiles[x,z].origin;
-                }
-        }
-        else
-        {
-            PathColorChange();
-        }
-       
+        RepaintBase();
+        ApplySelectedOverlay();
+    }
+
+    public void AllTileOrigin()
+    {
+        ResetAllToOrigin();
+        ApplySelectedOverlay();
+    }
+
+    public Vector3 FindWallTile()
+    {
+        for (int z = 0; z < H; z++)
+            for (int x = 0; x < W; x++)
+            {
+                if((x==0&&z==0)||(x==19&&z==9))continue; // 시작/끝점은 원색 보존 대상에서 제외
+                if(tiles[x,z].hasWall) return GridToWorld(x,z);
+            }
+        
+        return Vector3.zero;
     }
 }

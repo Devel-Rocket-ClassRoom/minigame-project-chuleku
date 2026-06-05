@@ -29,6 +29,12 @@ public class TutorialSpotlight : MonoBehaviour, ICanvasRaycastFilter
     [SerializeField] private float radius2 = 120f;
     [SerializeField] private float softness2 = 40f;
 
+    [Header("외곽 링 이미지 (옵션)")]
+    [Tooltip("스포트라이트(구멍 1) 외곽을 두를 원형 이미지. 비우면 사용 안 함")]
+    [SerializeField] private RectTransform ringImage;
+    [Tooltip("구멍 반지름 대비 링을 더 키울 여백(px)")]
+    [SerializeField] private float ringPadding = 0f;
+
     [Header("공통")]
     [SerializeField] private bool scaleWithScreen = true; // 해상도에 맞춰 반지름 비례
 
@@ -81,6 +87,35 @@ public class TutorialSpotlight : MonoBehaviour, ICanvasRaycastFilter
                   out holeCenter1, out holeRadius1);
         ApplyHole(target2, useWorld2, worldPos2, "_Center2", "_Radius2", "_Softness2", radius2, softness2, k,
                   out holeCenter2, out holeRadius2);
+
+        UpdateRing();
+    }
+
+    // 구멍 1의 화면좌표/반지름에 맞춰 원형 링 이미지를 따라다니게 한다.
+    private void UpdateRing()
+    {
+        if (ringImage == null) return;
+
+        bool active = holeRadius1 > 0f;
+        if (ringImage.gameObject.activeSelf != active) ringImage.gameObject.SetActive(active);
+        if (!active) return;
+
+        var cv = ringImage.GetComponentInParent<Canvas>();
+        Camera cam = (cv != null && cv.renderMode != RenderMode.ScreenSpaceOverlay)
+            ? cv.worldCamera
+            : null;
+
+        // 화면좌표(holeCenter1, px)를 부모 rect 로컬좌표로 변환해 위치 지정(모든 렌더 모드 대응)
+        if (ringImage.parent is RectTransform parentRt &&
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(parentRt, holeCenter1, cam, out Vector2 lp))
+        {
+            ringImage.anchoredPosition = lp;
+        }
+
+        // 구멍 지름에 맞춰 크기 지정(캔버스 스케일 보정)
+        float scale = cv != null && cv.scaleFactor > 0f ? cv.scaleFactor : 1f;
+        float sizePx = (holeRadius1 + ringPadding) * 2f / scale;
+        ringImage.sizeDelta = new Vector2(sizePx, sizePx);
     }
 
     // ───────── 단계별 제어용 공개 API ─────────
@@ -124,6 +159,7 @@ public class TutorialSpotlight : MonoBehaviour, ICanvasRaycastFilter
         target = null;  useWorld1 = false;
         target2 = null; useWorld2 = false;
         holeRadius1 = holeRadius2 = 0f;
+        if (ringImage != null) ringImage.gameObject.SetActive(false);
         if (overlayObject != null) overlayObject.SetActive(false);
     }
 
@@ -202,15 +238,19 @@ public class TutorialSpotlight : MonoBehaviour, ICanvasRaycastFilter
             ? cv.worldCamera
             : null;
 
-        Vector2 center = RectTransformUtility.WorldToScreenPoint(cam, rt.position);
+        // 피벗(rt.position)이 아니라 4개 코너의 평균을 중심으로 사용 → 피벗이 어디든 시각적 중심에 정확히 맞음
+        rt.GetWorldCorners(corners);
+        Vector2 c0 = RectTransformUtility.WorldToScreenPoint(cam, corners[0]);
+        Vector2 c1 = RectTransformUtility.WorldToScreenPoint(cam, corners[1]);
+        Vector2 c2 = RectTransformUtility.WorldToScreenPoint(cam, corners[2]);
+        Vector2 c3 = RectTransformUtility.WorldToScreenPoint(cam, corners[3]);
+        Vector2 center = (c0 + c1 + c2 + c3) * 0.25f;
 
         autoRadius = 0f;
-        rt.GetWorldCorners(corners);
-        for (int i = 0; i < 4; i++)
-        {
-            Vector2 c = RectTransformUtility.WorldToScreenPoint(cam, corners[i]);
-            autoRadius = Mathf.Max(autoRadius, Vector2.Distance(center, c));
-        }
+        autoRadius = Mathf.Max(autoRadius, Vector2.Distance(center, c0));
+        autoRadius = Mathf.Max(autoRadius, Vector2.Distance(center, c1));
+        autoRadius = Mathf.Max(autoRadius, Vector2.Distance(center, c2));
+        autoRadius = Mathf.Max(autoRadius, Vector2.Distance(center, c3));
         autoRadius += uiPadding;
         return center;
     }

@@ -27,6 +27,7 @@ public class MenuManager : MonoBehaviour
     private Difficulty difficulty;
     void Awake()
     {
+        Time.timeScale = 1f; // 인게임 일시정지/게임오버(timeScale=0) 상태로 나와도 메뉴는 항상 정상 진행되게 복구
         clickCheck = false;
         if(cor!=null)StopCoroutine(cor);
         cor = null;
@@ -66,11 +67,11 @@ public class MenuManager : MonoBehaviour
         Vector2 startPos = loadingPanal.anchoredPosition;
         Vector2 targetPos = hideLoadingPanal;
         loadingText.text = "Loading!";
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSecondsRealtime(1f); // timeScale=0 상태로 진입해도 멈추지 않게 언스케일드
         SoundManager.Play("OutLoading");
         while (t < 1f)
         {
-            t += Time.deltaTime * speed;
+            t += Time.unscaledDeltaTime * speed; // timeScale=0 중에도 패널이 정상적으로 걷히도록
             loadingPanal.anchoredPosition = Vector2.Lerp(startPos, targetPos, t);
             yield return null;
         }

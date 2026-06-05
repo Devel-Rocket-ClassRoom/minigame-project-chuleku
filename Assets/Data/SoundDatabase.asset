@@ -18,213 +18,268 @@ MonoBehaviour:
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: ManaGet
     clip: {fileID: 8300000, guid: 3157bab3f7ec79f41a8c993659a7eff1, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: UseForge
     clip: {fileID: 8300000, guid: 4d1557e34776e9f47a8998ed4aacd229, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: OpenSetting
     clip: {fileID: 8300000, guid: 28ba27ed6be44764ea476ec45c85cb9e, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 56.050816
   - key: CloseSetting
     clip: {fileID: 8300000, guid: dc938a3965f780e4c80f9bec9c3187d7, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 30.608889
   - key: InLoading
     clip: {fileID: 8300000, guid: 4283a144b1cb15841a15b621533a5395, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: OutLoading
     clip: {fileID: 8300000, guid: 9d39d05a47e85be4fb16bdcf4e4966cd, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 1.0006686
   - key: UseCard
     clip: {fileID: 8300000, guid: 1fec78cad78e4a04bb57b7058f9dd8ac, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 51.800526
   - key: SuffleCard
     clip: {fileID: 8300000, guid: 065240e70b8fa4c4eabc56e4e011b028, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 42.85352
   - key: DestroyCard
     clip: {fileID: 8300000, guid: eea5baaa6d3d5d243ba234d031d2e31d, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: CreateWall
     clip: {fileID: 8300000, guid: 49c6e62fa107fc943b1cfeeb5531041f, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 11.78111
   - key: BreakWall
     clip: {fileID: 8300000, guid: d65fc7bef481c6f4985b8a2c067dd162, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 14.104651
   - key: DrakHand
     clip: {fileID: 8300000, guid: b8e4d04e6549d7b4d82f6b93d788f024, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 54.898975
   - key: Oksusu
     clip: {fileID: 8300000, guid: 2a160c052138d81419899224ffdb349e, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: DropCard
     clip: {fileID: 8300000, guid: 990dca75ba96b304cbd0febdc954f0e0, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: ArmorBreak
     clip: {fileID: 8300000, guid: f9c1b4d79329ec3408868bf1037f4c22, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: FlyFireBall
     clip: {fileID: 8300000, guid: 7a8ab97b5c5b146dba632734c549caaa, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 53.652416
   - key: FireBallHit
     clip: {fileID: 8300000, guid: 37e5b8745f2444b32bbaaf27e84feb14, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 55.277924
   - key: MainMenuBGM
     clip: {fileID: 8300000, guid: 0741e14a19232084da6c8b22d9e3e327, type: 3}
     volume: 1
     type: 1
     loop: 1
+    soundTime: 0
   - key: InGameBGM
     clip: {fileID: 8300000, guid: 4128a4baaa47f8249b149187f12ffcc5, type: 3}
     volume: 1
     type: 1
     loop: 1
+    soundTime: 0
   - key: WarChiefSkillStart
     clip: {fileID: 8300000, guid: 2084fc484f069964baeadfeece8fef66, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: WarChiefSkillEnd
     clip: {fileID: 8300000, guid: d017031a1c18c4a4ea4a632a66da97be, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: WarriorAttack
     clip: {fileID: 8300000, guid: 91a0296ea032a4cc1a89fb8e3f4031d4, type: 3}
     volume: 0.5
     type: 0
     loop: 0
+    soundTime: 0
   - key: ArcherAttack
     clip: {fileID: 8300000, guid: 47b6fcf75f58445c8bef728f41443ff8, type: 3}
     volume: 0.5
     type: 0
     loop: 0
+    soundTime: 39.017178
   - key: SnowWindMagic
     clip: {fileID: 8300000, guid: 7144df90ae859434b86fe3228200ef55, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: ArcherPul
     clip: {fileID: 8300000, guid: 2aaa26216ebbc4043a8ba9331679297a, type: 3}
     volume: 0.5
     type: 0
     loop: 0
+    soundTime: 0
   - key: LightningMagic
     clip: {fileID: 8300000, guid: 90d25344942ae4617b613919b35931fa, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: Adrenalrin
     clip: {fileID: 8300000, guid: bf1ada71712224275aea72814760f5de, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: SpoonKillerAttack
     clip: {fileID: 8300000, guid: dc65f751125ee47c581a347a1dc93025, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: EnemyDie
     clip: {fileID: 8300000, guid: 2d1ff521351d2e84480cc6b81e34976e, type: 3}
     volume: 0.5
     type: 0
     loop: 0
+    soundTime: 39.199986
   - key: EndPosHit
     clip: {fileID: 8300000, guid: e1989e44d86d57b4a85a1ad858e46ee7, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: BreakCard
     clip: {fileID: 8300000, guid: b45c2258944ce48b39701fb3d0b7e887, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 51.800526
   - key: RoundStart
     clip: {fileID: 8300000, guid: 18030fff9bd8c76479a03e2ab500015a, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 60.00945
   - key: RoundEnd
     clip: {fileID: 8300000, guid: b8e4d04e6549d7b4d82f6b93d788f024, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 42.85352
   - key: BuyCard
     clip: {fileID: 8300000, guid: e650d8c8dd218404eb7ab355a3e2f4b6, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 59.218178
   - key: WizardAttack
     clip: {fileID: 8300000, guid: 53b39570d3fc64c6ea7eabfb471c2772, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: ChainWizardAttack
     clip: {fileID: 8300000, guid: eef75dedbe6554475a96010ccb2c16e4, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: NewRecord
     clip: {fileID: 8300000, guid: 94ccc4d397c0e6343a82a96616c16101, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: NextRound
     clip: {fileID: 8300000, guid: 469ba9b3d5c886b4e9c2fa674a03cb7a, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 36.03669
   - key: Noop
     clip: {fileID: 8300000, guid: 729d6dd51a2a48d449926e592ed814f5, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: UserDie
     clip: {fileID: 8300000, guid: 8dd4283ce98bbdd4d8965194c8d93322, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 0
   - key: UserDieBGM
     clip: {fileID: 8300000, guid: 77d2dcdc03bf4ce40954c52d7a508b29, type: 3}
     volume: 1
     type: 1
     loop: 1
+    soundTime: 0
   - key: SpawnUnit
     clip: {fileID: 8300000, guid: 47f7f75799394d44bb3e2d879baec9c8, type: 3}
     volume: 1
     type: 0
     loop: 0
+    soundTime: 35.337746
+  - key: ButtonPop
+    clip: {fileID: 8300000, guid: 3157bab3f7ec79f41a8c993659a7eff1, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+    soundTime: 16.290808
+  - key: TutorialNext
+    clip: {fileID: 8300000, guid: 2a160c052138d81419899224ffdb349e, type: 3}
+    volume: 1
+    type: 0
+    loop: 0
+    soundTime: 17.486305

@@ -18,7 +18,7 @@ public class SoundDatabase : ScriptableObject
         [Range(0f, 1f)] public float volume = 1f;
         public SoundType type = SoundType.Sfx;
         public bool loop = false;   // BGM에서만 의미 있음
-        public float soundTime;
+        public float soundTime = 0;
     }
 
     public List<Entry> entries;

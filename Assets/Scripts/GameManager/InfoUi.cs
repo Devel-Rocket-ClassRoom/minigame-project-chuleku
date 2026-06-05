@@ -23,7 +23,7 @@ public class InfoUi : MonoBehaviour
         saveCardId= cardId;
         var data = DataTableManager.CardTable?.Get(cardId);
         if(data==null) return;
-        
+        TutorialManager.Instance.NotifyStoreimage();
         infoName.text = DataTableManager.StringTable?.Get(data.Name);
         infoCost.text = $"가격 : {data.Cost}";
         infoDesc.text = DataTableManager.StringTable?.Get(data.Desc);
@@ -78,7 +78,6 @@ public class InfoUi : MonoBehaviour
             CardGameManager.Instance.BuyCard(cardId);
             TutorialManager.Instance?.NotifyShopBought();
         }
-        
         ViewInfo(cardId,StoreManager.Instance.GetSlot(stockslot).remaining,StoreManager.Instance.perslot,stockslot);
     }
     protected static Sprite LoadSprite(string imageId)

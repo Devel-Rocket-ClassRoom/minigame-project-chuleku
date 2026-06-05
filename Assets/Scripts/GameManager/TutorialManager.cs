@@ -29,7 +29,8 @@ public class TutorialManager : MonoBehaviour
         UseCard,     // 자원/효과 카드 사용 유도
         UseCardTest,
         Shop,        // 상점 안내
-        ShopTest,
+        ShopImage,
+        ShopBuy,
         BreakCard,   // 유닛 카드파괴 (설명)
         BreakCardTest, // 실제로 유닛카드 파괴 실습
         UseMagic,    // 마법 사용
@@ -56,6 +57,8 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject uiStore;
     [SerializeField] private GameObject uiResourceSpotlight;
     [SerializeField] private GameObject uiGuardPanal;
+    [SerializeField] private GameObject uiShopOneSlotImageClick;
+    [SerializeField] private GameObject uiShopBuyButton;
 
 
     [Header("스포트라이트(구멍 강조)")]
@@ -66,11 +69,12 @@ public class TutorialManager : MonoBehaviour
     public Step Current => current;
     public bool IsRunning => current != Step.None && current != Step.Done;
     public bool TileClick => current == Step.BuildWall|| current == Step.BuildWallSecond||current == Step.BreakWall||current == Step.PlaceUnit;
+    public bool BreakCheck => current == Step.BreakWall;
     private bool first;
     private bool path;
     private bool startbutton;
     private Coroutine cor;
-    public bool IsTutorial => current !=Step.Intro&&current !=Step.ViewResource;
+    public bool IsTutorial => current !=Step.Intro&&current !=Step.ViewResource&&current!=Step.None;
     private const string TutorialDoneKey = "tutorial_done";
 
     void Awake()
@@ -112,9 +116,9 @@ public class TutorialManager : MonoBehaviour
 
         // 강조용으로 180까지 올렸던 정렬값을 매 단계 기본값으로 되돌린다.
         // (안 하면 한 번 올린 버튼이 이후 단계의 강조 패널(order 100)을 계속 뚫고 나온다)
-        SetCanvasOrder(uiPath, 0);
-        SetCanvasOrder(uiPath2, 0);
-        SetCanvasOrder(uiStartButton, 0);
+        SetCanvasOrder(uiPath, 1);
+        SetCanvasOrder(uiPath2, 1);
+        SetCanvasOrder(uiStartButton, 1);
         SetCanvasOrder(uiStore, 1);
     }
     void Start()
@@ -139,18 +143,16 @@ public class TutorialManager : MonoBehaviour
         ResourceManager.Instance.StartGame();
         StoreManager.Instance.StartGame();
         // ScoreManager.Instance.StartGame();
-        uiPath.GetComponent<Canvas>().sortingOrder = 0;
-        uiPath2.GetComponent<Canvas>().sortingOrder = 0;
-        uiStartButton.GetComponent<Canvas>().sortingOrder = 0;  
-        uiStore.GetComponent<Canvas>().sortingOrder = 1;
         skipButton.SetActive(false);
         uiStore.SetActive(true);
+        current = Step.Done;
     }
 
     public void OnClickYes()
     {
         tutorialPanal.SetActive(false);
         skipButton.SetActive(true);
+        SoundManager.Play("ButtonPop");
         StartTutorial(); // ← 추가된 한 줄: 튜토리얼 오버레이 시작
     }
 
@@ -183,6 +185,7 @@ public class TutorialManager : MonoBehaviour
         current = step;
         AllFalse();
         SoundManager.Play("RoundStart");
+        SoundManager.Play("TutorialNext");
         ShowStep(step);
     }
 
@@ -225,7 +228,7 @@ public class TutorialManager : MonoBehaviour
                 manualNext = true;
                 break;
             case Step.Camera:
-                msg = "wasd또는 마우스 누른상태로 드래그 하면\n화면 이동을 할수있다.";
+                msg = "WASD 또는 화면 가장자리에 마우스를 위치시켜\n카메라를 이동 할 수 있습니다.";
                 manualNext = true;
                 break;
             case Step.BuildWall:
@@ -251,6 +254,7 @@ public class TutorialManager : MonoBehaviour
                 cor = StartCoroutine(SizeEffect());
                 uiPath.GetComponent<Canvas>().sortingOrder = 180;
                 uiPath2.GetComponent<Canvas>().sortingOrder = 180;
+                spotlight.Show(uiPath.transform.position);
                 manualNext = false;
                 break;
             case Step.PlaceUnit:
@@ -291,10 +295,17 @@ public class TutorialManager : MonoBehaviour
                 StoreManager.Instance.TutorialRollStock();
                 uiStore.SetActive(true);
                 uiStore.GetComponent<Canvas>().sortingOrder = 180;
-                manualNext = true;
+                spotlight.Show((RectTransform)uiStore.transform); // UI는 Transform 오버로드로 넘겨야 UI 좌표 처리됨(.position은 월드로 오인)
+                manualNext = false;
                 break;
-            case Step.ShopTest:
-                guidePanel.SetActive(false);
+            case Step.ShopImage:
+                msg = "상점 이미지를 클릭하면 정보가 나옵니다.";
+                spotlight.Show((RectTransform)uiShopOneSlotImageClick.transform);
+                manualNext = false;
+                break;
+            case Step.ShopBuy:
+                msg = "구매 버튼을 눌러 구매해봅니다.\n상점 구매에는 골드와 마나 -1 이 소모가 됩니다.";
+                spotlight.Show((RectTransform)uiShopBuyButton.transform);
                 manualNext = false;
                 break;
             case Step.BreakCard:
@@ -360,7 +371,18 @@ public class TutorialManager : MonoBehaviour
     {
         if (current == Step.PreviewPath) Advance();
     }
-
+    public void NotifyStoreButton()
+    {
+        if(current == Step.Shop) Advance();
+    }
+    public void NotifyStoreimage()
+    {
+        if(current == Step.ShopImage) Advance();
+    }
+    public void NotifyStoreBuyButton()
+    {
+        if(current == Step.ShopBuy) Advance();
+    }
     // DefenceGameManager.OnUnitSlotClicked (유닛 배치 성공) 후
     public void NotifyUnitPlaced()
     {
@@ -394,7 +416,7 @@ public class TutorialManager : MonoBehaviour
     // InfoUi.OnBuy (상점 구매 성공) 후 → 실습 단계(ShopTest) 완료
     public void NotifyShopBought()
     {
-        if (current == Step.ShopTest) Advance();
+        if (current == Step.ShopBuy) Advance();
     }
 
     // CardGameManager.RemoveCardByInstanceId (카드 파괴) 후 → 실습 단계 완료

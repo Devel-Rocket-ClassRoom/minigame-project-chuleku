@@ -54,6 +54,9 @@ public class DefenceGameManager : MonoBehaviour
     public bool diecheck;
     private bool pathOnOff;
     public Difficulty difficulty = Difficulty.Easy;
+    [SerializeField] private ParticleSystem tilehighlightParticle;
+    [SerializeField] private float highlightYOffset = 1f; // 타일 강조 파티클 높이(위로 올림)
+    private Vector2Int highlighttilegird;
 
 
     void Awake()
@@ -85,11 +88,15 @@ public class DefenceGameManager : MonoBehaviour
         pathOnOff = true;
         pathbutton1.SetActive(false);
         pathbutton2.SetActive(true);
+        highlighttilegird = new Vector2Int(-1, -1);
     }
     void Start()
     {
         if (CardGameManager.Instance != null)
             CardGameManager.Instance.UnitSlotClicked += OnUnitSlotClicked;
+        
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
 
     void OnDestroy()
@@ -146,12 +153,57 @@ public class DefenceGameManager : MonoBehaviour
     {
         if(TutorialManager.Instance.IsRunning&&!TutorialManager.Instance.TileClick)return;
         TileInput();
+        TileHighlight();
+        
+    }
+    void TileHighlight()
+    {
+        if (Mouse.current == null) return;
+        if(Time.timeScale==0)return;
+        if (tilehighlightParticle == null) return;
+        var c = cam != null ? cam : Camera.main;
+        if (c == null) return;
+        var m = Mouse.current.position.ReadValue();
+        var ray = c.ScreenPointToRay(m);
+        var plane = new Plane(Vector3.up, new Vector3(0f, tileMap.Origin.y, 0f));
+        if (!plane.Raycast(ray, out float dist)) return;
+
+        var world = ray.GetPoint(dist);
+        var (gx, gz) = tileMap.WorldToGrid(world);
+        if(tileMap.IsInBounds(gx, gz)&&(gx,gz)!=(highlighttilegird.x,highlighttilegird.y))
+        {
+            tilehighlightParticle.gameObject.SetActive(true);
+            // 타일 피벗(transform.position)은 메시 바닥/중심이라 기울어진 카메라에서 한 칸 아래로
+            // 보일 수 있다. 메시의 실제 윗면 중심(Renderer.bounds)에 맞춰 클릭 강조와 같은 자리에 표시.
+            var tile = tileMap.GetTile(gx, gz);
+            var rend = tile != null ? tile.GetComponent<Renderer>() : null;
+            Vector3 hpos;
+            if (rend != null)
+            {
+                hpos = rend.bounds.center;   // XZ는 메시 실제 중심
+                hpos.y = rend.bounds.max.y;  // Y는 메시 윗면
+            }
+            else
+            {
+                hpos = tile != null ? tile.transform.position : tileMap.GridToWorld(gx,gz);
+            }
+            hpos.y += highlightYOffset;
+            tilehighlightParticle.gameObject.transform.position = hpos;
+            highlighttilegird = new Vector2Int(gx,gz);
+            tilehighlightParticle.Play();
+        }
+        else if(!tileMap.IsInBounds(gx, gz))
+        {
+            tilehighlightParticle.Stop();
+            tilehighlightParticle.gameObject.SetActive(false);
+            // 무효값으로 리셋 → 밖으로 나갔다 같은 타일로 돌아와도 다시 켜지게 함
+            highlighttilegird = new Vector2Int(-1, -1);
+        }
     }
     void TileInput()
     {
         if (Mouse.current == null) return;
         if(Time.timeScale==0)return;
-
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
@@ -194,6 +246,7 @@ public class DefenceGameManager : MonoBehaviour
             if(roundStart)return;
             tileGrid = new Vector2Int(gx,gz);
             equipButton.SetActive(true);
+            tileMap.SetSelectedTile(tileGrid.x, tileGrid.y);
             if(ResourceManager.Instance.FreeCreateWallCoupon>=1)
             createWallText.text = "벽 생성";
             else createWallText.text = $"벽 생성(-{createWallCost})";
@@ -260,12 +313,27 @@ public class DefenceGameManager : MonoBehaviour
         // 만약 카메라 뒤쪽에 있는 좌표라면 UI를 그리지 않습니다.
         if (screenPos.z < 0) return;
 
+        // 패널이 화면 밖으로 나가 잘리지 않도록, 패널 크기/피벗을 고려해 화면 안으로 클램프.
+        Vector2 size = menuPanel.rect.size;
+        size.x *= menuPanel.lossyScale.x;
+        size.y *= menuPanel.lossyScale.y;
+        Vector2 pivot = menuPanel.pivot;
+
+        float minX = size.x * pivot.x;
+        float maxX = Screen.width  - size.x * (1f - pivot.x);
+        float minY = size.y * pivot.y;
+        float maxY = Screen.height - size.y * (1f - pivot.y);
+
+        screenPos.x = Mathf.Clamp(screenPos.x, minX, maxX);
+        screenPos.y = Mathf.Clamp(screenPos.y, minY, maxY);
+
         // UI 패널을 켜고 위치를 대입합니다.
         menuPanel.gameObject.SetActive(true);
         menuPanel.position = screenPos;
     }
     public void OnCreateWall()
     {
+        SoundManager.Play("ButtonPop");
         if (roundStart)
         {
             Debug.Log("게임중에는 벽을 설치할수 없습니다.");
@@ -297,6 +365,7 @@ public class DefenceGameManager : MonoBehaviour
     }
     public void OnBreakButton()
     {
+        SoundManager.Play("ButtonPop");
         if(roundStart)
         {
             Debug.Log("게임 중에는 벽을 부술수없습니다.");
@@ -346,10 +415,13 @@ public class DefenceGameManager : MonoBehaviour
         equipButton.SetActive(false);
         summonButton.SetActive(false);
         summonScrollView.SetActive(false);
+        // 선택 해제 → 베이스(경로 초록/노랑 또는 원색)는 그대로 유지하고 선택색만 제거
+        tileMap.ClearSelectedTile();
     }
     public void OnSummonButton()
     {
         summonScrollView.SetActive(true);
+        SoundManager.Play("ButtonPop");
     }
     public void PathButton()
     {

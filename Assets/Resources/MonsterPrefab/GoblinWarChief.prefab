@@ -232,7 +232,10 @@ PrefabInstance:
     - {fileID: 1640244125865682588, guid: 4dee540036a80e44c9072f1e924c5b6f, type: 3}
     - {fileID: 2963544791859733640, guid: 4dee540036a80e44c9072f1e924c5b6f, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8799418465232151656, guid: 4dee540036a80e44c9072f1e924c5b6f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4315610090996822190}
   m_SourcePrefab: {fileID: 100100000, guid: 4dee540036a80e44c9072f1e924c5b6f, type: 3}
 --- !u!224 &2405527590715842870 stripped
 RectTransform:
@@ -244,12 +247,29 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5905801754260745877, guid: 4dee540036a80e44c9072f1e924c5b6f, type: 3}
   m_PrefabInstance: {fileID: 1520503357968212127}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 7999582362987332855}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7999582362987332855 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8799418465232151656, guid: 4dee540036a80e44c9072f1e924c5b6f, type: 3}
+  m_PrefabInstance: {fileID: 1520503357968212127}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4315610090996822190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7999582362987332855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59dd80e2c09616d4bafcc7b59600b764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Billboard
 --- !u!1001 &1666195841666841299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -393,6 +413,7 @@ MonoBehaviour:
   defense: 8
   healthSlider: {fileID: 4966475160240311818}
   type: 0
+  sliderSpeed: 5
   shieldPrefab: {fileID: 8957706384153883524, guid: f18c926624fab444b8590442e8f9255a, type: 3}
 --- !u!114 &-6443589692457887653
 MonoBehaviour:
