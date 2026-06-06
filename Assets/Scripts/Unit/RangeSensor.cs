@@ -32,7 +32,9 @@ public class RangeSensor : MonoBehaviour
         float bestSq = float.MaxValue;
         for (int i = targets.Count - 1; i >= 0; i--)
         {
-            if (targets[i] == null||targets[i].isDead) { targets.RemoveAt(i); continue; }
+            // 풀링으로 SetActive(false) 된 적은 OnTriggerExit가 항상 호출되진 않아 목록에 남는다.
+            // 끝점으로 빠져나간 적은 isDead=false인 채 비활성화되므로 activeInHierarchy로 함께 거른다.
+            if (targets[i] == null || targets[i].isDead || !targets[i].gameObject.activeInHierarchy) { targets.RemoveAt(i); continue; }
             float sq = (targets[i].transform.position - p).sqrMagnitude;
             if (sq < bestSq) { bestSq = sq; best = targets[i]; }
         }
@@ -41,7 +43,7 @@ public class RangeSensor : MonoBehaviour
 
     public bool HasTarget(DamageAble d)
     {
-        return d != null && !d.isDead && targets.Contains(d);
+        return d != null && !d.isDead && d.gameObject.activeInHierarchy && targets.Contains(d);
     }
     public void UnitRange(float range)
     {
