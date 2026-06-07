@@ -773,6 +773,7 @@ MonoBehaviour:
   sensor: {fileID: 2306313092618899095}
   attackCooldown: 1
   damage: 10
+  boltMaterial: {fileID: 2100000, guid: 7ca4f0abe4d5c5244a4be72c079294be, type: 2}
 --- !u!1 &2767418204371924121
 GameObject:
   m_ObjectHideFlags: 0

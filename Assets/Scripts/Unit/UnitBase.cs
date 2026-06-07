@@ -13,11 +13,17 @@ public abstract class UnitBase : MonoBehaviour
     private float cooldownTimer;
     private bool subscribed;
     private bool isIdle;
+    private bool hadTarget;
+
+    // true면 새 타겟을 포착했을 때 첫 공격도 공격 간격(쿨다운)만큼 기다린다(즉시 발사 방지).
+    // 기본 false라 일반 타워는 기존처럼 발견 즉시 공격. 마법사 등에서만 override.
+    protected virtual bool DelayFirstAttack => false;
 
     protected virtual void OnEnable()
     {
         animator = GetComponentInChildren<Animator>();
         sensor = transform.GetComponentInChildren<RangeSensor>();
+        hadTarget = false; // 풀 재사용 시 첫 포착 딜레이를 다시 적용
 
         if (UpgradeManager.Instance != null && !subscribed)
         {
@@ -76,8 +82,14 @@ public abstract class UnitBase : MonoBehaviour
                 animator.SetTrigger("Idle");
                 isIdle = true;
             }
+            hadTarget = false;
             return;
         }
+
+        // 직전 프레임에 타겟이 없다가 방금 새로 포착한 순간
+        if (!hadTarget && DelayFirstAttack)
+            cooldownTimer = attackCooldown; // 첫 공격을 한 박자(공격 간격) 늦춘다
+        hadTarget = true;
 
         isIdle = false;
         FaceTarget(currentTarget.transform.position);
