@@ -160,7 +160,11 @@ public class DefenceGameManager : MonoBehaviour
 
     private void Update()
     {
-        if(TutorialManager.Instance.IsRunning&&!TutorialManager.Instance.TileClick)return;
+        if (TutorialManager.Instance.IsRunning && !TutorialManager.Instance.TileClick)
+        {
+            tilehighlightParticle.gameObject.SetActive(false);
+            return;
+        }
         TileInput();
         TileHighlight();
         
@@ -812,5 +816,6 @@ public class DefenceGameManager : MonoBehaviour
         currenStageText.text = $"스테이지 {currentStage}";
         phaseText.text = "메인 페이즈";
         phaseText.color = Color.blue; // 메인 페이즈 = 파랑
+        tilehighlightParticle.gameObject.SetActive(true);
     }
 }
