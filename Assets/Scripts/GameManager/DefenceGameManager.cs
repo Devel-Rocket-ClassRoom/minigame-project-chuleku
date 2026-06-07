@@ -32,6 +32,15 @@ public class DefenceGameManager : MonoBehaviour
      public GameObject pathbutton1;
      public GameObject pathbutton2;
      public GameObject summonScrollView;
+    [Header("Summon Panel 회피")]
+    [Tooltip("유닛 패널이 가리면 안 되는 고정 UI들(마법덱, 스테이지 설명창 등). 겹치면 패널을 왼쪽으로 치움")]
+    [SerializeField] private RectTransform[] avoidUI;
+    [SerializeField] private float summonPanelGap = 12f;
+    private RectTransform summonRect;
+    private Vector2 summonBaselineAnchoredPos;
+    private bool summonBaselineCaptured;
+    private Vector2 menuBaselineAnchoredPos;
+    private bool menuBaselineCaptured;
     public Phase CurrentPhase => phase;
      public int allCount =0;
      public int alivecount = 0;
@@ -330,6 +339,39 @@ public class DefenceGameManager : MonoBehaviour
         // UI 패널을 켜고 위치를 대입합니다.
         menuPanel.gameObject.SetActive(true);
         menuPanel.position = screenPos;
+
+        // 버튼 묶음이 처음 나타날 때부터 고정 UI(마법덱/스테이지창)와 겹치면 왼쪽으로 치운다
+        float menuShift = ComputeAvoidShift(menuPanel);
+        if (menuShift > 0f) MovePanelScreenX(menuPanel, -menuShift);
+
+        // 회피까지 끝난 '안정 위치'를 기준으로 저장 → 소환 패널 추가 회피 시 이 기준에서만 밀어 누적 방지
+        menuBaselineAnchoredPos = menuPanel.anchoredPosition;
+        menuBaselineCaptured = true;
+    }
+
+    // measure 사각형이 avoidUI와 겹치면, 화면 안에 유지하면서 왼쪽으로 밀어야 할 총량을 반환(겹침 없으면 0).
+    // 실제 이동은 호출부에서 MovePanelScreenX로 수행.
+    private float ComputeAvoidShift(RectTransform measure)
+    {
+        Canvas.ForceUpdateCanvases();
+        Rect r = GetScreenRect(measure);
+        float total = 0f;
+        if (avoidUI != null)
+        {
+            foreach (var ui in avoidUI)
+            {
+                if (ui == null || !ui.gameObject.activeInHierarchy) continue;
+                Rect o = GetScreenRect(ui);
+                if (r.Overlaps(o))
+                {
+                    float shift = r.xMax - (o.xMin - summonPanelGap);
+                    if (shift > 0f) { total += shift; r.x -= shift; }
+                }
+            }
+        }
+        // 왼쪽 화면 밖으로 밀려나면 그만큼 되돌림
+        if (r.xMin < summonPanelGap) total -= (summonPanelGap - r.xMin);
+        return total > 0f ? total : 0f;
     }
     public void OnCreateWall()
     {
@@ -421,7 +463,61 @@ public class DefenceGameManager : MonoBehaviour
     public void OnSummonButton()
     {
         summonScrollView.SetActive(true);
+        PlaceSummonPanel();
         SoundManager.Play("ButtonPop");
+    }
+
+    // 유닛 패널은 클릭 타일(menuPanel)을 따라다니므로, 화면 우측의 고정 UI(마법덱/스테이지 설명창)를
+    // 덮을 수 있다. 평소엔 자연 위치 그대로 두고, '실제로 겹칠 때만' 왼쪽으로 밀어 치운다.
+    private void PlaceSummonPanel()
+    {
+        if (summonRect == null) summonRect = summonScrollView.transform as RectTransform;
+        if (summonRect == null) return;
+
+        // 유닛 패널이 menuPanel(버튼 묶음)의 자식이면, menuPanel만 옮겨도 패널이 따라온다.
+        // 이 경우 패널을 따로 또 옮기면 이중 이동이 되므로 그룹 전체(menuPanel)만 옮긴다.
+        bool panelUnderMenu = menuPanel != null && summonRect.IsChildOf(menuPanel);
+
+        // 자연 위치를 기준으로 매번 되돌린 뒤 측정 → 이동 누적 방지
+        if (!summonBaselineCaptured)
+        {
+            summonBaselineAnchoredPos = summonRect.anchoredPosition;
+            summonBaselineCaptured = true;
+        }
+        summonRect.anchoredPosition = summonBaselineAnchoredPos;
+        if (menuPanel != null && menuBaselineCaptured)
+            menuPanel.anchoredPosition = menuBaselineAnchoredPos;
+
+        // 더 큰 유닛 패널 기준으로 추가로 밀어야 할 양 계산 (menuPanel 회피는 이미 baseline에 반영됨)
+        float totalShift = ComputeAvoidShift(summonRect);
+        if (totalShift <= 0f) return; // 겹치지 않으면 자연 위치 그대로
+
+        // 패널과 버튼(menuPanel)이 '같은 양'만큼 함께 왼쪽으로 이동
+        if (panelUnderMenu)
+        {
+            // menuPanel만 옮기면 자식 패널·버튼이 통째로 따라온다
+            MovePanelScreenX(menuPanel, -totalShift);
+        }
+        else
+        {
+            MovePanelScreenX(summonRect, -totalShift);
+            if (menuPanel != null) MovePanelScreenX(menuPanel, -totalShift);
+        }
+    }
+
+    // Screen Space - Overlay 캔버스: 화면 픽셀 = 로컬 * lossyScale. 화면 이동량을 anchoredPosition으로 환산.
+    private void MovePanelScreenX(RectTransform rt, float screenDeltaX)
+    {
+        float scale = rt.lossyScale.x != 0f ? rt.lossyScale.x : 1f;
+        rt.anchoredPosition += new Vector2(screenDeltaX / scale, 0f);
+    }
+
+    // Overlay 캔버스에서 RectTransform의 화면 픽셀 사각형. (corners[0]=좌하단, corners[2]=우상단)
+    private Rect GetScreenRect(RectTransform rt)
+    {
+        Vector3[] c = new Vector3[4];
+        rt.GetWorldCorners(c);
+        return new Rect(c[0].x, c[0].y, c[2].x - c[0].x, c[2].y - c[0].y);
     }
     public void PathButton()
     {
