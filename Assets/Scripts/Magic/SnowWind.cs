@@ -21,7 +21,8 @@ public class SnowWind : MagicBase, IBeginDragHandler, IDragHandler, IEndDragHand
     public void OnBeginDrag(PointerEventData eventData)
     {
         if(phase !=DefenceGameManager.Instance.CurrentPhase)return;
-       liner.ShowCircle(GetMouseWorldPosition(), radius);
+        liner.ShowCircle(GetMouseWorldPosition(), radius);
+
     }
 
     private Vector3 GetMouseWorldPosition()
@@ -49,6 +50,9 @@ public class SnowWind : MagicBase, IBeginDragHandler, IDragHandler, IEndDragHand
     {
         liner.HideCircle();
         if(phase !=DefenceGameManager.Instance.CurrentPhase)return;
+        Vector3 worldMousePos = GetMouseWorldPosition();
+        var (gx, gz) = tileMap.WorldToGrid(worldMousePos);
+        if(!tileMap.IsInBounds(gx, gz))return;
         UseEffect();
     }
 

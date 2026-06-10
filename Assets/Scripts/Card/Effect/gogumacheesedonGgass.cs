@@ -2,17 +2,18 @@ using UnityEngine;
 
 public class gogumacheesedonGgass : EffectCardBase
 {
-    public override void UseEffect()
+    public override bool UseEffect()
     {
-        base.UseEffect();
+        if (!base.UseEffect()) return false;
+        CardGameManager.Instance.DiscardFromHand(gameObject);
         ResourceManager.Instance.AddMana(1);
         int beforeId = CardGameManager.Instance.LastDrawn?.InstanceId ?? -1;
         CardGameManager.Instance.DrawCard();
         var last = CardGameManager.Instance.LastDrawn;
-        if (last == null || last.InstanceId == beforeId) return;   // 드로우 실패
+        if (last == null || last.InstanceId == beforeId) return true;   // 드로우 실패
 
         var d = DataTableManager.CardTable.Get(last.CardId);
-        if (d == null) return;
+        if (d == null) return false;
 
         if (d.Type == CardType.Effect || (d.Type == CardType.Unit && d.UseAble))
         {
@@ -20,6 +21,6 @@ public class gogumacheesedonGgass : EffectCardBase
             CardGameManager.Instance.DrawCard();
             ResourceManager.Instance.AddMana(1);
         }
-        CardGameManager.Instance.DiscardFromHand(gameObject);
+        return true;
     }
 }

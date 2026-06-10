@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class ManaCollecter : EffectCardBase
 {
-    public override void UseEffect()
+    public override bool UseEffect()
     {
 
-        base.UseEffect();
+        if (!base.UseEffect()) return false;
         ResourceManager.Instance.AddMana(1);
         var c = CardGameManager.Instance.HandObjs;
         foreach(var co in c)
@@ -15,19 +15,19 @@ public class ManaCollecter : EffectCardBase
             if(co.Value.gameObject.GetComponent<CardBase>().GetCardType()==CardType.Effect)
             {
                 CardGameManager.Instance.DiscardFromHand(gameObject);
-                return;
+                return true;
             }
             if(co.Value.gameObject.GetComponent<CardBase>().GetCardType()==CardType.Unit&&co.Value.gameObject.GetComponent<CardBase>().UseAble)
             {
 
                 CardGameManager.Instance.DiscardFromHand(gameObject);
-                return;
+                return true;
             }
         }
         CardGameManager.Instance.DrawCard();
         CardGameManager.Instance.DrawCard();
         CardGameManager.Instance.DiscardFromHand(gameObject);
 
-        
+        return true;
     }
 }

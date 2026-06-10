@@ -3,16 +3,14 @@ using UnityEngine;
 // "손패 카드 1장을 파괴하고 3장 드로우". 타겟팅 인프라(CardGameManager)에 위임.
 public class EffectDestroyDraw : EffectCardBase
 {
-    public override void UseEffect()
+    public override bool UseEffect()
     {
-        if (CardGameManager.Instance == null) return;
-        if(ResourceManager.Instance.Mana<mana)
+        if (CardGameManager.Instance == null) return false;
+        if(ResourceManager.Instance.Mana <= mana)
         {
             CenterToast.Show("마나가 부족합니다.");
-            return;
+            return false;
         }
-
-        // 마나 체크는 타겟팅 시작 전에. 부족하면 카드는 손패에 그대로 둔다.
 
         CardGameManager.Instance.BeginTargetHandCard(gameObject, target =>
         {
@@ -21,9 +19,10 @@ public class EffectDestroyDraw : EffectCardBase
             CardGameManager.Instance.DrawCard();
             CardGameManager.Instance.DrawCard();
             CardGameManager.Instance.DrawCard();
-            SoundManager.Play("UseCard");
             ResourceManager.Instance.TrySpendMana(mana);
+            SoundManager.Play("UseCard");
             CardGameManager.Instance.DiscardFromHand(gameObject);
         });
+        return true;
     }
 }

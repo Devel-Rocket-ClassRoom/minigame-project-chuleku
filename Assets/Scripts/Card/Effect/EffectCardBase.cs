@@ -13,13 +13,14 @@ public class EffectCardBase : CardBase
         
     }
 
-    public virtual void UseEffect()
+    public virtual bool UseEffect()
     {
         if(!ResourceManager.Instance.TrySpendMana(mana))
         {
                CenterToast.Show("마나가 부족합니다.");
-               return;
+               return false;
         }
         SoundManager.Play("UseCard");
+        return true;
     }
 }

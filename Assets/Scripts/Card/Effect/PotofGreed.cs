@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class PotofGreed : EffectCardBase
 {
-    public override void UseEffect()
+    public override bool UseEffect()
     {
-        base.UseEffect();
+        if (!base.UseEffect()) return false;
         CardGameManager.Instance.DrawCard();
         CardGameManager.Instance.DrawCard();
         CardGameManager.Instance.DiscardFromHand(gameObject);
+        return true;
     }
 }

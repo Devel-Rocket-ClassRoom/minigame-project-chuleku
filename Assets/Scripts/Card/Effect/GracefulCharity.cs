@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class GracefulCharity : EffectCardBase
 {
-    public override void UseEffect()
+    public override bool UseEffect()
     {
-        base.UseEffect();
+        if (!base.UseEffect()) return false ;
         CardGameManager.Instance.DrawCard();
         CardGameManager.Instance.DrawCard();
         CardGameManager.Instance.DrawCard();
         PickAndDiscard(2);
+        return true;
     }
 
     // BeginTargetHandCard는 비동기(콜백 기반)라 연속 호출 시 두 번째가 IsTargeting 가드에 막힌다.
