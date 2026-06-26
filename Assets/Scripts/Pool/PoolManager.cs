@@ -2,9 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-// 프리팹별 ObjectPool을 들고 있는 범용 오브젝트 풀. (CLAUDE.md: 적/투사체/이펙트 풀링 필수)
-// 마법 이펙트뿐 아니라 적·화살 등도 동일하게 Spawn/Despawn으로 태울 수 있게 설계했다.
-// Instance가 없으면 자동 생성되므로 씬에 미리 배치하지 않아도 동작한다.
+
 public class PoolManager : MonoBehaviour
 {
     private static PoolManager instance;
@@ -84,7 +82,6 @@ public class PoolManager : MonoBehaviour
         return go;
     }
 
-    // 즉시 회수.
     public void Despawn(GameObject go)
     {
         if (go == null) return;
@@ -96,8 +93,6 @@ public class PoolManager : MonoBehaviour
         po.MarkReleased();
         GetPool(po.SourcePrefab).Release(go);
     }
-
-    // delay초 뒤 회수 (기존 Destroy(go, t) 대체).
     public void Despawn(GameObject go, float delay)
     {
         if (go == null) return;
