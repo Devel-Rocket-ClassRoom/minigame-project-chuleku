@@ -11,6 +11,8 @@ public class AuthManager : MonoBehaviour
     public static AuthManager Instance => instance;
 	private FirebaseAuth m_Auth;
 	private FirebaseUser m_CurrentUser;
+    public string CurrentUserUid => m_CurrentUser?.UserId;
+    public bool IsLoggedIn => m_CurrentUser != null;
     public void Initialize(FirebaseAuth auth)
     {
         m_Auth = auth;
@@ -44,7 +46,6 @@ public class AuthManager : MonoBehaviour
 		AuthResult result = await m_Auth.CreateUserWithEmailAndPasswordAsync(email, password);
 		m_CurrentUser = result.User;
 		NotifyLoginState();
-
 		Debug.Log($"[Auth] 이메일 회원가입 성공");
 		return (true, null);	
 	} catch (Exception ex) 
