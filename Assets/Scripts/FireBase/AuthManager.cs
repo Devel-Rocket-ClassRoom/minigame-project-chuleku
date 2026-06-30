@@ -31,7 +31,7 @@ public class AuthManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance != null || instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
             return;
@@ -69,8 +69,7 @@ public class AuthManager : MonoBehaviour
         catch(Exception ex)
         {
             Debug.Log($"[Auth] 게스트 로그인 실패 : {ex.Message}");
-            string errorMessage = "이메일 또는 비밀번호가 맞지않습니다.";
-            return(false,errorMessage);
+            return(false,null);
         }
     }
     public async UniTask<(bool success, string error)> SignIn(string email, string password) {
@@ -131,5 +130,4 @@ public class AuthManager : MonoBehaviour
         }
         Debug.Log($"[Auth] 로그인 상태 : {(m_CurrentUser.IsAnonymous ? "게스트 계정" : "이메일 계정")}");
     }
-    
 }

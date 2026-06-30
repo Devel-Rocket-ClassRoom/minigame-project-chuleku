@@ -50,7 +50,6 @@ public class LoginManager : MonoBehaviour
                 if (firebaseConfig != null && firebaseConfig.IsValid)
                 {
                     Debug.Log("[Login] FirebaseConfig 에셋을 사용하여 수동 초기화를 시도합니다.");
-                    
                     AppOptions options = new AppOptions
                     {
                         ApiKey = firebaseConfig.apiKey,

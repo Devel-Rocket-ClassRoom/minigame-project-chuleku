@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Runtime.InteropServices;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,8 +25,11 @@ public class MenuManager : MonoBehaviour
     public TextMeshProUGUI loadingText;
     public TextMeshProUGUI tipText;
     private bool Loading;
-
     private Difficulty difficulty;
+    public Button logoutButton;
+    public Button profileButton;
+    public GameObject profilePanal;
+    private bool clickProfile;
     void Awake()
     {
         Time.timeScale = 1f; // 인게임 일시정지/게임오버(timeScale=0) 상태로 나와도 메뉴는 항상 정상 진행되게 복구
@@ -44,6 +49,8 @@ public class MenuManager : MonoBehaviour
         Loading = false;
         loadingBar.value = 1;
         tipText.text = "Tip!";
+        profilePanal.SetActive(false);
+        clickProfile = false;
         tipText.text = GameSession.tipText;
     }
     void Start()
@@ -56,6 +63,8 @@ public class MenuManager : MonoBehaviour
             if (loadcor != null) StopCoroutine(loadcor);
             loadcor = StartCoroutine(RevealLoadingPanal());
         }
+        logoutButton.onClick.AddListener(()=>SignOut().Forget());
+        profileButton.onClick.AddListener(OnclickProfile);
     }
 
     // 덮인 로딩패널을 옆으로 밀어 걷어낸다. (InGame UiManager.HideLoadingPanalCor와 동일한 연출)
@@ -232,5 +241,22 @@ public class MenuManager : MonoBehaviour
             loadingText.text = "Loading...";
             yield return new WaitForSeconds(0.25f);
         }
+    }
+    private async UniTaskVoid SignOut()
+    {
+        try
+        {
+            var(succese,error) = await AuthManager.Instance.SignOut();
+            SceneManager.LoadScene("LoginScene");
+        }
+        catch(Exception ex)
+        {
+            Debug.Log($"로그아웃 실패 {ex.Message}");
+        }
+    }
+    private void OnclickProfile()
+    {
+        clickProfile = !clickProfile;
+        profilePanal.SetActive(clickProfile);
     }
 }

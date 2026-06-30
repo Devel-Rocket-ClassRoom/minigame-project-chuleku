@@ -982,7 +982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LoginManager
   emailInputField: {fileID: 2079674529}
   passwordInputField: {fileID: 1864615019}
-  firebaseConfig: {fileID: 11400000, guid: c2d7086a8d663704f94cfa0398227fc6, type: 2}
+  firebaseConfig: {fileID: 11400000, guid: 021ffa63441f05c4bac76b72554a9834, type: 2}
   loginButton: {fileID: 434055321}
   signUpButton: {fileID: 1460830235}
   guestButton: {fileID: 2070450029}
