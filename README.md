@@ -67,9 +67,9 @@
 <sup>(예외로 다중 타입인 유닛카드는 사용할 수 있습니다.)</sup>
 
 **효과 카드**
-- 카드중 특별한 효과를 사용 할 수 있는 카드입니다.<br>
+- 카드 중 특별한 효과를 사용 할 수 있는 카드입니다.<br>
 <sup>(드로우를 하거나 카드를 파괴 후 이득을 주는 효과를 가지고 있습니다.)</sup><br>
-<sup>(카드를 파괴 하면 덱 및 유닛카드 일경우 배치한 유닛까지 영구히 제거됩니다.)</sup>
+<sup>(카드를 파괴 하면 덱 및 유닛카드 일 경우 배치한 유닛까지 영구히 제거됩니다.)</sup>
 
 **자원 카드**
 - 사용을 하면 자원을 주는 카드 입니다.<br>
@@ -101,8 +101,15 @@
 - 일반 몹 처치 시 10점, 보스 처치 시 100점을 획득합니다.
 - 게임 종료(패배) 시 누적 점수가 결과 화면에 표시됩니다.
 
-## 기술적 특징 / 아키텍처
-
+## 게임 루프
+```mermaid
+flowchart TD
+    A[게임 시작] --> B[준비 라운드<br/>드로우・상점・벽 설치]
+    B --> C[전투 라운드<br/>웨이브 스폰・보스 등장]
+    C -->|체력 남음| B
+    C -->|체력 0| D[게임 종료<br/>최종 점수 표시]
+```
+## 기술적 특징
 ### 전체 구조: 역할 기반 싱글톤 매니저 분리
 게임 로직을 하나의 클래스에 몰아넣지 않고, 책임 단위로 매니저를 분리해 구현했습니다.
 
@@ -119,20 +126,63 @@
 
 각 매니저는 `Instance` 싱글톤으로 접근하고, 서로 직접 참조하기보다 **C# 이벤트(`Action`/`event`)로 통신**하도록 설계했습니다.
 예: `CardGameManager.UnitSlotClicked` 이벤트를 `DefenceGameManager`가 구독해 실제 유닛 배치를 처리 — 카드 시스템과 필드 배치 로직을 분리했습니다.
+### 튜토리얼 진행 판정
+- 튜토리얼을 `Step` 열거형으로 현재 단계를 관리합니다.
+- 각 게임 시스템(벽 설치/파괴,상점 구매,유닛 배치,전투 시작,카드 파괴,마법 사용 등) 해당 행동 성공 시점에`TutorialManager.Notify...()` 호출 하도록 통일했습니다.
+- `TutorialManager`에서 해당 단계가 맞는지 검증후 다음 단계로 진행합니다.
 
 ### 데이터 테이블 기반 카드/유닛 설계
-카드·유닛·스테이지 데이터를 코드에 하드코딩하지 않고 `DataTableManager`를 통해
-외부 테이블(CSV)에서 로드하도록 설계했습니다. 효과/자원 카드는 테이블의 Behavior
-컬럼에 적힌 클래스명을 런타임에 리플렉션(`Type.GetType`)으로 동적으로 부착해,
-같은 프리팹 하나로 다양한 카드 효과를 처리할 수 있도록 했습니다.
+카드와 유닛은 같은 Id(예: `Archer`)를 공유합니다. `CardGameManager`가 `CardTable`에서
+카드 정보를 조회하고, 실제 필드 배치 시점에는 `DefenceGameManager`가 같은 Id로
+`UnitTable`을 조회해 공격력・사거리・프리팹 등 유닛 스탯을 가져옵니다. 이렇게 카드
+Id를 유닛 스탯 테이블의 키로 그대로 재사용해, 별도의 매핑 테이블 없이 카드와 유닛을
+연결했습니다.
 
 ### 점수 기록
-- 로컬 최고기록을 `PlayerPrefs`로 저장해 매판마다 최고기록을 노릴수 있게 했습니다.
+- 로컬 최고기록을 `PlayerPrefs`로 저장해 매판마다 최고기록을 노릴 수 있게 했습니다.
 
 ### 무한 라운드 난이도 스케일링
 - 스테이지 수가 늘어날수록 몬스터의 수 와 체력을 늘리는 방식으로 무한 라운드 설계
 - 일정 스테이지 이후로는 스테이지 패턴을 순환
 
+## 아키텍처
+
+```mermaid
+flowchart LR
+    subgraph 카드 시스템
+        CGM[CardGameManager<br/>덱・손패・묘지]
+        MM[MagicManager<br/>마법 카드]
+    end
+
+    subgraph 필드 진행
+        DGM[DefenceGameManager<br/>라운드・페이즈・웨이브・유닛 배치]
+    end
+
+    subgraph 데이터 테이블
+        DT[DataTableManager<br/>CardTable / UnitTable / StageTable]
+    end
+
+    subgraph 상점/성장
+        SM[StoreManager<br/>매물・재고・리롤]
+        UM[UpgradeManager<br/>공격력 버프]
+    end
+
+    subgraph 결과/부가 시스템
+        SCM[ScoreManager<br/>점수・Firebase 연동]
+        SNM[SoundManager<br/>SFX・BGM]
+        TM[TutorialManager<br/>튜토리얼 플로우]
+    end
+
+    CGM -->|UnitSlotClicked 이벤트| DGM
+    DGM -->|EndRound 호출| CGM
+    DGM -->|StartRound 호출| SM
+    DGM -->|OnRoundEnded 호출| UM
+    DGM -->|EnemyDie 호출| SCM
+    CGM -.->|카드 파괴 알림| TM
+    DGM -.->|사운드 재생| SNM
+    CGM -->|CardTable 조회| DT
+    DGM -->|같은 Id로 UnitTable 조회| DT
+```
 ## 문제1 난이도에 따른 벽 개수 증가로 인해 경로 차단 문제
 
 **문제**
